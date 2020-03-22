@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Главная</title>
+</head>
+<body>
+    <section class="wrapper d-flex">
+        <header class="col-2">
+            <div class="sidebar">
+                <ul class="nav flex-column">
+                    <h4 class="name nav-item">My name</h4>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Главная</a>
+                    </li>
+                    <li class="nav-item dropright">
+                        <a class="nav-link dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Задачи</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href = "../html/Task/task.html" class="dropdown-item" type="button">Выполненные задачи</a>
+                            <a href = "../html/Task/task.html" class="dropdown-item" type="button">Задачи к выполнению</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropright">
+                        <a class="nav-link dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Бонусы</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href = "../html/Bonuce/bonuce.html" class="dropdown-item" type="button">Полученные</a>
+                            <a href = "../html/Bonuce/bonuce.html" class="dropdown-item" type="button">Доступные</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropright">
+                        <a class="nav-link dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Отчеты</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href = "../html/Report/report.html" class="dropdown-item" type="button">Активные</a>
+                            <a href = "../html/Report/report.html" class="dropdown-item" type="button">Завершенные</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropright">
+                        <a class="nav-link dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Выплаты</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href = "../html/Payout/payout.html" class="dropdown-item" type="button">История выплат</a>
+                            <a href = "../html/Payout/balance.html" class="dropdown-item" type="button">Текущий баланс</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropright">
+                    <a class="nav-link dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Персонал</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href = "../html/Worker/worker.html" class="dropdown-item" type="button">Назначить задачу</a>
+                            <a href = "../html/Worker/worker.html" class="dropdown-item" type="button">Оценка деятельности</a>                            
+                            <a href = "../html/Worker/worker.html" class="dropdown-item" type="button">Кандидаты на вакансию</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropright">
+                    <a class="nav-link dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Собеседования</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href = "../html/Resume/resume.html" class="dropdown-item" type="button">Резюме</a>
+                            <a href = "../html/Resume/calendar.html" class="dropdown-item" type="button">Календарь собеседований</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>       
+        </header>
+        <main class = "col-10">
+            <div id="accordion">
+                <div class="card">
+                  <div class="card-header d-flex justify-content-between" id="headingOne">
+                      <h5 class="mb-0 btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Задача к выполнению 1
+                      </h5>
+                      <h6 class="state mb-0 btn">Состояние</h6>
+                      <h6 class="mb-0 btn">Исполнитель</h6>
+                  </div>              
+                  <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <h5 class="card-title">Описание</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>                  
+                        <h5 class="card-title">Дедлайн</h5>
+                        <p class="card-text">10/2/2020</p>
+                        <h5 class="card-title">Бонусы</h5>
+                        <p class="card-text">50</p>
+                        <a href="#" class="btn btn-primary">Создать отчет</a>
+                      </div>
+                  </div>
+                </div>
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between" id="headingTwo">
+                        <h5 class="mb-0 btn btn-link" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+                          Задача к выполнению 2
+                        </h5>
+                        <h6 class="state mb-0 btn">Состояние</h6>
+                        <h6 class="mb-0 btn">Исполнитель</h6>
+                    </div>              
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                      <div class="card-body">
+                          <h5 class="card-title">Описание</h5>
+                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>                  
+                          <h5 class="card-title">Дедлайн</h5>
+                          <p class="card-text">10/2/2020</p>
+                          <h5 class="card-title">Бонусы</h5>
+                          <p class="card-text">50</p>
+                          <a href="#" class="btn btn-primary">Создать отчет</a>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header d-flex justify-content-between" id="headingThree">
+                        <h5 class="mb-0 btn btn-link" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseOne">
+                          Задача к выполнению 3
+                        </h5>
+                        <h6 class="state mb-0 btn">Состояние</h6>
+                        <h6 class="mb-0 btn">Исполнитель</h6>
+                    </div>              
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                      <div class="card-body">
+                          <h5 class="card-title">Описание</h5>
+                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>                  
+                          <h5 class="card-title">Дедлайн</h5>
+                          <p class="card-text">10/2/2020</p>
+                          <h5 class="card-title">Бонусы</h5>
+                          <p class="card-text">50</p>
+                          <a href="#" class="btn btn-primary">Создать отчет</a>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+        </main>
+    </section>
+    
+    <footer>
+
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

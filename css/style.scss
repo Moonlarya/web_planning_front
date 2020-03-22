@@ -1,0 +1,88 @@
+$headColor:#7A5AD8;
+$fonColor:#EBE9E9;
+$hoverColor:rgb(235, 217, 217);
+$hoverBtnColor:rgb(216, 190, 190);
+$cardColor:#F9F9F9;
+$mainTextColor:#494949;
+
+body{    
+    background-color: $fonColor;
+    font-family: 'Roboto', sans-serif;
+    color: $mainTextColor;
+}
+.btn-primary{
+    background-color: $hoverColor!important;
+    border-color: $hoverColor!important;
+    color: $mainTextColor!important;
+    &:focus{
+        box-shadow: 0 0 0 0.2rem rgba(229, 151, 226, 0.5);
+    }
+    &:hover{
+        background-color: $hoverBtnColor!important;
+    }
+}
+.dropdown-menu{
+    .dropdown-item{
+        &:hover{
+            background-color: $hoverColor;
+        }
+        &:active{
+            background-color: $hoverBtnColor;
+        }
+    }
+}
+.bonuce{
+    margin:20px auto;
+}
+.nav{
+    flex-wrap: nowrap!important;
+    cursor: pointer;
+}
+header{
+    padding: 0!important;   
+    ul{
+        height: 100vh;
+        background-color: $cardColor;
+        padding: 0!important;
+        li{
+            .nav-link{
+                padding: .5rem 2rem;
+            }
+            a{
+                color: $mainTextColor!important;
+            }
+            &:hover,  &:active, &:focus{
+                background-color: $hoverColor;
+            }
+        }
+        .name{
+            padding: 20px;
+        }
+    }
+}
+main{
+    .card{
+        margin: 15px;
+        .card-header{
+
+        }
+        .card-body{
+            .card-title{
+
+            }
+            .card-text{
+
+            }
+        }
+    }
+}
+.state::before{
+    content: '';
+    position: relative;
+    margin: 0 5px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background-color: rgb(199, 45, 40);
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/mdb.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="bower/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/all.css">
+    <link rel="stylesheet" href="../../css/style.css">
+    <title>Календарь</title>
+</head>
+<body>
+    <section class="wrapper d-flex">
+        <header class="col-2">
+            <div class="sidebar">
+                <ul class="nav flex-column">
+                    <h4 class="name nav-item">My name</h4>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Главная</a>
+                    </li>
+                    <li class="nav-item dropright">
+                        <a class="nav-link dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Задачи</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href = "../Task/task.html" class="dropdown-item" type="button">Выполненные задачи</a>
+                            <a href = "../Task/task.html" class="dropdown-item" type="button">Задачи к выполнению</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropright">
+                        <a class="nav-link dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Бонусы</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href = "../Bonuce/bonuce.html" class="dropdown-item" type="button">Полученные</a>
+                            <a href = "../Bonuce/bonuce.html" class="dropdown-item" type="button">Доступные</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropright">
+                        <a class="nav-link dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Отчеты</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href = "../Report/report.html" class="dropdown-item" type="button">Активные</a>
+                            <a href = "../Report/report.html" class="dropdown-item" type="button">Завершенные</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropright">
+                        <a class="nav-link dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Выплаты</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href = "../Payout/payout.html" class="dropdown-item" type="button">История выплат</a>
+                            <a href = "../Payout/balance.html" class="dropdown-item" type="button">Текущий баланс</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropright">
+                    <a class="nav-link dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Персонал</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href = "../Worker/worker.html" class="dropdown-item" type="button">Назначить задачу</a>
+                            <a href = "../Worker/worker.html" class="dropdown-item" type="button">Оценка деятельности</a>                            
+                            <a href = "../Worker/worker.html" class="dropdown-item" type="button">Кандидаты на вакансию</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropright">
+                    <a class="nav-link dropdown-toggle"data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Собеседования</a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href = "../Resume/resume.html" class="dropdown-item" type="button">Резюме</a>
+                            <a href = "../Resume/calendar.html" class="dropdown-item" type="button">Календарь собеседований</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>       
+        </header>
+        <main>
+            <div class="calendar disable-selection" id="calendar">
+                <div class="left-side">
+                    <div class="current-day text-center">
+                        <h1 class="calendar-left-side-day"></h1>
+                        <div class="calendar-left-side-day-of-week"></div>
+                    </div>
+                    <div class="current-day-events">
+                        <div>Current Events:</div>
+                        <ul class="current-day-events-list"></ul>
+                    </div>
+                    <div class="add-event-day">
+                        <input type="text" class="add-event-day-field" placeholder="Create an Event">
+                        <span class="fa fa-plus-circle cursor-pointer add-event-day-field-btn"></span>
+                    </div>
+                </div>
+                <div class="right-side">
+                    <div class="text-right calendar-change-year">
+                        <div class="calendar-change-year-slider">
+                            <span class="fa fa-caret-left cursor-pointer calendar-change-year-slider-prev"></span>
+                            <span class="calendar-current-year"></span>
+                            <span class="fa fa-caret-right cursor-pointer calendar-change-year-slider-next"></span>
+                        </div>
+                    </div>
+                    <div class="calendar-month-list">
+                        <ul class="calendar-month"></ul>
+                    </div>
+                    <div class="calendar-week-list">
+                        <ul class="calendar-week"></ul>
+                    </div>
+                    <div class="calendar-day-list">
+                        <ul class="calendar-days"></ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+    
+    <footer>
+
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script async src="scripts/all.js"></script>
+</body>
+</html>

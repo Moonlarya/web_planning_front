@@ -37,9 +37,8 @@
   }
 }
 
-
 body {
-  background-color: #EBE9E9;
+  background-color: #ebe9e9;
   font-family: "Roboto", sans-serif;
   color: #494949;
 }
@@ -71,26 +70,33 @@ body {
   flex-wrap: nowrap !important;
   cursor: pointer;
 }
+.sidebar {
+  padding: 0 !important;
 
-header {
-  padding: 0 !important;
-}
-header ul {
-  height: 100vh;
-  background-color: #F9F9F9;
-  padding: 0 !important;
-}
-header ul li .nav-link {
-  padding: 0.5rem 2rem;
-}
-header ul li a {
-  color: #494949 !important;
-}
-header ul li:hover, header ul li:active, header ul li:focus {
-  background-color: #ebd9d9;
-}
-header ul .name {
-  padding: 20px;
+  ul {
+    height: 100vh;
+    background-color: #f9f9f9;
+    padding: 0 !important;
+    li {
+      .nav-link {
+        padding: 0.5rem 2rem;
+      }
+
+      a {
+        color: #494949 !important;
+      }
+
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: #ebd9d9;
+      }
+    }
+
+    .name {
+      padding: 20px;
+    }
+  }
 }
 
 main .card {

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./style.scss";
 
@@ -8,9 +9,9 @@ const Sidebar = () => (
       <h4 className="name nav-item">Марішка мій котик</h4>
 
       <li className="nav-item">
-        <a className="nav-link" href="#">
+        <Link className="nav-link" to="/">
           Главная
-        </a>
+        </Link>
       </li>
       <li className="nav-item dropright">
         <a
@@ -22,20 +23,12 @@ const Sidebar = () => (
           Задачи
         </a>
         <div className="dropdown-menu dropdown-menu-right">
-          <a
-            href="../html/Task/task.html"
-            className="dropdown-item"
-            type="button"
-          >
+          <Link to="/task" className="dropdown-item" type="button">
             Выполненные задачи
-          </a>
-          <a
-            href="../html/Task/task.html"
-            className="dropdown-item"
-            type="button"
-          >
+          </Link>
+          <Link to="/task" className="dropdown-item" type="button">
             Задачи к выполнению
-          </a>
+          </Link>
         </div>
       </li>
       <li className="nav-item dropright">

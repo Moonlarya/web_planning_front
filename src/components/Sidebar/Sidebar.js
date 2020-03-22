@@ -1,11 +1,18 @@
 import React from "react";
+import {
+  ButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "reactstrap";
 
 import "./style.scss";
 
 const Sidebar = () => (
   <div className="sidebar col-2">
     <ul className="nav flex-column">
-      <h4 className="name nav-item">My name</h4>
+      <h4 className="name nav-item">Марішка мій котик</h4>
+
       <li className="nav-item">
         <a className="nav-link" href="#">
           Главная

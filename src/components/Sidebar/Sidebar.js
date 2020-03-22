@@ -1,10 +1,4 @@
 import React from "react";
-import {
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from "reactstrap";
 
 import "./style.scss";
 

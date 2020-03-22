@@ -70,34 +70,6 @@ body {
   flex-wrap: nowrap !important;
   cursor: pointer;
 }
-.sidebar {
-  padding: 0 !important;
-
-  ul {
-    height: 100vh;
-    background-color: #f9f9f9;
-    padding: 0 !important;
-    li {
-      .nav-link {
-        padding: 0.5rem 2rem;
-      }
-
-      a {
-        color: #494949 !important;
-      }
-
-      &:hover,
-      &:active,
-      &:focus {
-        background-color: #ebd9d9;
-      }
-    }
-
-    .name {
-      padding: 20px;
-    }
-  }
-}
 
 main .card {
   margin: 15px;

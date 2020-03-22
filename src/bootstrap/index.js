@@ -5,10 +5,10 @@ import "../style/index.scss";
 
 import * as serviceWorker from "./serviceWorker";
 
-import App from "../App";
+import Router from "../Router";
 
 serviceWorker.unregister();
 
-const Bootstrap = () => <App />;
+const Bootstrap = () => <Router />;
 
 export default Bootstrap;

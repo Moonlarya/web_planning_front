@@ -6,7 +6,7 @@ import "./style.scss";
 const Sidebar = () => (
   <div className="sidebar col-2">
     <ul className="nav flex-column">
-      <h4 className="name nav-item">Марішка мій котик</h4>
+      <h4 className="name nav-item">Юрашка мій котик</h4>
 
       <li className="nav-item">
         <Link className="nav-link" to="/">
@@ -67,20 +67,12 @@ const Sidebar = () => (
           Отчеты
         </a>
         <div className="dropdown-menu dropdown-menu-right">
-          <a
-            href="../html/Report/report.html"
-            className="dropdown-item"
-            type="button"
-          >
+          <Link className="nav-link" to="/report" className="dropdown-item">
             Активные
-          </a>
-          <a
-            href="../html/Report/report.html"
-            className="dropdown-item"
-            type="button"
-          >
+          </Link>
+          <Link className="nav-link" to="/report" className="dropdown-item">
             Завершенные
-          </a>
+          </Link>
         </div>
       </li>
       <li className="nav-item dropright">
@@ -93,20 +85,12 @@ const Sidebar = () => (
           Выплаты
         </a>
         <div className="dropdown-menu dropdown-menu-right">
-          <a
-            href="../html/Payout/payout.html"
-            className="dropdown-item"
-            type="button"
-          >
+          <Link to="/payout" className="dropdown-item" type="button">
             История выплат
-          </a>
-          <a
-            href="../html/Payout/balance.html"
-            className="dropdown-item"
-            type="button"
-          >
+          </Link>
+          <Link to="/balance" className="dropdown-item" type="button">
             Текущий баланс
-          </a>
+          </Link>
         </div>
       </li>
       <li className="nav-item dropright">
@@ -152,20 +136,12 @@ const Sidebar = () => (
           Собеседования
         </a>
         <div className="dropdown-menu dropdown-menu-right">
-          <a
-            href="../html/Resume/resume.html"
-            className="dropdown-item"
-            type="button"
-          >
+          <Link to="/resume" className="dropdown-item" type="button">
             Резюме
-          </a>
-          <a
-            href="../html/Resume/calendar.html"
-            className="dropdown-item"
-            type="button"
-          >
+          </Link>
+          <Link to="/calendar" className="dropdown-item" type="button">
             Календарь собеседований
-          </a>
+          </Link>
         </div>
       </li>
     </ul>

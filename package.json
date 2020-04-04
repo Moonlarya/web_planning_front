@@ -13,13 +13,19 @@
     "react-dom": "^16.13.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
-    "reactstrap": "^8.4.1"
+    "reactstrap": "^8.4.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.7",
+    "node": "^13.12.0",
+    "nodemon": "^2.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "serverdev": "nodemon server/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"

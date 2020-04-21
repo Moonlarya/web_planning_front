@@ -2,17 +2,9 @@ const Positions = require("../models/positions.model.js");
 
 // Create and Save a new Note
 exports.create = (req, res) => {
-  // Validate request
-  if (!req.body.content) {
-    return res.status(400).send({
-      message: "Position content can not be empty",
-    });
-  }
-
   // Create a Note
   const position = new Positions({
-    /* PositionId: { type: Number, required: true },
-    PositionName: { type: String, required: true, min: 1, max: 100 }, */
+    positionName: req.body.positionName,
     title: req.body.title || "Untitled Position",
     content: req.body.content,
   });
@@ -47,11 +39,11 @@ exports.findAll = (req, res) => {
 
 // Find a single note with a noteId
 exports.findOne = (req, res) => {
-  Positions.findById(req.params.PositionId)
+  Positions.findById(req.params.positionId)
     .then((position) => {
       if (!position) {
         return res.status(404).send({
-          message: "Position not found with id " + req.params.PositionId,
+          message: "Position not found with id " + req.params.positionId,
         });
       }
       res.send(position);
@@ -59,11 +51,11 @@ exports.findOne = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Position not found with id " + req.params.PositionId,
+          message: "Position not found with id " + req.params.positionId,
         });
       }
       return res.status(500).send({
-        message: "Error retrieving position with id " + req.params.PositionId,
+        message: "Error retrieving position with id " + req.params.positionId,
       });
     });
 };
@@ -79,7 +71,7 @@ exports.update = (req, res) => {
 
   // Find note and update it with the request body
   Positions.findByIdAndUpdate(
-    req.params.PositionId,
+    req.params.positionId,
     {
       title: req.body.title || "Untitled Position",
       content: req.body.content,
@@ -89,7 +81,7 @@ exports.update = (req, res) => {
     .then((position) => {
       if (!position) {
         return res.status(404).send({
-          message: "Note not found with id " + req.params.PositionId,
+          message: "Note not found with id " + req.params.positionId,
         });
       }
       res.send(position);
@@ -97,22 +89,22 @@ exports.update = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Note not found with id " + req.params.PositionId,
+          message: "Note not found with id " + req.params.positionId,
         });
       }
       return res.status(500).send({
-        message: "Error updating note with id " + req.params.PositionId,
+        message: "Error updating note with id " + req.params.positionId,
       });
     });
 };
 
 // Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {
-  Positions.findByIdAndRemove(req.params.PositionId)
+  Positions.findByIdAndRemove(req.params.positionId)
     .then((position) => {
       if (!position) {
         return res.status(404).send({
-          message: "Position not found with id " + req.params.PositionId,
+          message: "Position not found with id " + req.params.positionId,
         });
       }
       res.send({ message: "Position deleted successfully!" });
@@ -120,11 +112,11 @@ exports.delete = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId" || err.name === "NotFound") {
         return res.status(404).send({
-          message: "Position not found with id " + req.params.PositionId,
+          message: "Position not found with id " + req.params.positionId,
         });
       }
       return res.status(500).send({
-        message: "Could not delete note with id " + req.params.PositionId,
+        message: "Could not delete note with id " + req.params.positionId,
       });
     });
 };

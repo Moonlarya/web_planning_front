@@ -2,23 +2,13 @@ const Reviews = require("../models/reviews.model.js");
 
 // Create and Save a new Reviews
 exports.create = (req, res) => {
-  // Validate request
-  if (!req.body.content) {
-    return res.status(400).send({
-      message: "Review content can not be empty",
-    });
-  }
-
   // Create a Reviews
   const review = new Reviews({
-    /*
-       ReviewId: { type: Number, required: true },
-    ReviewName: { type: String, required: true, min: 0, max: 100 },
-    ReviewEmail: { type: String, required: true, min: 0, max: 100 },
-    ReviewPhone: { type: Number, max: 13 },
-    ReviewDescription: { type: String, min: 0, max: 300 },
-    ReviewPriority: { type: Number, min: 5, msx: 5 },
-     */
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    description: req.body.description,
+    priority: req.body.priority,
   });
 
   // Save Reviews in the database
@@ -48,13 +38,13 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single review with a ReviewId
+// Find a single review with a reviewId
 exports.findOne = (req, res) => {
-  Reviews.findById(req.params.ReviewId)
+  Reviews.findById(req.params.reviewId)
     .then((review) => {
       if (!review) {
         return res.status(404).send({
-          message: "Reviews not found with id " + req.params.ReviewId,
+          message: "Reviews not found with id " + req.params.reviewId,
         });
       }
       res.send(review);
@@ -62,16 +52,16 @@ exports.findOne = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Reviews not found with id " + req.params.ReviewId,
+          message: "Reviews not found with id " + req.params.reviewId,
         });
       }
       return res.status(500).send({
-        message: "Error retrieving review with id " + req.params.ReviewId,
+        message: "Error retrieving review with id " + req.params.reviewId,
       });
     });
 };
 
-// Update a review identified by the ReviewId in the request
+// Update a review identified by the reviewId in the request
 exports.update = (req, res) => {
   // Validate Request
   if (!req.body.content) {
@@ -82,7 +72,7 @@ exports.update = (req, res) => {
 
   // Find review and update it with the request body
   Reviews.findByIdAndUpdate(
-    req.params.ReviewId,
+    req.params.reviewId,
     {
       title: req.body.title || "Untitled Reviews",
       content: req.body.content,
@@ -92,7 +82,7 @@ exports.update = (req, res) => {
     .then((review) => {
       if (!review) {
         return res.status(404).send({
-          message: "Reviews not found with id " + req.params.ReviewId,
+          message: "Reviews not found with id " + req.params.reviewId,
         });
       }
       res.send(review);
@@ -100,22 +90,22 @@ exports.update = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Reviews not found with id " + req.params.ReviewId,
+          message: "Reviews not found with id " + req.params.reviewId,
         });
       }
       return res.status(500).send({
-        message: "Error updating review with id " + req.params.ReviewId,
+        message: "Error updating review with id " + req.params.reviewId,
       });
     });
 };
 
-// Delete a review with the specified ReviewId in the request
+// Delete a review with the specified reviewId in the request
 exports.delete = (req, res) => {
-  Reviews.findByIdAndRemove(req.params.ReviewId)
+  Reviews.findByIdAndRemove(req.params.reviewId)
     .then((review) => {
       if (!review) {
         return res.status(404).send({
-          message: "Reviews not found with id " + req.params.ReviewId,
+          message: "Reviews not found with id " + req.params.reviewId,
         });
       }
       res.send({ message: "Reviews deleted successfully!" });
@@ -123,11 +113,11 @@ exports.delete = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId" || err.name === "NotFound") {
         return res.status(404).send({
-          message: "Reviews not found with id " + req.params.ReviewId,
+          message: "Reviews not found with id " + req.params.reviewId,
         });
       }
       return res.status(500).send({
-        message: "Could not delete review with id " + req.params.ReviewId,
+        message: "Could not delete review with id " + req.params.reviewId,
       });
     });
 };

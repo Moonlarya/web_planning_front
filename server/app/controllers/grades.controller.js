@@ -2,20 +2,10 @@ const Grades = require("../models/grades.model.js");
 
 // Create and Save a new Grades
 exports.create = (req, res) => {
-  // Validate request
-  if (!req.body.content) {
-    return res.status(400).send({
-      message: "Grade content can not be empty",
-    });
-  }
-
-  // Create a Grades
   const grade = new Grades({
-    /*
-      GradePhone: { type: Number, required: true },
-      GradeName: { type: String, required: true },
-      GradeEmail: String,
-     */
+    phone: req.body.phone,
+    name: req.body.name,
+    email: req.body.email,
   });
 
   // Save Grades in the database
@@ -45,13 +35,13 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single grade with a GradeId
+// Find a single grade with a gradeId
 exports.findOne = (req, res) => {
-  Grades.findById(req.params.GradeId)
+  Grades.findById(req.params.gradeId)
     .then((grade) => {
       if (!grade) {
         return res.status(404).send({
-          message: "Grades not found with id " + req.params.GradeId,
+          message: "Grades not found with id " + req.params.gradeId,
         });
       }
       res.send(grade);
@@ -59,16 +49,16 @@ exports.findOne = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Grades not found with id " + req.params.GradeId,
+          message: "Grades not found with id " + req.params.gradeId,
         });
       }
       return res.status(500).send({
-        message: "Error retrieving grade with id " + req.params.GradeId,
+        message: "Error retrieving grade with id " + req.params.gradeId,
       });
     });
 };
 
-// Update a grade identified by the GradeId in the request
+// Update a grade identified by the gradeId in the request
 exports.update = (req, res) => {
   // Validate Request
   if (!req.body.content) {
@@ -79,7 +69,7 @@ exports.update = (req, res) => {
 
   // Find grade and update it with the request body
   Grades.findByIdAndUpdate(
-    req.params.GradeId,
+    req.params.gradeId,
     {
       title: req.body.title || "Untitled Grades",
       content: req.body.content,
@@ -89,7 +79,7 @@ exports.update = (req, res) => {
     .then((grade) => {
       if (!grade) {
         return res.status(404).send({
-          message: "Grades not found with id " + req.params.GradeId,
+          message: "Grades not found with id " + req.params.gradeId,
         });
       }
       res.send(grade);
@@ -97,22 +87,22 @@ exports.update = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Grades not found with id " + req.params.GradeId,
+          message: "Grades not found with id " + req.params.gradeId,
         });
       }
       return res.status(500).send({
-        message: "Error updating grade with id " + req.params.GradeId,
+        message: "Error updating grade with id " + req.params.gradeId,
       });
     });
 };
 
-// Delete a grade with the specified GradeId in the request
+// Delete a grade with the specified gradeId in the request
 exports.delete = (req, res) => {
-  Grades.findByIdAndRemove(req.params.GradeId)
+  Grades.findByIdAndRemove(req.params.gradeId)
     .then((grade) => {
       if (!grade) {
         return res.status(404).send({
-          message: "Grades not found with id " + req.params.GradeId,
+          message: "Grades not found with id " + req.params.gradeId,
         });
       }
       res.send({ message: "Grades deleted successfully!" });
@@ -120,11 +110,11 @@ exports.delete = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId" || err.name === "NotFound") {
         return res.status(404).send({
-          message: "Grades not found with id " + req.params.GradeId,
+          message: "Grades not found with id " + req.params.gradeId,
         });
       }
       return res.status(500).send({
-        message: "Could not delete grade with id " + req.params.GradeId,
+        message: "Could not delete grade with id " + req.params.gradeId,
       });
     });
 };

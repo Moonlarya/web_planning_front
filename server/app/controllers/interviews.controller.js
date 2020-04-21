@@ -2,20 +2,11 @@ const Interviews = require("../models/interviews.model.js");
 
 // Create and Save a new Interviews
 exports.create = (req, res) => {
-  // Validate request
-  if (!req.body.content) {
-    return res.status(400).send({
-      message: "Interview content can not be empty",
-    });
-  }
-
   // Create a Interviews
   const interview = new Interviews({
-    /*
-      InterviewPhone: { type: Number, required: true },
-      InterviewName: { type: String, required: true },
-      InterviewEmail: String,
-     */
+    phone: req.body.phone,
+    name: req.body.name,
+    email: req.body.email,
   });
 
   // Save Interviews in the database
@@ -46,13 +37,13 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single interview with a InterviewId
+// Find a single interview with a interviewId
 exports.findOne = (req, res) => {
-  Interviews.findById(req.params.InterviewId)
+  Interviews.findById(req.params.interviewId)
     .then((interview) => {
       if (!interview) {
         return res.status(404).send({
-          message: "Interviews not found with id " + req.params.InterviewId,
+          message: "Interviews not found with id " + req.params.interviewId,
         });
       }
       res.send(interview);
@@ -60,16 +51,16 @@ exports.findOne = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Interviews not found with id " + req.params.InterviewId,
+          message: "Interviews not found with id " + req.params.interviewId,
         });
       }
       return res.status(500).send({
-        message: "Error retrieving interview with id " + req.params.InterviewId,
+        message: "Error retrieving interview with id " + req.params.interviewId,
       });
     });
 };
 
-// Update a interview identified by the InterviewId in the request
+// Update a interview identified by the interviewId in the request
 exports.update = (req, res) => {
   // Validate Request
   if (!req.body.content) {
@@ -80,7 +71,7 @@ exports.update = (req, res) => {
 
   // Find interview and update it with the request body
   Interviews.findByIdAndUpdate(
-    req.params.InterviewId,
+    req.params.interviewId,
     {
       title: req.body.title || "Untitled Interviews",
       content: req.body.content,
@@ -90,7 +81,7 @@ exports.update = (req, res) => {
     .then((interview) => {
       if (!interview) {
         return res.status(404).send({
-          message: "Interviews not found with id " + req.params.InterviewId,
+          message: "Interviews not found with id " + req.params.interviewId,
         });
       }
       res.send(interview);
@@ -98,22 +89,22 @@ exports.update = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Interviews not found with id " + req.params.InterviewId,
+          message: "Interviews not found with id " + req.params.interviewId,
         });
       }
       return res.status(500).send({
-        message: "Error updating interview with id " + req.params.InterviewId,
+        message: "Error updating interview with id " + req.params.interviewId,
       });
     });
 };
 
-// Delete a interview with the specified InterviewId in the request
+// Delete a interview with the specified interviewId in the request
 exports.delete = (req, res) => {
-  Interviews.findByIdAndRemove(req.params.InterviewId)
+  Interviews.findByIdAndRemove(req.params.interviewId)
     .then((interview) => {
       if (!interview) {
         return res.status(404).send({
-          message: "Interviews not found with id " + req.params.InterviewId,
+          message: "Interviews not found with id " + req.params.interviewId,
         });
       }
       res.send({ message: "Interviews deleted successfully!" });
@@ -121,11 +112,11 @@ exports.delete = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId" || err.name === "NotFound") {
         return res.status(404).send({
-          message: "Interviews not found with id " + req.params.InterviewId,
+          message: "Interviews not found with id " + req.params.interviewId,
         });
       }
       return res.status(500).send({
-        message: "Could not delete interview with id " + req.params.InterviewId,
+        message: "Could not delete interview with id " + req.params.interviewId,
       });
     });
 };

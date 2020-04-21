@@ -2,9 +2,8 @@ const mongoose = require("mongoose");
 
 const Grades = mongoose.Schema(
   {
-    GradeId: { type: Number, required: true },
-    CriteriaId: { type: Number, required: true },
-    EmployeeId: { type: Number, required: true },
+    criteriaId: { type: String, required: true },
+    employeeId: { type: String, required: true },
   },
   {
     timestamps: true,

@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const Employees = mongoose.Schema(
   {
-    EmployeeId: { type: Number, required: true },
-    EmployeeName: { type: String, required: true, min: 0, max: 30 },
-    EmployeeType: { type: String, required: true, min: 0, max: 20 },
-    EmployeeStatus: { type: String, required: true, min: 0, max: 4 }, //???? CHECK (EmployeeStatus IN('free', 'left', 'busy'))
+    employeeId: { type: Number, required: true },
+    name: { type: String, required: true, min: 0, max: 30 },
+    name: { type: String, required: true, min: 0, max: 20 },
+    status: { type: String, required: true, min: 0, max: 4 }, //???? CHECK (status IN('free', 'left', 'busy'))
   },
   {
     timestamps: true,

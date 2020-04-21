@@ -11,15 +11,12 @@ exports.create = (req, res) => {
 
   // Create a Reports
   const report = new Reports({
-    /*
-      ReportId: { type: Number, require: true },
-      ReportLink: { type: String, max: 20, require: true },
-      ReportDate: { type: Date, require: true }, //DEFAULT CURRENT_DATE check(ReportDate >= CURRENT_DATE),
-      ReportPoints: { type: Number, require: true }, // (ReportPoints >0),
-      ReportStatus: { type: String, max: 8 }, // CHECK (ReportStatus IN('active', 'disabled', 'problem', 'finished')),
-      ReportEmployeeId: { type: Number, require: true },
-      ReportTaskId: { type: Number, require: true },
-     */
+    link: req.body.link,
+    date: req.body.date,
+    points: req.body.points, // (ReportPoints >0),
+    status: req.body.status,
+    employeeId: req.body.employeeId,
+    taskId: req.body.taskId,
   });
 
   // Save Reports in the database
@@ -49,13 +46,13 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single report with a ReportId
+// Find a single report with a reportId
 exports.findOne = (req, res) => {
-  Reports.findById(req.params.ReportId)
+  Reports.findById(req.params.reportId)
     .then((report) => {
       if (!report) {
         return res.status(404).send({
-          message: "Reports not found with id " + req.params.ReportId,
+          message: "Reports not found with id " + req.params.reportId,
         });
       }
       res.send(report);
@@ -63,16 +60,16 @@ exports.findOne = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Reports not found with id " + req.params.ReportId,
+          message: "Reports not found with id " + req.params.reportId,
         });
       }
       return res.status(500).send({
-        message: "Error retrieving report with id " + req.params.ReportId,
+        message: "Error retrieving report with id " + req.params.reportId,
       });
     });
 };
 
-// Update a report identified by the ReportId in the request
+// Update a report identified by the reportId in the request
 exports.update = (req, res) => {
   // Validate Request
   if (!req.body.content) {
@@ -83,7 +80,7 @@ exports.update = (req, res) => {
 
   // Find report and update it with the request body
   Reports.findByIdAndUpdate(
-    req.params.ReportId,
+    req.params.reportId,
     {
       title: req.body.title || "Untitled Reports",
       content: req.body.content,
@@ -93,7 +90,7 @@ exports.update = (req, res) => {
     .then((report) => {
       if (!report) {
         return res.status(404).send({
-          message: "Reports not found with id " + req.params.ReportId,
+          message: "Reports not found with id " + req.params.reportId,
         });
       }
       res.send(report);
@@ -101,22 +98,22 @@ exports.update = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Reports not found with id " + req.params.ReportId,
+          message: "Reports not found with id " + req.params.reportId,
         });
       }
       return res.status(500).send({
-        message: "Error updating report with id " + req.params.ReportId,
+        message: "Error updating report with id " + req.params.reportId,
       });
     });
 };
 
-// Delete a report with the specified ReportId in the request
+// Delete a report with the specified reportId in the request
 exports.delete = (req, res) => {
-  Reports.findByIdAndRemove(req.params.ReportId)
+  Reports.findByIdAndRemove(req.params.reportId)
     .then((report) => {
       if (!report) {
         return res.status(404).send({
-          message: "Reports not found with id " + req.params.ReportId,
+          message: "Reports not found with id " + req.params.reportId,
         });
       }
       res.send({ message: "Reports deleted successfully!" });
@@ -124,11 +121,11 @@ exports.delete = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId" || err.name === "NotFound") {
         return res.status(404).send({
-          message: "Reports not found with id " + req.params.ReportId,
+          message: "Reports not found with id " + req.params.reportId,
         });
       }
       return res.status(500).send({
-        message: "Could not delete report with id " + req.params.ReportId,
+        message: "Could not delete report with id " + req.params.reportId,
       });
     });
 };

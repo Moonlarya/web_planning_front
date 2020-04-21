@@ -2,20 +2,12 @@ const Clients = require("../models/clients.model.js");
 
 // Create and Save a new Clients
 exports.create = (req, res) => {
-  // Validate request
-  if (!req.body.content) {
-    return res.status(400).send({
-      message: "Client content can not be empty",
-    });
-  }
-
+  console.log(req.body);
   // Create a Clients
   const client = new Clients({
-    /*
-      ClientPhone: { type: Number, required: true },
-      ClientName: { type: String, required: true },
-      ClientEmail: String,
-     */
+    phone: req.body.phone,
+    name: req.body.name,
+    email: req.body.email,
   });
 
   // Save Clients in the database
@@ -45,13 +37,13 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single client with a ClientId
+// Find a single client with a clientId
 exports.findOne = (req, res) => {
-  Clients.findById(req.params.ClientId)
+  Clients.findById(req.params.clientId)
     .then((client) => {
       if (!client) {
         return res.status(404).send({
-          message: "Clients not found with id " + req.params.ClientId,
+          message: "Clients not found with id " + req.params.clientId,
         });
       }
       res.send(client);
@@ -59,16 +51,16 @@ exports.findOne = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Clients not found with id " + req.params.ClientId,
+          message: "Clients not found with id " + req.params.clientId,
         });
       }
       return res.status(500).send({
-        message: "Error retrieving client with id " + req.params.ClientId,
+        message: "Error retrieving client with id " + req.params.clientId,
       });
     });
 };
 
-// Update a client identified by the ClientId in the request
+// Update a client identified by the clientId in the request
 exports.update = (req, res) => {
   // Validate Request
   if (!req.body.content) {
@@ -79,7 +71,7 @@ exports.update = (req, res) => {
 
   // Find client and update it with the request body
   Clients.findByIdAndUpdate(
-    req.params.ClientId,
+    req.params.clientId,
     {
       title: req.body.title || "Untitled Clients",
       content: req.body.content,
@@ -89,7 +81,7 @@ exports.update = (req, res) => {
     .then((client) => {
       if (!client) {
         return res.status(404).send({
-          message: "Clients not found with id " + req.params.ClientId,
+          message: "Clients not found with id " + req.params.clientId,
         });
       }
       res.send(client);
@@ -97,22 +89,22 @@ exports.update = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Clients not found with id " + req.params.ClientId,
+          message: "Clients not found with id " + req.params.clientId,
         });
       }
       return res.status(500).send({
-        message: "Error updating client with id " + req.params.ClientId,
+        message: "Error updating client with id " + req.params.clientId,
       });
     });
 };
 
-// Delete a client with the specified ClientId in the request
+// Delete a client with the specified clientId in the request
 exports.delete = (req, res) => {
-  Clients.findByIdAndRemove(req.params.ClientId)
+  Clients.findByIdAndRemove(req.params.clientId)
     .then((client) => {
       if (!client) {
         return res.status(404).send({
-          message: "Clients not found with id " + req.params.ClientId,
+          message: "Clients not found with id " + req.params.clientId,
         });
       }
       res.send({ message: "Clients deleted successfully!" });
@@ -120,11 +112,11 @@ exports.delete = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId" || err.name === "NotFound") {
         return res.status(404).send({
-          message: "Clients not found with id " + req.params.ClientId,
+          message: "Clients not found with id " + req.params.clientId,
         });
       }
       return res.status(500).send({
-        message: "Could not delete client with id " + req.params.ClientId,
+        message: "Could not delete client with id " + req.params.clientId,
       });
     });
 };

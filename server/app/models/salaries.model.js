@@ -2,11 +2,27 @@ const mongoose = require("mongoose");
 
 const Salaries = mongoose.Schema(
   {
-    SalaryId: { type: Number, required: true },
-    SalarySumm: { type: Number, required: true },
-    SalaryMonth: { type: String, required: true }, //CHECK (SalaryMonth IN('jan', 'feb', 'mch', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec')),
-    SalaryYear: { type: Number, required: true },
-    SalaryEmployeeId: { type: Number, required: true },
+    summ: { type: Number, required: true },
+    month: {
+      type: String,
+      enum: [
+        "jan",
+        "feb",
+        "mch",
+        "apr",
+        "may",
+        "jun",
+        "jul",
+        "aug",
+        "sep",
+        "oct",
+        "nov",
+        "dec",
+      ],
+      required: true,
+    },
+    year: { type: Number, required: true },
+    employeeId: { type: Number, required: true },
   },
   {
     timestamps: true,

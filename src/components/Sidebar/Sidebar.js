@@ -13,6 +13,16 @@ const Sidebar = () => (
           Главная
         </Link>
       </li>
+      <li className="nav-item">
+        <Link className="nav-link" to="/clients">
+          Клиенты
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link className="nav-link" to="/projects">
+          Проекты
+        </Link>
+      </li>
       <li className="nav-item dropright">
         <a
           className="nav-link dropdown-toggle"

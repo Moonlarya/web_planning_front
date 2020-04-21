@@ -2,23 +2,13 @@ const Tasks = require("../models/tasks.model.js");
 
 // Create and Save a new Tasks
 exports.create = (req, res) => {
-  // Validate request
-  if (!req.body.content) {
-    return res.status(400).send({
-      message: "Task content can not be empty",
-    });
-  }
-
   // Create a Tasks
   const task = new Tasks({
-    /*
-      TaskId: { type: Number, required: true },
-    TaskNumber: { type: Number, required: true },
-    TaskName: { type: String, required: true, min: 0, max: 100 },
-    TaskDescription: { type: String, required: true, min: 0, max: 300 },
-    TaskDeadline: { type: Date, required: true },
-    TaskBonuce: { type: Number, min: 0, max: 10 },
-     */
+    number: req.body.number,
+    name: req.body.name,
+    description: req.body.description,
+    deadline: req.body.deadline,
+    bonuce: req.body.bonuce,
   });
 
   // Save Tasks in the database
@@ -47,13 +37,13 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single task with a TaskId
+// Find a single task with a taskId
 exports.findOne = (req, res) => {
-  Tasks.findById(req.params.TaskId)
+  Tasks.findById(req.params.taskId)
     .then((task) => {
       if (!task) {
         return res.status(404).send({
-          message: "Tasks not found with id " + req.params.TaskId,
+          message: "Tasks not found with id " + req.params.taskId,
         });
       }
       res.send(task);
@@ -61,16 +51,16 @@ exports.findOne = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Tasks not found with id " + req.params.TaskId,
+          message: "Tasks not found with id " + req.params.taskId,
         });
       }
       return res.status(500).send({
-        message: "Error retrieving task with id " + req.params.TaskId,
+        message: "Error retrieving task with id " + req.params.taskId,
       });
     });
 };
 
-// Update a task identified by the TaskId in the request
+// Update a task identified by the taskId in the request
 exports.update = (req, res) => {
   // Validate Request
   if (!req.body.content) {
@@ -81,7 +71,7 @@ exports.update = (req, res) => {
 
   // Find task and update it with the request body
   Tasks.findByIdAndUpdate(
-    req.params.TaskId,
+    req.params.taskId,
     {
       title: req.body.title || "Untitled Tasks",
       content: req.body.content,
@@ -91,7 +81,7 @@ exports.update = (req, res) => {
     .then((task) => {
       if (!task) {
         return res.status(404).send({
-          message: "Tasks not found with id " + req.params.TaskId,
+          message: "Tasks not found with id " + req.params.taskId,
         });
       }
       res.send(task);
@@ -99,22 +89,22 @@ exports.update = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Tasks not found with id " + req.params.TaskId,
+          message: "Tasks not found with id " + req.params.taskId,
         });
       }
       return res.status(500).send({
-        message: "Error updating task with id " + req.params.TaskId,
+        message: "Error updating task with id " + req.params.taskId,
       });
     });
 };
 
-// Delete a task with the specified TaskId in the request
+// Delete a task with the specified taskId in the request
 exports.delete = (req, res) => {
-  Tasks.findByIdAndRemove(req.params.TaskId)
+  Tasks.findByIdAndRemove(req.params.taskId)
     .then((task) => {
       if (!task) {
         return res.status(404).send({
-          message: "Tasks not found with id " + req.params.TaskId,
+          message: "Tasks not found with id " + req.params.taskId,
         });
       }
       res.send({ message: "Tasks deleted successfully!" });
@@ -122,11 +112,11 @@ exports.delete = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId" || err.name === "NotFound") {
         return res.status(404).send({
-          message: "Tasks not found with id " + req.params.TaskId,
+          message: "Tasks not found with id " + req.params.taskId,
         });
       }
       return res.status(500).send({
-        message: "Could not delete task with id " + req.params.TaskId,
+        message: "Could not delete task with id " + req.params.taskId,
       });
     });
 };

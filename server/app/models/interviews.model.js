@@ -2,10 +2,9 @@ const mongoose = require("mongoose");
 
 const Interviews = mongoose.Schema(
   {
-    InterviewId: { type: Number, required: true },
-    InterviewKind: { type: String }, //CHECK (InterviewKind IN('hr', 'technical', 'manager')) ,
-    InterviewData: { type: Date, required: true },
-    InterviewResult: { type: String, min: 0, max: 300 },
+    interviewKind: { type: String, enum: ["hr", "technical", "manager"] },
+    interviewData: { type: Date, required: true },
+    interviewResult: { type: String, min: 0, max: 300 },
   },
   {
     timestamps: true,

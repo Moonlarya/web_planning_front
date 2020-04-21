@@ -2,12 +2,11 @@ const mongoose = require("mongoose");
 
 const Projects = mongoose.Schema(
   {
-    ProjectId: { type: Number, required: true },
-    ProjectName: { type: String, required: true },
-    ProjectDescription: { type: String, required: true },
-    ProjectDeadline: { type: Date, required: true },
-    ProjectBudget: { type: Number, min: 0, max: 19 },
-    ClientId: { type: Number, required: true },
+    name: { type: String, required: true },
+    description: { type: String, required: true },
+    deadline: { type: Date, required: true },
+    budget: { type: Number },
+    clientId: { type: String, required: true },
   },
   {
     timestamps: true,

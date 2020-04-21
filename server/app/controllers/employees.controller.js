@@ -2,22 +2,11 @@ const Employees = require("../models/employees.model.js");
 
 // Create and Save a new Note
 exports.create = (req, res) => {
-  // Validate request
-  if (!req.body.content) {
-    return res.status(400).send({
-      message: "Employee content can not be empty",
-    });
-  }
-
   // Create a Note
   const employee = new Employees({
-    /* EmployeeId: { type: Number, required: true },
-    EmployeeName: { type: String, required: true, min: 0, max: 30 },
-    EmployeeType: { type: String, required: true, min: 0, max: 20 },
-    EmployeeStatus: { type: String, required: true, min: 0, max: 4 }, //???? CHECK (EmployeeStatus IN('free', 'left', 'busy'))
- */
-    title: req.body.title || "Untitled Employee",
-    content: req.body.content,
+    name: req.body.name,
+    type: req.body.type,
+    status: req.body.status, //???? CHECK (status IN('free', 'left', 'busy'))
   });
 
   // Save Note in the database
@@ -50,11 +39,11 @@ exports.findAll = (req, res) => {
 
 // Find a single note with a noteId
 exports.findOne = (req, res) => {
-  Employees.findById(req.params.EmployeeId)
+  Employees.findById(req.params.employeeId)
     .then((employee) => {
       if (!employee) {
         return res.status(404).send({
-          message: "Employee not found with id " + req.params.EmployeeId,
+          message: "Employee not found with id " + req.params.employeeId,
         });
       }
       res.send(employee);
@@ -62,11 +51,11 @@ exports.findOne = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Employee not found with id " + req.params.EmployeeId,
+          message: "Employee not found with id " + req.params.employeeId,
         });
       }
       return res.status(500).send({
-        message: "Error retrieving employee with id " + req.params.EmployeeId,
+        message: "Error retrieving employee with id " + req.params.employeeId,
       });
     });
 };
@@ -82,7 +71,7 @@ exports.update = (req, res) => {
 
   // Find note and update it with the request body
   Employees.findByIdAndUpdate(
-    req.params.EmployeeId,
+    req.params.employeeId,
     {
       title: req.body.title || "Untitled Position",
       content: req.body.content,
@@ -92,7 +81,7 @@ exports.update = (req, res) => {
     .then((employee) => {
       if (!employee) {
         return res.status(404).send({
-          message: "Note not found with id " + req.params.EmployeeId,
+          message: "Note not found with id " + req.params.employeeId,
         });
       }
       res.send(employee);
@@ -100,22 +89,22 @@ exports.update = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId") {
         return res.status(404).send({
-          message: "Note not found with id " + req.params.EmployeeId,
+          message: "Note not found with id " + req.params.employeeId,
         });
       }
       return res.status(500).send({
-        message: "Error updating note with id " + req.params.EmployeeId,
+        message: "Error updating note with id " + req.params.employeeId,
       });
     });
 };
 
 // Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {
-  Employees.findByIdAndRemove(req.params.EmployeeId)
+  Employees.findByIdAndRemove(req.params.employeeId)
     .then((employee) => {
       if (!employee) {
         return res.status(404).send({
-          message: "Position not found with id " + req.params.EmployeeId,
+          message: "Position not found with id " + req.params.employeeId,
         });
       }
       res.send({ message: "Position deleted successfully!" });
@@ -123,11 +112,11 @@ exports.delete = (req, res) => {
     .catch((err) => {
       if (err.kind === "ObjectId" || err.name === "NotFound") {
         return res.status(404).send({
-          message: "Position not found with id " + req.params.EmployeeId,
+          message: "Position not found with id " + req.params.employeeId,
         });
       }
       return res.status(500).send({
-        message: "Could not delete note with id " + req.params.EmployeeId,
+        message: "Could not delete note with id " + req.params.employeeId,
       });
     });
 };

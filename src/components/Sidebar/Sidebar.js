@@ -6,7 +6,7 @@ import "./style.scss";
 const Sidebar = () => (
   <div className="sidebar col-2">
     <ul className="nav flex-column">
-      <h4 className="name nav-item">Юрашка мій котик</h4>
+      <h4 className="name nav-item">Humeniuk Marina</h4>
 
       <li className="nav-item">
         <Link className="nav-link" to="/">

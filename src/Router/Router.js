@@ -12,6 +12,9 @@ import {
   Resume,
   Clients,
   Project,
+  AddClient,
+  AddTask,
+  AddProject,
 } from "../pages";
 
 const RouteSchema = () => (
@@ -25,6 +28,9 @@ const RouteSchema = () => (
       <DashboardRoute exact path="/resume" component={Resume} />
       <DashboardRoute exact path="/clients" component={Clients} />
       <DashboardRoute exact path="/projects" component={Project} />
+      <DashboardRoute exact path="/addclient" component={AddClient} />
+      <DashboardRoute exact path="/addtask" component={AddTask} />
+      <DashboardRoute exact path="/addproject" component={AddProject} />
 
       <Route exact component={() => <h1 className="text-center"> 404 </h1>} />
     </Switch>

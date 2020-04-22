@@ -49,6 +49,6 @@ require("./app/routes/reviews.routes.js")(app);
 require("./app/routes/salaries.routes.js")(app);
 require("./app/routes/tasks.routes.js")(app);
 
-app.listen(3000, () => {
-  console.log("Server is listening on port 3000");
+app.listen(3001, () => {
+  console.log("Server is listening on port 3001");
 });

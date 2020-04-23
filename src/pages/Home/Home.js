@@ -16,10 +16,10 @@ const Home = () => (
           aria-expanded="true"
           aria-controls="collapseOne"
         >
-          Задача к выполнению 1
+          Дизайн
         </h5>
         <h6 className="state mb-0 btn">Состояние</h6>
-        <h6 className="mb-0 btn">Исполнитель</h6>
+        <h6 className="mb-0 btn">Пойдун Анастасия</h6>
       </div>
       <div
         id="collapseOne"
@@ -30,8 +30,7 @@ const Home = () => (
         <div className="card-body">
           <h5 className="card-title">Описание</h5>
           <p className="card-text">
-            With supporting text below as a natural lead-in to additional
-            content.
+            Создать дизайн к проекту о планировании процессов микропредприятия.
           </p>
           <h5 className="card-title">Дедлайн</h5>
           <p className="card-text">10/2/2020</p>
@@ -55,10 +54,10 @@ const Home = () => (
           aria-expanded="true"
           aria-controls="collapseOne"
         >
-          Задача к выполнению 2
+          Исследование ЦА
         </h5>
         <h6 className="state mb-0 btn">Состояние</h6>
-        <h6 className="mb-0 btn">Исполнитель</h6>
+        <h6 className="mb-0 btn">Машкота Савелий</h6>
       </div>
       <div
         id="collapseTwo"
@@ -69,8 +68,7 @@ const Home = () => (
         <div className="card-body">
           <h5 className="card-title">Описание</h5>
           <p className="card-text">
-            With supporting text below as a natural lead-in to additional
-            content.
+            Исследовать целевую аудиторию и их предпочтения
           </p>
           <h5 className="card-title">Дедлайн</h5>
           <p className="card-text">10/2/2020</p>
@@ -94,10 +92,10 @@ const Home = () => (
           aria-expanded="true"
           aria-controls="collapseOne"
         >
-          Задача к выполнению 3
+          Веб-разработка
         </h5>
         <h6 className="state mb-0 btn">Состояние</h6>
-        <h6 className="mb-0 btn">Исполнитель</h6>
+        <h6 className="mb-0 btn">Гуменюк Марина</h6>
       </div>
       <div
         id="collapseThree"

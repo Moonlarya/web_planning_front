@@ -1,27 +1,24 @@
 import React, { Component, Fragment } from "react";
-import ProjectService from "../../services/ProjectService";
+import ReportsService from "../../services/ReportsService";
 import { Formik } from "formik";
 
-class AddProject extends Component {
+class AddReport extends Component {
   onSubmit = async (values) => {
     try {
-      await ProjectService.create(values);
-      this.props.history.push("/projects");
+      await ReportsService.create(values);
+      this.props.history.push("/clients");
     } catch {}
   };
   render() {
     return (
       <div>
-        <h1>Добавить проект</h1>
+        <h1>Создать отчет</h1>
         <Formik
+          /* validate={(values) => {
+            if (values.name.length < 3) return { name: "err" };
+          }}*/
           onSubmit={this.onSubmit}
-          initialValues={{
-            name: "",
-            description: "",
-            deadline: "",
-            budget: "",
-            clientId: "",
-          }}
+          initialValues={{ link: "", date: "", points: "", status: "" }}
         >
           {({
             values,
@@ -37,55 +34,46 @@ class AddProject extends Component {
               onSubmit={handleSubmit}
               className="d-flex flex-column formCreate"
             >
-              <span>Название проекта</span>
+              <span>Ссылка</span>
               <input
                 className="mb-3"
                 type="text"
-                name="name"
+                name="link"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.name}
+                value={values.link}
               />
-              {errors.name && touched.name && errors.name}
-              <span>Описание</span>
+              {errors.link && touched.link && errors.link}
+              <span>Дата</span>
               <input
                 className="mb-3"
                 type="text"
-                name="description"
+                name="date"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.description}
+                value={values.date}
               />
-              {errors.description && touched.description && errors.description}
-              <span>Срок</span>
+              {errors.date && touched.date && errors.date}
+              <span>Очки</span>
               <input
                 className="mb-3"
                 type="text"
-                name="deadline"
+                name="points"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.deadline}
+                value={values.points}
               />
-              {errors.deadline && touched.deadline && errors.deadline}
-              <span>Заказчик</span>
+              {errors.points && touched.points && errors.points}
+              <span>Статус</span>
               <input
                 className="mb-3"
                 type="text"
-                name="clientId"
+                name="status"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.clientId}
+                value={values.status}
               />
-              <span>Бюджет</span>
-              <input
-                className="mb-3"
-                type="text"
-                name="budget"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.budget}
-              />
-              {errors.budget && touched.budget && errors.budget}
+              {errors.status && touched.status && errors.status}
               <button
                 type="submit"
                 className="btn btn-primary"
@@ -101,4 +89,4 @@ class AddProject extends Component {
   }
 }
 
-export default AddProject;
+export default AddReport;

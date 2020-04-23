@@ -1,26 +1,27 @@
 import React, { Component, Fragment } from "react";
-import ProjectService from "../../services/ProjectService";
+import EmployeesService from "../../services/EmployeesService";
 import { Formik } from "formik";
 
-class AddProject extends Component {
+class AddEmployee extends Component {
   onSubmit = async (values) => {
     try {
-      await ProjectService.create(values);
-      this.props.history.push("/projects");
+      await EmployeesService.create(values);
+      this.props.history.push("/employees");
     } catch {}
   };
   render() {
     return (
       <div>
-        <h1>Добавить проект</h1>
+        <h1>Добавить сотрудника</h1>
         <Formik
           onSubmit={this.onSubmit}
           initialValues={{
+            email: "",
             name: "",
+            owner: "",
             description: "",
             deadline: "",
             budget: "",
-            clientId: "",
           }}
         >
           {({
@@ -71,10 +72,10 @@ class AddProject extends Component {
               <input
                 className="mb-3"
                 type="text"
-                name="clientId"
+                name="owner"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.clientId}
+                value={values.owner}
               />
               <span>Бюджет</span>
               <input
@@ -101,4 +102,4 @@ class AddProject extends Component {
   }
 }
 
-export default AddProject;
+export default AddEmployee;

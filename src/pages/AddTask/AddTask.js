@@ -3,8 +3,11 @@ import TasksService from "../../services/TasksService";
 import { Formik } from "formik";
 
 class AddTask extends Component {
-  onSubmit = (values) => {
-    console.log(values);
+  onSubmit = async (values) => {
+    try {
+      await TasksService.create(values);
+      this.props.history.push("./tasks");
+    } catch {}
   };
   render() {
     return (

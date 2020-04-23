@@ -1,11 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const Resume = () => {
+const Review = () => {
   return (
     <main className="col-8 bonuce">
-      <a href="#" className="btn btn-primary">
+      <Link to="/addreview" className="btn btn-primary mt-3">
         Создать резюме
-      </a>
+      </Link>
       <div className="card col-12">
         <h5 className="card-header">ФИО</h5>
         <div className="card-body">
@@ -33,4 +34,4 @@ const Resume = () => {
   );
 };
 
-export default Resume;
+export default Review;

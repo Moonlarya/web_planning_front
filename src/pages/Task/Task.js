@@ -19,9 +19,9 @@ const Task = () => (
           <p className="card-text">10/2/2020</p>
           <h5 className="card-title">Бонусы</h5>
           <p className="card-text">50</p>
-          <a href="#" className="btn btn-primary">
+          <Link to="/addreport" className="btn btn-primary mt-3">
             Создать отчет
-          </a>
+          </Link>
         </div>
       </div>
       <div className="card col-3">

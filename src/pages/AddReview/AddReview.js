@@ -1,26 +1,28 @@
 import React, { Component, Fragment } from "react";
-import ProjectService from "../../services/ProjectService";
+import ReviewsService from "../../services/ReviewsService";
 import { Formik } from "formik";
 
-class AddProject extends Component {
+class AddReview extends Component {
   onSubmit = async (values) => {
     try {
-      await ProjectService.create(values);
-      this.props.history.push("/projects");
+      await ReviewsService.create(values);
+      this.props.history.push("/review");
     } catch {}
   };
   render() {
     return (
       <div>
-        <h1>Добавить проект</h1>
+        <h1>Добавить резюме</h1>
         <Formik
           onSubmit={this.onSubmit}
           initialValues={{
+            surname: "",
             name: "",
+            patronymic: "",
             description: "",
-            deadline: "",
-            budget: "",
-            clientId: "",
+            email: "",
+            phone: "",
+            priority: "",
           }}
         >
           {({
@@ -37,7 +39,17 @@ class AddProject extends Component {
               onSubmit={handleSubmit}
               className="d-flex flex-column formCreate"
             >
-              <span>Название проекта</span>
+              <span>Фамилия</span>
+              <input
+                className="mb-3"
+                type="text"
+                name="surname"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.surname}
+              />
+              {errors.surname && touched.surname && errors.surname}
+              <span>Имя</span>
               <input
                 className="mb-3"
                 type="text"
@@ -47,7 +59,17 @@ class AddProject extends Component {
                 value={values.name}
               />
               {errors.name && touched.name && errors.name}
-              <span>Описание</span>
+              <span>Отчество</span>
+              <input
+                className="mb-3"
+                type="text"
+                name="patronymic"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.patronymic}
+              />
+              {errors.patronymic && touched.patronymic && errors.patronymic}
+              <span>Комментарий</span>
               <input
                 className="mb-3"
                 type="text"
@@ -57,35 +79,37 @@ class AddProject extends Component {
                 value={values.description}
               />
               {errors.description && touched.description && errors.description}
-              <span>Срок</span>
+              <span>e-mail</span>
               <input
                 className="mb-3"
                 type="text"
-                name="deadline"
+                name="email"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.deadline}
+                value={values.email}
               />
-              {errors.deadline && touched.deadline && errors.deadline}
-              <span>Заказчик</span>
+              {errors.email && touched.email && errors.email}
+              <span>Номер телефона</span>
               <input
                 className="mb-3"
                 type="text"
-                name="clientId"
+                name="phone"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.clientId}
+                value={values.phone}
               />
-              <span>Бюджет</span>
+              {errors.phone && touched.phone && errors.phone}
+              <span>Приоритет</span>
               <input
                 className="mb-3"
                 type="text"
-                name="budget"
+                name="priority"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.budget}
+                value={values.priority}
               />
-              {errors.budget && touched.budget && errors.budget}
+              {errors.priority && touched.priority && errors.priority}
+
               <button
                 type="submit"
                 className="btn btn-primary"
@@ -101,4 +125,4 @@ class AddProject extends Component {
   }
 }
 
-export default AddProject;
+export default AddReview;

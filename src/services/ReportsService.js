@@ -1,4 +1,4 @@
-import ReportsService from "./ApiService";
+import ApiService from "./ApiService";
 
 class ReportsService extends ApiService {
   getSlug() {

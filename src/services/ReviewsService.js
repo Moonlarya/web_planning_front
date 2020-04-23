@@ -2,7 +2,7 @@ import ApiService from "./ApiService";
 
 class ReviewsService extends ApiService {
   getSlug() {
-    return "reviwes";
+    return "reviews";
   }
 }
 

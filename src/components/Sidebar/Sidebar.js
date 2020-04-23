@@ -6,7 +6,7 @@ import "./style.scss";
 const Sidebar = () => (
   <div className="sidebar col-2">
     <ul className="nav flex-column">
-      <h4 className="name nav-item">Humeniuk Marina</h4>
+      <h4 className="name nav-item">Гуменюк Марина</h4>
 
       <li className="nav-item">
         <Link className="nav-link" to="/">
@@ -118,13 +118,6 @@ const Sidebar = () => (
             className="dropdown-item"
             type="button"
           >
-            Назначить задачу
-          </a>
-          <a
-            href="../html/Worker/worker.html"
-            className="dropdown-item"
-            type="button"
-          >
             Оценка деятельности
           </a>
           <a
@@ -146,7 +139,7 @@ const Sidebar = () => (
           Собеседования
         </a>
         <div className="dropdown-menu dropdown-menu-right">
-          <Link to="/resume" className="dropdown-item" type="button">
+          <Link to="/review" className="dropdown-item" type="button">
             Резюме
           </Link>
           <Link to="/calendar" className="dropdown-item" type="button">

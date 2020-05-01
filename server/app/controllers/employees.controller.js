@@ -7,6 +7,8 @@ exports.create = (req, res) => {
     name: req.body.name,
     type: req.body.type,
     status: req.body.status, //???? CHECK (status IN('free', 'left', 'busy'))
+    phone: req.body.phone,
+    email: req.body.email,
   });
 
   // Save Note in the database

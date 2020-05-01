@@ -4,9 +4,11 @@ const Interviews = require("../models/interviews.model.js");
 exports.create = (req, res) => {
   // Create a Interviews
   const interview = new Interviews({
-    phone: req.body.phone,
-    name: req.body.name,
-    email: req.body.email,
+    interviewKind: req.body.interviewKind,
+    interviewData: req.body.interviewData,
+    taskId: req.body.taskId,
+    reviewId: req.body.reviewId,
+    interviewResult: req.body.interviewResult,
   });
 
   // Save Interviews in the database

@@ -1,15 +1,25 @@
 import React, { Component, Fragment } from "react";
 import TasksService from "../../services/TasksService";
+import EmployeesService from "../../services/EmployeesService";
 import { Formik } from "formik";
 
 class AddTask extends Component {
+  state = {
+    employees: [],
+  };
+  async componentDidMount() {
+    const employees = await EmployeesService.getAll();
+    this.setState({ employees: employees });
+  }
+
   onSubmit = async (values) => {
     try {
       await TasksService.create(values);
-      this.props.history.push("./tasks");
+      this.props.history.push("/task");
     } catch {}
   };
   render() {
+    const { employees } = this.state;
     return (
       <div>
         <h1>Добавить задачу</h1>
@@ -21,7 +31,7 @@ class AddTask extends Component {
             order: "",
             bonuces: "",
             deadline: "",
-            owner: "",
+            employee: "",
           }}
         >
           {({
@@ -91,15 +101,16 @@ class AddTask extends Component {
               <select
                 className="mb-3"
                 type="text"
-                name="owner"
+                name="employee"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.owner}
+                value={values.employee}
               >
-                <option>Marina Humeniuk</option>
-                <option>Darth Veider</option>
+                {employees.map((employee) => (
+                  <option>{employee}</option>
+                ))}
               </select>
-              {errors.bonuces && touched.bonuces && errors.bonuces}
+              {errors.employee && touched.employee && errors.employee}
               <button
                 type="submit"
                 className="btn btn-primary"

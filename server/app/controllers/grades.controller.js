@@ -3,9 +3,9 @@ const Grades = require("../models/grades.model.js");
 // Create and Save a new Grades
 exports.create = (req, res) => {
   const grade = new Grades({
-    phone: req.body.phone,
-    name: req.body.name,
-    email: req.body.email,
+    employeeId: req.body.phone,
+    criteriaId: req.body.name,
+    grade: req.body.email,
   });
 
   // Save Grades in the database

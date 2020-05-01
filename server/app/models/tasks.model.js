@@ -7,6 +7,7 @@ const Tasks = mongoose.Schema(
     description: { type: String, required: true, min: 0, max: 300 },
     deadline: { type: Date, required: true },
     bonuce: { type: Number, min: 0, max: 10 },
+    employee: { type: String },
   },
   {
     timestamps: true,

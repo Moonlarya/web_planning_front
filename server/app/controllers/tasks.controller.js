@@ -6,9 +6,11 @@ exports.create = (req, res) => {
   const task = new Tasks({
     number: req.body.number,
     name: req.body.name,
+    order: req.body.order,
     description: req.body.description,
     deadline: req.body.deadline,
     bonuce: req.body.bonuce,
+    employee: req.body.employee,
   });
 
   // Save Tasks in the database

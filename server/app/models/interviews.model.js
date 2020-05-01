@@ -4,6 +4,8 @@ const Interviews = mongoose.Schema(
   {
     interviewKind: { type: String, enum: ["hr", "technical", "manager"] },
     interviewData: { type: Date, required: true },
+    taskId: { type: String },
+    reviewId: { type: String },
     interviewResult: { type: String, min: 0, max: 300 },
   },
   {

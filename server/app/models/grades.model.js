@@ -4,6 +4,7 @@ const Grades = mongoose.Schema(
   {
     criteriaId: { type: String, required: true },
     employeeId: { type: String, required: true },
+    grade: { type: String, required: true },
   },
   {
     timestamps: true,

@@ -5,8 +5,6 @@ exports.create = (req, res) => {
   // Create a Note
   const position = new Positions({
     positionName: req.body.positionName,
-    title: req.body.title || "Untitled Position",
-    content: req.body.content,
   });
 
   // Save Note in the database

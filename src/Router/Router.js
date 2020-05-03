@@ -11,12 +11,14 @@ import {
   Balance,
   Review,
   Clients,
+  Employees,
   Project,
   AddClient,
   AddTask,
   AddProject,
   AddReview,
   AddReport,
+  Calendar,
 } from "../pages";
 
 const RouteSchema = () => (
@@ -26,6 +28,8 @@ const RouteSchema = () => (
       <DashboardRoute exact path="/task" component={Task} />
       <DashboardRoute exact path="/report" component={Report} />
       <DashboardRoute exact path="/balance" component={Balance} />
+      <DashboardRoute exact path="/employees" component={Employees} />
+      <DashboardRoute exact path="/calendar" component={Calendar} />
       <DashboardRoute exact path="/payout" component={Payout} />
       <DashboardRoute exact path="/review" component={Review} />
       <DashboardRoute exact path="/clients" component={Clients} />

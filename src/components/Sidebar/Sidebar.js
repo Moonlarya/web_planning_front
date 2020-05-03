@@ -42,92 +42,24 @@ const Sidebar = () => (
         </div>
       </li>
       <li className="nav-item dropright">
-        <a
-          className="nav-link dropdown-toggle"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
+        <a href="../html/Bonuce/bonuce.html" className="dropdown-item">
           Бонусы
         </a>
-        <div className="dropdown-menu dropdown-menu-right">
-          <a
-            href="../html/Bonuce/bonuce.html"
-            className="dropdown-item"
-            type="button"
-          >
-            Полученные
-          </a>
-          <a
-            href="../html/Bonuce/bonuce.html"
-            className="dropdown-item"
-            type="button"
-          >
-            Доступные
-          </a>
-        </div>
       </li>
       <li className="nav-item dropright">
-        <a
-          className="nav-link dropdown-toggle"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
+        <Link className="nav-link" to="/report" className="dropdown-item">
           Отчеты
-        </a>
-        <div className="dropdown-menu dropdown-menu-right">
-          <Link className="nav-link" to="/report" className="dropdown-item">
-            Активные
-          </Link>
-          <Link className="nav-link" to="/report" className="dropdown-item">
-            Завершенные
-          </Link>
-        </div>
+        </Link>
       </li>
       <li className="nav-item dropright">
-        <a
-          className="nav-link dropdown-toggle"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
+        <Link to="/payout" className="dropdown-item" type="button">
           Выплаты
-        </a>
-        <div className="dropdown-menu dropdown-menu-right">
-          <Link to="/payout" className="dropdown-item" type="button">
-            История выплат
-          </Link>
-          <Link to="/balance" className="dropdown-item" type="button">
-            Текущий баланс
-          </Link>
-        </div>
+        </Link>
       </li>
       <li className="nav-item dropright">
-        <a
-          className="nav-link dropdown-toggle"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
+        <Link to="/employees" className="dropdown-item" type="button">
           Персонал
-        </a>
-        <div className="dropdown-menu dropdown-menu-right">
-          <a
-            href="../html/Worker/worker.html"
-            className="dropdown-item"
-            type="button"
-          >
-            Оценка деятельности
-          </a>
-          <a
-            href="../html/Worker/worker.html"
-            className="dropdown-item"
-            type="button"
-          >
-            Кандидаты на вакансию
-          </a>
-        </div>
+        </Link>
       </li>
       <li className="nav-item dropright">
         <a

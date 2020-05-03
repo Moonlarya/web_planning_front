@@ -37,7 +37,6 @@ app.get("/", (req, res) => {
   });
 });
 
-require("./app/routes/note.routes.js")(app);
 require("./app/routes/client.routes.js")(app);
 require("./app/routes/criterias.routes.js")(app);
 require("./app/routes/grades.routes.js")(app);

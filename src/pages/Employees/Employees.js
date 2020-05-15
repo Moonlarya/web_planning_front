@@ -7,10 +7,16 @@ class Employees extends Component {
     employees: [],
   };
   async componentDidMount() {
+    this.loadEmployees();
+  }
+  loadEmployees = async () => {
     const employees = await EmployeesService.getAll();
     this.setState({ employees });
-    console.log(employees);
-  }
+  };
+  deleteEmployee = async (id) => {
+    await EmployeesService.delete(id);
+    this.loadEmployees();
+  };
   render() {
     const { employees } = this.state;
     return (
@@ -24,7 +30,12 @@ class Employees extends Component {
               <p className="card-text">Номер телефона: {employee.phone}</p>
               <p className="card-text">Дата появления: {employee.createdAt}</p>
               <div className="d-flex">
-                <div className="btn btn-primary">Удалить</div>
+                <div
+                  className="btn btn-primary"
+                  onClick={() => this.deleteEmployee(employee._id)}
+                >
+                  Удалить сотрудника
+                </div>
                 <div className="btn btn-primary">Изменить</div>
                 <div className="btn btn-primary">Оценить</div>
               </div>

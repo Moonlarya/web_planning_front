@@ -8,9 +8,16 @@ class Project extends Component {
     projects: [],
   };
   async componentDidMount() {
+    this.loadClients();
+  }
+  loadClients = async () => {
     const projects = await ProjectService.getAll();
     this.setState({ projects: projects });
-  }
+  };
+  deleteProject = async (id) => {
+    await ProjectService.delete(id);
+    this.loadClients();
+  };
   render() {
     const { projects } = this.state;
     return (
@@ -26,6 +33,12 @@ class Project extends Component {
               <p className="card-text">{project.deadline}</p>
               <p className="card-text">{project.budget}</p>
               <p className="card-text">{project.clientId}</p>
+              <div
+                className="btn btn-primary"
+                onClick={() => this.deleteProject(project._id)}
+              >
+                Удалить проект
+              </div>
             </div>
           ))}
         </div>

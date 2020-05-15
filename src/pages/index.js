@@ -13,6 +13,8 @@ import AddProject from "./AddProject";
 import AddReview from "./AddReview";
 import AddReport from "./AddReport";
 import Calendar from "./Calendar";
+import Grades from "./Grades";
+import SignIn from "./SignIn";
 
 export {
   Home,
@@ -30,4 +32,6 @@ export {
   AddProject,
   AddReview,
   AddReport,
+  Grades,
+  SignIn,
 };

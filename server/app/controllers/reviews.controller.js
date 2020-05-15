@@ -1,4 +1,5 @@
 const Reviews = require("../models/reviews.model.js");
+const Employees = require("../models/employees.model.js");
 
 // Create and Save a new Reviews
 exports.create = (req, res) => {
@@ -59,6 +60,26 @@ exports.findOne = (req, res) => {
         message: "Error retrieving review with id " + req.params.reviewId,
       });
     });
+};
+
+exports.createEmployee = async (req, res) => {
+  try {
+    const review = await Reviews.findById(req.body.reviewId);
+    const { name, email, phone } = review;
+    const employee = new Employees({
+      name,
+      email,
+      phone,
+      status: "free",
+    });
+    const data = await employee.save();
+    res.send(data);
+    await review.delete();
+  } catch (err) {
+    res.status(500).send({
+      message: err.message || "Some error occurred while creating the Reviews.",
+    });
+  }
 };
 
 // Update a review identified by the reviewId in the request

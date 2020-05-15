@@ -27,6 +27,7 @@ exports.create = (req, res) => {
 
 // Retrieve and return all notes from the database.
 exports.findAll = (req, res) => {
+  console.log("smth");
   Employees.find()
     .then((employees) => {
       res.send(employees);

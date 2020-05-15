@@ -15,4 +15,6 @@ module.exports = (app) => {
 
   // Delete a client with reviewId
   app.delete("/reviews/:reviewId", reviews.delete);
+
+  app.post("/reviews/create-employee", reviews.createEmployee);
 };

@@ -6,10 +6,17 @@ class Clients extends Component {
   state = {
     clients: [],
   };
-  async componentDidMount() {
+  loadClients = async () => {
     const clients = await ClientService.getAll();
     this.setState({ clients: clients });
+  };
+  async componentDidMount() {
+    this.loadClients();
   }
+  deleteClient = async (id) => {
+    await ClientService.delete(id);
+    this.loadClients();
+  };
   render() {
     const { clients } = this.state;
     return (
@@ -23,7 +30,12 @@ class Clients extends Component {
               <h5 className="card-header">{client.name}</h5>
               <p className="card-text">e-mail: {client.email}</p>
               <p className="card-text">+380{client.phone}</p>
-              <div className="btn btn-primary">Удалить клиента</div>
+              <div
+                className="btn btn-primary"
+                onClick={() => this.deleteClient(client._id)}
+              >
+                Удалить клиента
+              </div>
             </div>
           ))}
         </div>

@@ -41,6 +41,7 @@ require("./app/routes/client.routes.js")(app);
 require("./app/routes/criterias.routes.js")(app);
 require("./app/routes/grades.routes.js")(app);
 require("./app/routes/interviews.routes.js")(app);
+require("./app/routes/employees.routes.js")(app);
 require("./app/routes/positions.routes.js")(app);
 require("./app/routes/projects.routes.js")(app);
 require("./app/routes/reports.routes.js")(app);

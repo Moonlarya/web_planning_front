@@ -30,9 +30,18 @@ class Review extends Component {
                 <p className="card-text">{review.phone}</p>
                 <h5 className="card-title">Приоритет</h5>
                 <p className="card-text">{review.priority}</p>
-                <h5 className="card-title">Назначить собеседование</h5>
                 <a href="#" className="btn btn-primary">
                   Редактировать
+                </a>
+                <a
+                  href="#"
+                  className="btn btn-primary"
+                  onClick={async () => {
+                    await ReviewsService.createEmployee(review._id);
+                    this.props.history.push("/employees");
+                  }}
+                >
+                  Взять на работу
                 </a>
                 <a href="#" className="btn btn-primary">
                   Удалить

@@ -9,7 +9,7 @@ const Sidebar = () => (
       <h4 className="name nav-item">Гуменюк Марина</h4>
 
       <li className="nav-item">
-        <Link className="nav-link" to="/">
+        <Link className="nav-link" to="/home">
           Главная
         </Link>
       </li>
@@ -78,6 +78,11 @@ const Sidebar = () => (
             Календарь собеседований
           </Link>
         </div>
+      </li>
+      <li className="nav-item">
+        <Link className="nav-link" to="/">
+          Выйти
+        </Link>
       </li>
     </ul>
   </div>

@@ -19,16 +19,20 @@ import {
   AddReview,
   AddReport,
   Calendar,
+  Grades,
+  SignIn,
 } from "../pages";
 
 const RouteSchema = () => (
   <Router>
     <Switch>
-      <DashboardRoute exact path="/" component={Home} />
+      <Route exact path="/" component={SignIn} />
+      <DashboardRoute exact path="/home" component={Home} />
       <DashboardRoute exact path="/task" component={Task} />
       <DashboardRoute exact path="/report" component={Report} />
       <DashboardRoute exact path="/balance" component={Balance} />
       <DashboardRoute exact path="/employees" component={Employees} />
+      <DashboardRoute exact path="/grades" component={Grades} />
       <DashboardRoute exact path="/calendar" component={Calendar} />
       <DashboardRoute exact path="/payout" component={Payout} />
       <DashboardRoute exact path="/review" component={Review} />

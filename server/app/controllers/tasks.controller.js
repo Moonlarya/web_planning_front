@@ -1,4 +1,5 @@
 const Tasks = require("../models/tasks.model.js");
+const Employee = require("../models/employees.model.js");
 
 // Create and Save a new Tasks
 exports.create = (req, res) => {
@@ -27,16 +28,16 @@ exports.create = (req, res) => {
 };
 
 // Retrieve and return all tasks from the database.
-exports.findAll = (req, res) => {
-  Tasks.find()
-    .then((tasks) => {
-      res.send(tasks);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Some error occurred while retrieving tasks.",
-      });
+exports.findAll = async (req, res) => {
+  try {
+    const tasks = await Tasks.find();
+    console.log(tasks);
+    res.send(tasks);
+  } catch (err) {
+    res.status(500).send({
+      message: err.message || "Some error occurred while retrieving tasks.",
     });
+  }
 };
 
 // Find a single task with a taskId

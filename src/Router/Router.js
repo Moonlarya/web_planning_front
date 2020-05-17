@@ -21,6 +21,7 @@ import {
   Calendar,
   Grades,
   SignIn,
+  FinishedTasks,
 } from "../pages";
 
 const RouteSchema = () => (
@@ -43,6 +44,7 @@ const RouteSchema = () => (
       <DashboardRoute exact path="/addproject" component={AddProject} />
       <DashboardRoute exact path="/addreview" component={AddReview} />
       <DashboardRoute exact path="/addreport" component={AddReport} />
+      <DashboardRoute exact path="/finishedtasks" component={FinishedTasks} />
 
       <Route exact component={() => <h1 className="text-center"> 404 </h1>} />
     </Switch>

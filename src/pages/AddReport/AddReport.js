@@ -5,8 +5,9 @@ import { Formik } from "formik";
 class AddReport extends Component {
   onSubmit = async (values) => {
     try {
+      console.log(values);
       await ReportsService.create(values);
-      this.props.history.push("/clients");
+      this.props.history.push("/report");
     } catch {}
   };
   render() {
@@ -74,6 +75,26 @@ class AddReport extends Component {
                 value={values.status}
               />
               {errors.status && touched.status && errors.status}
+              <span>Исполнитель</span>
+              <input
+                className="mb-3"
+                type="text"
+                name="employee"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.employee}
+              />
+              {errors.employee && touched.employee && errors.employee}
+              <span>Задача</span>
+              <input
+                className="mb-3"
+                type="text"
+                name="task"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.task}
+              />
+              {errors.task && touched.task && errors.task}
               <button
                 type="submit"
                 className="btn btn-primary"

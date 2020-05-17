@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const Reports = mongoose.Schema(
   {
     link: { type: String, max: 20, require: true },
+    description: { type: String },
     date: { type: Date, default: Date.now, require: true }, //DEFAULT CURRENT_DATE check(ReportDate >= CURRENT_DATE),
     points: { type: Number, require: true }, // (ReportPoints >0),
     status: {

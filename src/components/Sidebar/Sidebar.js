@@ -33,7 +33,7 @@ const Sidebar = () => (
           Задачи
         </a>
         <div className="dropdown-menu dropdown-menu-right">
-          <Link to="/task" className="dropdown-item" type="button">
+          <Link to="/finishedtasks" className="dropdown-item" type="button">
             Выполненные задачи
           </Link>
           <Link to="/task" className="dropdown-item" type="button">

@@ -100,14 +100,16 @@ class AddTask extends Component {
               <span>Исполнитель</span>
               <select
                 className="mb-3"
-                type="text"
                 name="employee"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.employee}
               >
+                <option value="" label="Выберите исполнителя" />
                 {employees.map((employee) => (
-                  <option>{employee}</option>
+                  <option value={employee._id} key={employee._id}>
+                    {employee.name}
+                  </option>
                 ))}
               </select>
               {errors.employee && touched.employee && errors.employee}

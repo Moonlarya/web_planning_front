@@ -2,13 +2,6 @@ const Reports = require("../models/reports.model.js");
 
 // Create and Save a new Reports
 exports.create = (req, res) => {
-  // Validate request
-  if (!req.body.content) {
-    return res.status(400).send({
-      message: "Report content can not be empty",
-    });
-  }
-
   // Create a Reports
   const report = new Reports({
     link: req.body.link,

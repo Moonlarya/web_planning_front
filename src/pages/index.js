@@ -15,6 +15,7 @@ import AddReport from "./AddReport";
 import Calendar from "./Calendar";
 import Grades from "./Grades";
 import SignIn from "./SignIn";
+import FinishedTasks from "./FinishedTasks";
 
 export {
   Home,
@@ -34,4 +35,5 @@ export {
   AddReport,
   Grades,
   SignIn,
+  FinishedTasks,
 };

@@ -39,7 +39,7 @@ class Home extends Component {
                 {task.name}
               </h5>
               <h6 className="state mb-0 btn">Состояние</h6>
-              <h6 className="mb-0 btn">{task.employee}</h6>
+              <h6 className="mb-0 btn">{task.employee.name}</h6>
             </div>
             <div
               id="collapseOne"

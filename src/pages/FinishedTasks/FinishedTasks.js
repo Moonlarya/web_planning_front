@@ -36,7 +36,7 @@ class FinishedTasks extends Component {
                 <h5 className="card-title">Количество бонусов</h5>
                 <p className="card-title">{task.bonuce}</p>
                 <h5 className="card-title">Исполнитель</h5>
-                <h5 className="card-title">{task.employee}</h5>
+                <p className="card-title">{task.employee.name}</p>
                 <h5 className="card-title">Выполнено</h5>
                 <p className="card-text">8/2/2020</p>
                 <h5 className="card-title">Полученные бонусы</h5>

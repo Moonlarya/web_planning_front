@@ -40,7 +40,7 @@ class Task extends Component {
                 <h5 className="card-title">Количество бонусов</h5>
                 <p className="card-title">{task.bonuce}</p>
                 <h5 className="card-title">Исполнитель</h5>
-                <h5 className="card-title">{task.employee}</h5>
+                <h5 className="card-title">{task.employee.name}</h5>
                 <div className="d-flex flex-wrap justify-content-between">
                   <Link to="/addreport" className="btn btn-primary">
                     Отчет

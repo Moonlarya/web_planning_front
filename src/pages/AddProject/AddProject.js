@@ -68,14 +68,22 @@ class AddProject extends Component {
               />
               {errors.deadline && touched.deadline && errors.deadline}
               <span>Заказчик</span>
-              <input
+              <select
                 className="mb-3"
                 type="text"
                 name="clientId"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.clientId}
-              />
+              >
+                <option value="" label="Выберите заказчика" />
+                {/*clientId.map((client) => (
+                  <option value={client._id} key={client._id}>
+                    {client.name}
+                  </option>
+                ))*/}
+              </select>
+              {errors.deadline && touched.deadline && errors.deadline}
               <span>Бюджет</span>
               <input
                 className="mb-3"

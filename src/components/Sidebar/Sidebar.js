@@ -1,13 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import photo from "../../assets/images/avatar1.jpg";
 
 import "./style.scss";
 
 const Sidebar = () => (
   <div className="sidebar col-2">
     <ul className="nav flex-column">
-      <h4 className="name nav-item">Гуменюк Марина</h4>
-
+      <div className="d-flex align-items-center">
+        <img
+          src={photo}
+          style={{
+            width: "60px",
+            height: "60px",
+            borderRadius: "100%",
+            margin: "20px",
+          }}
+        ></img>
+        <h5>Гуменюк Марина</h5>
+      </div>
       <li className="nav-item">
         <Link className="nav-link" to="/home">
           Главная

@@ -41,25 +41,38 @@ const Sidebar = () => (
           </Link>
         </div>
       </li>
-      <li className="nav-item dropright">
-        <a href="../html/Bonuce/bonuce.html" className="dropdown-item">
+      <li className="nav-item">
+        <a href="#" className="nav-link">
           Бонусы
         </a>
       </li>
-      <li className="nav-item dropright">
-        <Link className="nav-link" to="/report" className="dropdown-item">
+      <li className="nav-item">
+        <Link to="/report" className="nav-link">
           Отчеты
         </Link>
       </li>
       <li className="nav-item dropright">
-        <Link to="/payout" className="dropdown-item" type="button">
+        <Link to="/payout" className="nav-link">
           Выплаты
         </Link>
       </li>
       <li className="nav-item dropright">
-        <Link to="/employees" className="dropdown-item" type="button">
+        <a
+          className="nav-link dropdown-toggle"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
           Персонал
-        </Link>
+        </a>
+        <div className="dropdown-menu dropdown-menu-right">
+          <Link to="/employees" className="dropdown-item" type="button">
+            Сотрудники
+          </Link>
+          <Link to="/" className="dropdown-item" type="button">
+            Оценивание
+          </Link>
+        </div>
       </li>
       <li className="nav-item dropright">
         <a

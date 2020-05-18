@@ -3,8 +3,9 @@
 
   ul {
     height: 100vh;
-    background-color: #f9f9f9;
+    background-color: rgb(238, 250, 252);
     padding: 0 !important;
+    text-align: left;
     li {
       .nav-link {
         padding: 0.5rem 2rem;
@@ -17,7 +18,7 @@
       &:hover,
       &:active,
       &:focus {
-        background-color: #ebd9d9;
+        background-color: rgb(197, 244, 252);
       }
     }
 

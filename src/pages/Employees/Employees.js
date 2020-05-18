@@ -23,20 +23,20 @@ class Employees extends Component {
         <div className="d-flex flex-wrap">
           {employees.map((employee) => (
             <div className="card col-3" key={employee._id}>
-              <h5 className="card-header">Должность: {employee.type}</h5>
+              <h5 className="card-header">{employee.type}</h5>
               <p className="card-text">{employee.name}</p>
               <p className="card-text">e-mail: {employee.email}</p>
               <p className="card-text">Номер телефона: {employee.phone}</p>
               <p className="card-text">Дата появления: {employee.createdAt}</p>
-              <div className="d-flex">
+              <div className="d-flex flex-wrap  justify-content-center">
                 <div
-                  className="btn btn-primary"
+                  className="btn btn-primary m-1"
                   onClick={() => this.deleteEmployee(employee._id)}
                 >
                   Удалить сотрудника
                 </div>
-                <div className="btn btn-primary">Изменить</div>
-                <div className="btn btn-primary">Оценить</div>
+                <div className="btn btn-primary m-1">Изменить</div>
+                <div className="btn btn-primary m-1">Оценить</div>
               </div>
             </div>
           ))}

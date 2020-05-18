@@ -13,13 +13,13 @@ class Review extends Component {
   render() {
     const { reviews } = this.state;
     return (
-      <main className="col-8 bonuce">
+      <main className="col-12 bonuce">
         <Link to="/addreview" className="btn btn-primary mt-3">
           Создать резюме
         </Link>
         <div className="d-flex flex-wrap">
           {reviews.map((review) => (
-            <div className="card col-12" key={review._id}>
+            <div className="card col-6" key={review._id}>
               <h5 className="card-header">{review.name}</h5>
               <div className="card-body">
                 <h5 className="card-title">Комментарий</h5>
@@ -30,12 +30,14 @@ class Review extends Component {
                 <p className="card-text">{review.phone}</p>
                 <h5 className="card-title">Приоритет</h5>
                 <p className="card-text">{review.priority}</p>
-                <a href="#" className="btn btn-primary">
+                <h5 className="card-title">Должность</h5>
+                <p className="card-text">{review.type}</p>
+                <a href="#" className="btn btn-primary m-1">
                   Редактировать
                 </a>
                 <a
                   href="#"
-                  className="btn btn-primary"
+                  className="btn btn-primary m-1"
                   onClick={async () => {
                     await ReviewsService.createEmployee(review._id);
                     this.props.history.push("/employees");
@@ -43,7 +45,7 @@ class Review extends Component {
                 >
                   Взять на работу
                 </a>
-                <a href="#" className="btn btn-primary">
+                <a href="#" className="btn btn-primary m-1">
                   Удалить
                 </a>
               </div>

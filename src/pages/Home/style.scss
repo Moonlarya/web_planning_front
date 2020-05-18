@@ -38,28 +38,28 @@
 }
 
 body {
-  background-color: #ebe9e9;
+  background-color: #fff;
   font-family: "Roboto", sans-serif;
   color: #494949;
 }
 
 .btn-primary {
-  background-color: #ebd9d9 !important;
-  border-color: #ebd9d9 !important;
-  color: #494949 !important;
+  background-color: #89ECFC !important;
+  border-color: #89ECFC !important;
+  color: #333 !important;
 }
 .btn-primary:focus {
-  box-shadow: 0 0 0 0.2rem rgba(229, 151, 226, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.0);
 }
 .btn-primary:hover {
-  background-color: #d8bebe !important;
+  background-color: rgb(192, 244, 252) !important;
 }
 
 .dropdown-menu .dropdown-item:hover {
-  background-color: #ebd9d9;
+  background-color: #89ECFC;
 }
 .dropdown-menu .dropdown-item:active {
-  background-color: #d8bebe;
+  background-color: rgb(168, 242, 253);
 }
 
 .bonuce {

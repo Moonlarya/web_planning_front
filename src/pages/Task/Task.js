@@ -28,25 +28,19 @@ class Task extends Component {
         <div className="d-flex flex-wrap">
           {tasks.map((task) => (
             <div className="card col-3" key={task._id}>
-              <h5 className="card-header">Задача к выполнению</h5>
-              <div className="card-body">
-                <h5 className="card-title">{task.name}</h5>
-                <h5 className="card-title">Описание</h5>
+              <div className="card-body text-left">
+                <h5 className="card-header">{task.name}</h5>
                 <p className="card-text">{task.description}</p>
-                <h5 className="card-title">Порядок</h5>
-                <p className="card-text">{task.order}</p>
-                <h5 className="card-title">Дедлайн</h5>
-                <h5 className="card-title">{task.deadline}</h5>
-                <h5 className="card-title">Количество бонусов</h5>
-                <p className="card-title">{task.bonuce}</p>
-                <h5 className="card-title">Исполнитель</h5>
-                <h5 className="card-title">{task.employee.name}</h5>
+                <p className="card-title">Порядок: {task.order}</p>
+                <p className="card-title">Дедлайн: {task.deadline}</p>
+                <p className="card-title">Бонусы: {task.bonuce}</p>
+                <p className="card-title">Исполнитель: {task.employee.name}</p>
                 <div className="d-flex flex-wrap justify-content-between">
-                  <Link to="/addreport" className="btn btn-primary">
+                  <Link to="/addreport" className="btn btn-primary m-1">
                     Отчет
                   </Link>
                   <div
-                    className="btn btn-primary"
+                    className="btn btn-primary m-1"
                     onClick={() => this.deleteInfo(task._id)}
                   >
                     Удалить

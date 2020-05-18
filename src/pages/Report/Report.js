@@ -34,13 +34,13 @@ class Report extends Component {
               <p className="card-text">{report.employee_id}</p>
               <h5 className="card-title">Количество бонусов</h5>
               <p className="card-text">{report.points}</p>
-              <a href="#" className="btn btn-primary">
+              <a href="#" className="btn btn-primary  m-1">
                 Сохранить
               </a>
-              <a href="#" className="btn btn-primary">
+              <a href="#" className="btn btn-primary  m-1">
                 Изменить
               </a>
-              <a href="#" className="btn btn-primary">
+              <a href="#" className="btn btn-primary  m-1">
                 Завершить
               </a>
             </div>

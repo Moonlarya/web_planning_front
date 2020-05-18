@@ -31,7 +31,7 @@ class Clients extends Component {
               <p className="card-text">e-mail: {client.email}</p>
               <p className="card-text">+380{client.phone}</p>
               <div
-                className="btn btn-primary"
+                className="btn btn-primary m-1"
                 onClick={() => this.deleteClient(client._id)}
               >
                 Удалить клиента

@@ -46,7 +46,7 @@ class AddTask extends Component {
           }) => (
             <form
               onSubmit={handleSubmit}
-              className="d-flex flex-column formCreate"
+              className="d-flex flex-column mt-3 p-3 mx-auto"
             >
               <span>Название</span>
               <input
@@ -95,7 +95,7 @@ class AddTask extends Component {
                 name="bonuces"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.bonuces}
+                value={values.bonuce}
               />
               <span>Исполнитель</span>
               <select
@@ -115,7 +115,7 @@ class AddTask extends Component {
               {errors.employee && touched.employee && errors.employee}
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-primary m-1"
                 disabled={isSubmitting}
               >
                 Submit

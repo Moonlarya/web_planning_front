@@ -35,7 +35,7 @@ class AddProject extends Component {
           }) => (
             <form
               onSubmit={handleSubmit}
-              className="d-flex flex-column formCreate"
+              className="d-flex flex-column mt-3 p-3 mx-auto"
             >
               <span>Название проекта</span>
               <input
@@ -96,7 +96,7 @@ class AddProject extends Component {
               {errors.budget && touched.budget && errors.budget}
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-primary m-1"
                 disabled={isSubmitting}
               >
                 Submit

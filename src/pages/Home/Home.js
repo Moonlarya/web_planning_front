@@ -25,10 +25,7 @@ class Home extends Component {
       <div id="accordion">
         {tasks.map((task) => (
           <div className="card" key={task._id}>
-            <div
-              className="card-header d-flex justify-content-between"
-              id="headingOne"
-            >
+            <div className="d-flex justify-content-between" id="headingOne">
               <h5
                 className="mb-0 btn btn-link"
                 data-toggle="collapse"
@@ -47,16 +44,10 @@ class Home extends Component {
               aria-labelledby="headingOne"
               data-parent="#accordion"
             >
-              <div className="card-body">
-                <h5 className="card-title">Описание</h5>
+              <div className="card-body text-left">
                 <p className="card-text">{task.description}</p>
-                <h5 className="card-title">Дедлайн</h5>
-                <p className="card-text">{task.deadline}</p>
-                <h5 className="card-title">Бонусы</h5>
-                <p className="card-text">{task.bonuce}</p>
-                <Link to="/addreport" className="btn btn-primary">
-                  Отчет
-                </Link>
+                <p className="card-title">Дедлайн: {task.deadline}</p>
+                <p className="card-title">Бонусы: {task.bonuce}</p>
               </div>
             </div>
           </div>

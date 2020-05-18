@@ -11,8 +11,8 @@ class AddReview extends Component {
   };
   render() {
     return (
-      <div>
-        <h1>Добавить резюме</h1>
+      <div className="col-3 mt-3 p-3 mx-auto">
+        <h3>Добавить резюме</h3>
         <Formik
           onSubmit={this.onSubmit}
           initialValues={{
@@ -20,6 +20,7 @@ class AddReview extends Component {
             name: "",
             patronymic: "",
             description: "",
+            type: "",
             email: "",
             phone: "",
             priority: "",
@@ -89,6 +90,16 @@ class AddReview extends Component {
                 value={values.email}
               />
               {errors.email && touched.email && errors.email}
+              <span>Должность</span>
+              <input
+                className="mb-3"
+                type="text"
+                name="type"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.type}
+              />
+              {errors.type && touched.type && errors.type}
               <span>Номер телефона</span>
               <input
                 className="mb-3"
@@ -112,7 +123,7 @@ class AddReview extends Component {
 
               <button
                 type="submit"
-                className="btn btn-primary"
+                className="btn btn-primary m-1"
                 disabled={isSubmitting}
               >
                 Submit

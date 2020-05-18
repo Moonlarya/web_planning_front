@@ -8,6 +8,7 @@ exports.create = (req, res) => {
     name: req.body.name,
     email: req.body.email,
     phone: req.body.phone,
+    type: req.body.type,
     description: req.body.description,
     priority: req.body.priority,
   });
@@ -65,10 +66,11 @@ exports.findOne = (req, res) => {
 exports.createEmployee = async (req, res) => {
   try {
     const review = await Reviews.findById(req.body.reviewId);
-    const { name, email, phone } = review;
+    const { name, email, phone, type } = review;
     const employee = new Employees({
       name,
       email,
+      type,
       phone,
       status: "free",
     });

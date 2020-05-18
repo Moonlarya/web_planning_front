@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import CalendarView from "react-calendar";
-import "react-calendar/dist/Calendar.css";
+import "../../style/Calendar.css";
 
 class Calendar extends Component {
   state = {
@@ -11,9 +11,22 @@ class Calendar extends Component {
 
   render() {
     return (
-      <main class="col-8 bonuce">
-        <h5>Календарь собеседований</h5>
-        <CalendarView onChange={this.onChange} value={this.state.date} />
+      <main class="col-12 bonuce">
+        <h3>Календарь собеседований</h3>
+        <div className="d-flex align-items-center">
+          <CalendarView onChange={this.onChange} value={this.state.date} />
+          <div className="m-3 col-3">
+            <h5>События на этот день:</h5>
+            <div className="d-flex justify-content-center">
+              <a href="#" className="btn btn-primary  m-1">
+                Добавить
+              </a>
+              <a href="#" className="btn btn-primary  m-1">
+                Удалить
+              </a>
+            </div>
+          </div>
+        </div>
       </main>
     );
   }

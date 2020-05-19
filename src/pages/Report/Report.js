@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReportsService from "../../services/ReportsService";
+import * as moment from "moment";
 
 class Report extends Component {
   state = {
@@ -21,19 +22,18 @@ class Report extends Component {
     return (
       <main className="col-9 d-flex justify-around align-items-start flex-wrap">
         {reports.map((report) => (
-          <div className="card col-5">
+          <div className="card col-4 text-left">
             <h5 className="card-header">Отчет по задаче {report.task_id}</h5>
             <div className="card-body">
               <h5 className="card-title">{report.description}</h5>
               <p className="card-text">{report.link}</p>
               <h5 className="card-title">Дата создания</h5>
-              <p className="card-text">{report.date}</p>
-              <h5 className="card-title">Состояние</h5>
-              <p className="card-text">{report.status}</p>
-              <h5 className="card-title">Исполнитель</h5>
-              <p className="card-text">{report.employee_id}</p>
-              <h5 className="card-title">Количество бонусов</h5>
-              <p className="card-text">{report.points}</p>
+              <p className="card-text">
+                {moment(`${report.date}`).format("Do MMMM YYYY")}
+              </p>
+              <p className="card-text">Состояние: {report.status}</p>
+              <p className="card-text">Исполнитель: {report.employee_id}</p>
+              <p className="card-text">Количество бонусов: {report.points}</p>
               <a href="#" className="btn btn-primary  m-1">
                 Сохранить
               </a>

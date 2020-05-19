@@ -1,28 +1,50 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import CriteriasService from "../../services/CriteriasService";
 
 class Grades extends Component {
+  state = {
+    criterias: [],
+  };
+  loadInfo = async () => {
+    const criterias = await CriteriasService.getAll();
+    this.setState({ criterias: criterias });
+  };
+  deleteInfo = async (id) => {
+    await CriteriasService.delete(id);
+    this.loadInfo();
+  };
+  componentDidMount = () => {
+    this.loadInfo();
+  };
   render() {
+    const { criterias } = this.state;
     return (
       <div>
-        <h1>Оценивание персонала</h1>
-        <Link to="/" className="btn btn-primary mt-3">
+        <h3 className="m-3">Оценивание персонала</h3>
+        <Link to="/addcriteria" className="btn btn-primary mt-3">
           Добавить фактор
         </Link>
-        <h2>На данный момент оценивание проходит по таким факторам:</h2>
-        <ul>
-          <li>
-            Название
-            <div
-              className="btn btn-primary"
-              //onClick={() => this.deleteGrade(grade._id)}
-            >
-              Удалить
-            </div>
-          </li>
+        {criterias.length > 0 && (
+          <h5 className="m-3 text-left">
+            На данный момент оценивание проходит по таким факторам:
+          </h5>
+        )}
+        <ul className="text-left list-group col-3">
+          {criterias.map((el) => (
+            <li className="list-group-item d-flex justify-content-between align-items-center">
+              {el.name}
+              <div
+                className="btn btn-primary mx-3 rounded-circle px-3"
+                onClick={() => this.deleteInfo(el._id)}
+              >
+                -
+              </div>
+            </li>
+          ))}
         </ul>
-        <h2>Результаты предыдущего тестирования:</h2>
-        <div>
+        <h4>Результаты предыдущего тестирования:</h4>
+        <div className="card col-3">
           <h3>Имя сотрудника</h3>
           <p>Должность: </p>
           <p>Оценка1:2 </p>

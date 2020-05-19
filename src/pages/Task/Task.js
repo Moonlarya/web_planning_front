@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import TaskService from "../../services/TasksService";
+import * as moment from "moment";
 
 class Task extends Component {
   state = {
@@ -37,7 +37,9 @@ class Task extends Component {
                 <h5 className="card-header">{task.name}</h5>
                 <p className="card-text">{task.description}</p>
                 <p className="card-title">Порядок: {task.order}</p>
-                <p className="card-title">Дедлайн: {task.deadline}</p>
+                <p className="card-title">
+                  Дедлайн: {moment(`${task.deadline}`).format("Do MMMM YYYY")}
+                </p>
                 <p className="card-title">Бонусы: {task.bonuce}</p>
                 <p className="card-title">Исполнитель: {task.employee.name}</p>
                 <div className="d-flex flex-wrap justify-content-between">

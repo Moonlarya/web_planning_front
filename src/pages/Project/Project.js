@@ -1,5 +1,4 @@
-import React, { Component, Fragment } from "react";
-import axios from "axios";
+import React, { Component } from "react";
 import ProjectService from "../../services/ProjectService";
 import { Link } from "react-router-dom";
 

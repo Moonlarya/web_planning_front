@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import TaskService from "../../services/TasksService";
+import * as moment from "moment";
 
 class FinishedTasks extends Component {
   state = {
@@ -34,7 +35,9 @@ class FinishedTasks extends Component {
                 <p className="card-title">Дедлайн: {task.deadline}</p>
                 <p className="card-title">Количество бонусов: {task.bonuce}</p>
                 <p className="card-title">Исполнитель: {task.employee.name}</p>
-                <p className="card-text">Дата завершения:</p>
+                <p className="card-text">
+                  Дата завершения:{moment(``).format("Do MMMM YYYY")}
+                </p>
                 <p className="card-text">Полученные бонусы:</p>
                 <div
                   className="btn btn-primary m-1"

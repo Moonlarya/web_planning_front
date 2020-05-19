@@ -80,7 +80,7 @@ const Sidebar = () => (
           <Link to="/employees" className="dropdown-item" type="button">
             Сотрудники
           </Link>
-          <Link to="/" className="dropdown-item" type="button">
+          <Link to="/grades" className="dropdown-item" type="button">
             Оценивание
           </Link>
         </div>

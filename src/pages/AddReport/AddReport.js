@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import ReportsService from "../../services/ReportsService";
 import { Formik } from "formik";
 

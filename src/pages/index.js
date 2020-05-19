@@ -14,6 +14,7 @@ import AddReview from "./AddReview";
 import AddReport from "./AddReport";
 import Calendar from "./Calendar";
 import Grades from "./Grades";
+import AddCriteria from "./AddCriteria";
 import SignIn from "./SignIn";
 import FinishedTasks from "./FinishedTasks";
 
@@ -35,5 +36,6 @@ export {
   AddReport,
   Grades,
   SignIn,
+  AddCriteria,
   FinishedTasks,
 };

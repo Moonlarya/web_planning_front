@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import EmployeesService from "../../services/EmployeesService";
+import * as moment from "moment";
 
 class Employees extends Component {
   state = {
@@ -27,7 +28,10 @@ class Employees extends Component {
               <p className="card-text">{`${employee.surname} ${employee.name} ${employee.patronymic}`}</p>
               <p className="card-text">e-mail: {employee.email}</p>
               <p className="card-text">Номер телефона: {employee.phone}</p>
-              <p className="card-text">Дата появления: {employee.createdAt}</p>
+              <p className="card-text">
+                Дата появления:
+                {moment(`${employee.createdAt}`).format("Do MMMM YYYY")}
+              </p>
               <div className="d-flex flex-wrap  justify-content-center">
                 <div
                   className="btn btn-primary m-1"

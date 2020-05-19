@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 import "./style.scss";
 import Wrapper from "../../components/Wrapper";
 import Button from "../../components/Button";
-import { useHistory } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const ErrorMsg = styled(ErrorMessage)`

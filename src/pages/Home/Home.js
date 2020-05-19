@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import TaskService from "../../services/TasksService";
-import { Link } from "react-router-dom";
-
 import "./style.scss";
 
 class Home extends Component {

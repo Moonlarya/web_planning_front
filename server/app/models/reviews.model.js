@@ -2,7 +2,9 @@ const mongoose = require("mongoose");
 
 const Reviews = mongoose.Schema(
   {
-    name: { type: String, required: true, min: 0, max: 100 },
+    name: { type: String, required: true },
+    surname: { type: String, required: true },
+    patronymic: { type: String, required: true },
     email: { type: String, required: true, min: 0, max: 100 },
     phone: { type: String },
     type: { type: String, min: 0, max: 20 },

@@ -24,7 +24,7 @@ class Employees extends Component {
           {employees.map((employee) => (
             <div className="card col-3" key={employee._id}>
               <h5 className="card-header">{employee.type}</h5>
-              <p className="card-text">{employee.name}</p>
+              <p className="card-text">{`${employee.surname} ${employee.name} ${employee.patronymic}`}</p>
               <p className="card-text">e-mail: {employee.email}</p>
               <p className="card-text">Номер телефона: {employee.phone}</p>
               <p className="card-text">Дата появления: {employee.createdAt}</p>

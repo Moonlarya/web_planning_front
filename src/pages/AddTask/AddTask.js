@@ -21,7 +21,7 @@ class AddTask extends Component {
   render() {
     const { employees } = this.state;
     return (
-      <div>
+      <div className="col-3 mt-3 p-3 mx-auto">
         <h1>Добавить задачу</h1>
         <Formik
           onSubmit={this.onSubmit}
@@ -118,7 +118,7 @@ class AddTask extends Component {
                 className="btn btn-primary m-1"
                 disabled={isSubmitting}
               >
-                Submit
+                Создать
               </button>
             </form>
           )}

@@ -5,6 +5,8 @@ exports.create = (req, res) => {
   // Create a Note
   const employee = new Employees({
     name: req.body.name,
+    surname: req.body.surname,
+    patronymic: req.body.surname,
     type: req.body.type,
     status: req.body.status, //???? CHECK (status IN('free', 'left', 'busy'))
     phone: req.body.phone,

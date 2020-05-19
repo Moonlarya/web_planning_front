@@ -7,6 +7,8 @@ exports.create = (req, res) => {
   const client = new Clients({
     phone: req.body.phone,
     name: req.body.name,
+    surname: req.body.surname,
+    patronymic: req.body.surname,
     email: req.body.email,
   });
 

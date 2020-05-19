@@ -30,9 +30,9 @@ class Project extends Component {
             <div className="card col-3" key={project._id}>
               <h5 className="card-header">{project.name}</h5>
               <p className="card-text">{project.description}</p>
-              <p className="card-text">{project.deadline}</p>
-              <p className="card-text">{project.budget}</p>
-              <p className="card-text">{project.clientId}</p>
+              <p className="card-text">Дедлайн: {project.deadline}</p>
+              <p className="card-text">Бюджет: {project.budget}</p>
+              <p className="card-text">Клиент: {project.clientId.name}</p>
               <div
                 className="btn btn-primary"
                 onClick={() => this.deleteProject(project._id)}

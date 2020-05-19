@@ -27,19 +27,6 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve and return all tasks from the database.
-/*exports.findAll = async (req, res) => {
-  try {
-    const tasks = await Tasks.find();
-    console.log(tasks);
-    res.send(tasks);
-  } catch (err) {
-    res.status(500).send({
-      message: err.message || "Some error occurred while retrieving tasks.",
-    });
-  }
-};*/
-
 exports.findAll = async (req, res) => {
   try {
     const tasks = await Tasks.find().lean();
@@ -58,7 +45,6 @@ exports.findAll = async (req, res) => {
         }
       })
     );
-    console.log(populatedTasks);
     res.send(populatedTasks);
   } catch (err) {
     res.status(500).send({

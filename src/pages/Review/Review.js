@@ -6,34 +6,44 @@ class Review extends Component {
   state = {
     reviews: [],
   };
-  async componentDidMount() {
+  loadReviews = async () => {
     const reviews = await ReviewsService.getAll();
     this.setState({ reviews: reviews });
+  };
+  async componentDidMount() {
+    this.loadReviews();
   }
+  deleteReview = async (id) => {
+    await ReviewsService.delete(id);
+    this.loadReviews();
+  };
   render() {
     const { reviews } = this.state;
     return (
-      <main className="col-12 bonuce">
+      <main className="col-12 bonuce ">
         <Link to="/addreview" className="btn btn-primary mt-3">
           Создать резюме
         </Link>
-        <div className="d-flex flex-wrap">
+        <div className="d-flex flex-wrap justify-content-around">
           {reviews.map((review) => (
-            <div className="card col-6" key={review._id}>
-              <h5 className="card-header">{review.name}</h5>
+            <div
+              className="card col-5 text-left"
+              style={{ height: "max-content" }}
+              key={review._id}
+            >
+              <h5 className="card-header">{`${review.surname} ${review.name} ${review.patronymic}`}</h5>
               <div className="card-body">
                 <h5 className="card-title">Комментарий</h5>
                 <p className="card-text">{review.description}</p>
-                <h5 className="card-title">e-mail</h5>
-                <p className="card-text">{review.email}</p>
-                <h5 className="card-title">Телефон</h5>
-                <p className="card-text">{review.phone}</p>
-                <h5 className="card-title">Приоритет</h5>
-                <p className="card-text">{review.priority}</p>
-                <h5 className="card-title">Должность</h5>
-                <p className="card-text">{review.type}</p>
+                <p className="card-text">e-mail: {review.email}</p>
+                <p className="card-text">Телефон: {review.phone}</p>
+                <p className="card-text">Приоритет: {review.priority}</p>
+                <p className="card-text">Должность: {review.type}</p>
                 <a href="#" className="btn btn-primary m-1">
                   Редактировать
+                </a>
+                <a href="#" className="btn btn-primary m-1">
+                  Назначить собеседование
                 </a>
                 <a
                   href="#"
@@ -45,9 +55,12 @@ class Review extends Component {
                 >
                   Взять на работу
                 </a>
-                <a href="#" className="btn btn-primary m-1">
-                  Удалить
-                </a>
+                <div
+                  className="btn btn-primary m-1"
+                  onClick={() => this.deleteReview(review._id)}
+                >
+                  Удалить резюме
+                </div>
               </div>
             </div>
           ))}

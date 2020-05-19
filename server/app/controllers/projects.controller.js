@@ -1,4 +1,5 @@
 const Projects = require("../models/projects.model.js");
+const Clients = require("../models/clients.model.js");
 
 // Create and Save a new Projects
 exports.create = (req, res) => {
@@ -26,17 +27,29 @@ exports.create = (req, res) => {
 };
 
 // Retrieve and return all projects from the database.
-exports.findAll = (req, res) => {
-  Projects.find()
-    .then((projects) => {
-      res.send(projects);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving projects.",
-      });
+exports.findAll = async (req, res) => {
+  try {
+    const projects = await Projects.find().lean();
+    const populatedProjects = await Promise.all(
+      projects.map(async (el) => {
+        try {
+          if (el.clientId) {
+            const client = await Clients.findById(el.clientId);
+            return { ...el, clientId: client };
+          } else {
+            return el;
+          }
+        } catch (err) {
+          return el;
+        }
+      })
+    );
+    res.send(populatedProjects);
+  } catch (err) {
+    res.status(500).send({
+      message: err.message || "Some error occurred while retrieving tasks.",
     });
+  }
 };
 
 // Find a single project with a projectId

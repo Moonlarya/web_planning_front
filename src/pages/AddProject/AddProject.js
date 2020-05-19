@@ -1,8 +1,17 @@
 import React, { Component, Fragment } from "react";
 import ProjectService from "../../services/ProjectService";
+import ClientService from "../../services/ClientService";
 import { Formik } from "formik";
 
 class AddProject extends Component {
+  state = {
+    clients: [],
+  };
+  async componentDidMount() {
+    const clients = await ClientService.getAll();
+    this.setState({ clients: clients });
+  }
+
   onSubmit = async (values) => {
     try {
       await ProjectService.create(values);
@@ -10,9 +19,10 @@ class AddProject extends Component {
     } catch {}
   };
   render() {
+    const { clients } = this.state;
     return (
-      <div>
-        <h1>Добавить проект</h1>
+      <div className="col-3 mt-3 p-3 mx-auto">
+        <h4>Добавить проект</h4>
         <Formik
           onSubmit={this.onSubmit}
           initialValues={{
@@ -77,11 +87,11 @@ class AddProject extends Component {
                 value={values.clientId}
               >
                 <option value="" label="Выберите заказчика" />
-                {/*clientId.map((client) => (
+                {clients.map((client) => (
                   <option value={client._id} key={client._id}>
                     {client.name}
                   </option>
-                ))*/}
+                ))}
               </select>
               {errors.deadline && touched.deadline && errors.deadline}
               <span>Бюджет</span>
@@ -99,7 +109,7 @@ class AddProject extends Component {
                 className="btn btn-primary m-1"
                 disabled={isSubmitting}
               >
-                Submit
+                Сохранить
               </button>
             </form>
           )}

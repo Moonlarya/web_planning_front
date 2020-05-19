@@ -6,6 +6,7 @@ import TaskService from "../../services/TasksService";
 class Task extends Component {
   state = {
     tasks: [],
+    disabled: false,
   };
   async componentDidMount() {
     this.loadInfo();
@@ -18,8 +19,12 @@ class Task extends Component {
     await TaskService.delete(id);
     this.loadInfo();
   };
+  createReport = () => {
+    this.setState({ disabled: true });
+    this.props.history.push("/addreport");
+  };
   render() {
-    const { tasks } = this.state;
+    const { tasks, disabled } = this.state;
     return (
       <div>
         <Link to="/addtask" className="btn btn-primary mt-3">
@@ -36,9 +41,14 @@ class Task extends Component {
                 <p className="card-title">Бонусы: {task.bonuce}</p>
                 <p className="card-title">Исполнитель: {task.employee.name}</p>
                 <div className="d-flex flex-wrap justify-content-between">
-                  <Link to="/addreport" className="btn btn-primary m-1">
+                  <button
+                    disabled={disabled}
+                    onClick={this.createReport}
+                    className="btn btn-primary m-1"
+                  >
                     Отчет
-                  </Link>
+                  </button>
+
                   <div
                     className="btn btn-primary m-1"
                     onClick={() => this.deleteInfo(task._id)}

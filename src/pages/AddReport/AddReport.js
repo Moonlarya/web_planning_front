@@ -100,7 +100,7 @@ class AddReport extends Component {
                 className="btn btn-primary m-1"
                 disabled={isSubmitting}
               >
-                Submit
+                Создать отчет
               </button>
             </form>
           )}

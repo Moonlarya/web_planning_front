@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import TaskService from "../../services/TasksService";
 import "./style.scss";
+import * as moment from "moment";
 
 class Home extends Component {
   state = {
@@ -44,7 +45,9 @@ class Home extends Component {
             >
               <div className="card-body text-left">
                 <p className="card-text">{task.description}</p>
-                <p className="card-title">Дедлайн: {task.deadline}</p>
+                <p className="card-title">
+                  Дедлайн: {moment(`${task.deadline}`).format("Do MMMM YYYY")}
+                </p>
                 <p className="card-title">Бонусы: {task.bonuce}</p>
               </div>
             </div>

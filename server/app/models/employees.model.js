@@ -5,10 +5,21 @@ const Employees = mongoose.Schema(
     name: { type: String, required: true },
     surname: { type: String, required: true },
     patronymic: { type: String, required: true },
-    type: { type: String, min: 0, max: 20 },
     phone: { type: String, required: true, min: 0, max: 20 },
     email: { type: String, required: true, min: 0, max: 20 },
-    status: { type: String, min: 0, max: 4 }, //???? CHECK (status IN('free', 'left', 'busy'))
+    password: { type: String, required: true, default: "1234" },
+    status: { type: String, enum: ["free", "left", "busy"], default: "free" },
+    role: {
+      type: String,
+      enum: [
+        "manager",
+        "hr",
+        "marketolog",
+        "copywriter",
+        "designer",
+        "developer",
+      ],
+    },
   },
   {
     timestamps: true,

@@ -35,10 +35,10 @@ class Grades extends Component {
             <li className="list-group-item d-flex justify-content-between align-items-center">
               {el.name}
               <div
-                className="btn btn-primary mx-3 rounded-circle px-3"
+                className="btn btn-primary mx-3 rounded-circle px-2.7"
                 onClick={() => this.deleteInfo(el._id)}
               >
-                -
+                −
               </div>
             </li>
           ))}

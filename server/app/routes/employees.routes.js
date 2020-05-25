@@ -15,4 +15,6 @@ module.exports = (app) => {
 
   // Delete a client with employeeId
   app.delete("/employees/:employeeId", employees.delete);
+
+  app.post("/employees/auth", employees.auth);
 };

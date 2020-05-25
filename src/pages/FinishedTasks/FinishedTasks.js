@@ -25,14 +25,15 @@ class FinishedTasks extends Component {
         <Link to="/addtask" className="btn btn-primary mt-3">
           Создать задачу
         </Link>
-        <div className="d-flex">
+        <div className="d-flex text-left">
           {tasks.map((task) => (
             <div className="card col-3" key={task._id}>
-              <h5 className="card-header">Выполненная задача</h5>
               <div className="card-body">
-                <h5 className="card-title">{task.name}</h5>
+                <h5 className="card-title card-header">{task.name}</h5>
                 <p className="card-text">{task.description}</p>
-                <p className="card-title">Дедлайн: {task.deadline}</p>
+                <p className="card-title">
+                  Дедлайн: {moment(`${task.deadline}`).format("Do MMMM YYYY")}
+                </p>
                 <p className="card-title">Количество бонусов: {task.bonuce}</p>
                 <p className="card-title">Исполнитель: {task.employee.name}</p>
                 <p className="card-text">

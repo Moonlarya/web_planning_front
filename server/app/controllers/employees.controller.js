@@ -1,19 +1,17 @@
 const Employees = require("../models/employees.model.js");
 
-// Create and Save a new Note
 exports.create = (req, res) => {
-  // Create a Note
   const employee = new Employees({
     name: req.body.name,
     surname: req.body.surname,
     patronymic: req.body.surname,
-    type: req.body.type,
-    status: req.body.status, //???? CHECK (status IN('free', 'left', 'busy'))
+    status: req.body.status,
     phone: req.body.phone,
     email: req.body.email,
+    password: req.body.password,
+    role: req.body.role,
   });
 
-  // Save Note in the database
   employee
     .save()
     .then((data) => {
@@ -27,9 +25,7 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve and return all notes from the database.
 exports.findAll = (req, res) => {
-  console.log("smth");
   Employees.find()
     .then((employees) => {
       res.send(employees);
@@ -42,7 +38,6 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single note with a noteId
 exports.findOne = (req, res) => {
   Employees.findById(req.params.employeeId)
     .then((employee) => {
@@ -103,7 +98,6 @@ exports.update = (req, res) => {
     });
 };
 
-// Delete a note with the specified noteId in the request
 exports.delete = (req, res) => {
   Employees.findByIdAndRemove(req.params.employeeId)
     .then((employee) => {
@@ -122,6 +116,21 @@ exports.delete = (req, res) => {
       }
       return res.status(500).send({
         message: "Could not delete note with id " + req.params.employeeId,
+      });
+    });
+};
+
+exports.auth = (req, res) => {
+  Employees.findOne({ email: req.body.email, password: req.body.password })
+    .then((employee) => {
+      if (!employee) {
+        throw new Error("Incorrect login/password");
+      }
+      res.send(employee);
+    })
+    .catch((err) => {
+      res.status(404).send({
+        message: err.message || "Incorrect login/password",
       });
     });
 };

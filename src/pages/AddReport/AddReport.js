@@ -5,7 +5,6 @@ import { Formik } from "formik";
 class AddReport extends Component {
   onSubmit = async (values) => {
     try {
-      console.log(values);
       await ReportsService.create(values);
       this.props.history.push("/report");
     } catch {}

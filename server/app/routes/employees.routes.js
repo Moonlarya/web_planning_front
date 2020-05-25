@@ -13,6 +13,7 @@ module.exports = (app) => {
   // Update a client with employeeId
   app.put("/employees/:employeeId", employees.update);
 
+  app.delete("/employees/delete-all", employees.deleteAll);
   // Delete a client with employeeId
   app.delete("/employees/:employeeId", employees.delete);
 

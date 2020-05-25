@@ -30,24 +30,9 @@ const SignIn = (props) => {
         onSubmit={async (values, { setErrors }) => {
           try {
             const employees = await EmployeesService.login(values);
+            props.history.push("/home");
           } catch {
             setErrors({ error: "Invalid email or password" });
-          }
-          /*
-          const user = JSON.parse(localStorage.getItem("user"));
-          if (
-            values.password !== user.password ||
-            values.email !== user.email
-          ) {
-            setErrors({ error: "Invalid email or password" });
-          }*/
-          /* if (values.password === "1" && values.email === "1") {
-            props.history.push("/home");
-          } else {
-            setErrors({ error: "Invalid email or password" });
-          }*/
-          if (values.check) {
-            localStorage.setItem("user", JSON.stringify(values));
           }
         }}
       >

@@ -136,3 +136,16 @@ exports.delete = (req, res) => {
       });
     });
 };
+
+exports.deleteAll = (req, res) => {
+  console.log(req);
+  Tasks.deleteMany({})
+    .then(() => {
+      res.send({ message: "Position deleted successfully!" });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Cannot delete",
+      });
+    });
+};

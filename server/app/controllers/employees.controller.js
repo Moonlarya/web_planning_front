@@ -134,3 +134,15 @@ exports.auth = (req, res) => {
       });
     });
 };
+
+exports.deleteAll = (req, res) => {
+  Employees.deleteMany({})
+    .then(() => {
+      res.send({ message: "Position deleted successfully!" });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Cannot delete",
+      });
+    });
+};

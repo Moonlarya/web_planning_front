@@ -13,6 +13,7 @@ module.exports = (app) => {
   // Update a client with projectId
   app.put("/projects/:projectId", projects.update);
 
+  app.delete("/projects/delete-all", projects.deleteAll);
   // Delete a client with projectId
   app.delete("/projects/:projectId", projects.delete);
 };

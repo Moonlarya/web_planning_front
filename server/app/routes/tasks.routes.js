@@ -13,6 +13,7 @@ module.exports = (app) => {
   // Update a client with taskId
   app.put("/tasks/:taskId", tasks.update);
 
+  app.delete("/tasks/delete-all", tasks.deleteAll);
   // Delete a client with taskId
   app.delete("/tasks/:taskId", tasks.delete);
 };

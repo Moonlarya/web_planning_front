@@ -14,10 +14,6 @@ const mongoose = require("mongoose");
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(
-  "mongodb+srv://manager:gum20011968@cluster0-e5fus.mongodb.net/test"
-);
-
 mongoose
   .connect(dbConfig.url, {
     useNewUrlParser: true,

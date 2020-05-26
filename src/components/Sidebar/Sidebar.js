@@ -1,10 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+
 import photo from "../../assets/images/avatar1.jpg";
+
+import User from "../../stores/User";
 
 import "./style.scss";
 
-const Sidebar = () => (
+const Sidebar = (props) => (
   <div className="sidebar col-2">
     <ul className="nav flex-column">
       <div className="d-flex align-items-center">
@@ -104,12 +107,21 @@ const Sidebar = () => (
         </div>
       </li>
       <li className="nav-item">
-        <Link className="nav-link" to="/">
+        <a
+          className="nav-link"
+          onClick={(event) => {
+            event.preventDefault();
+
+            User.remove();
+
+            props.history.push("/");
+          }}
+        >
           Выйти
-        </Link>
+        </a>
       </li>
     </ul>
   </div>
 );
 
-export default Sidebar;
+export default withRouter(Sidebar);

@@ -1,16 +1,22 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 
 import Sidebar from "../components/Sidebar";
 
-const DashboardRoute = props => (
-  <div className="App d-flex">
-    <Sidebar />
+import { withAuth } from "../stores/User";
 
-    <main className="col-10">
-      <Route {...props} />
-    </main>
-  </div>
-);
+const DashboardRoute = (props) => {
+  if (!props.user) return <Redirect to="/" />;
 
-export default DashboardRoute;
+  return (
+    <div className="App d-flex">
+      <Sidebar />
+
+      <main className="col-10">
+        <Route {...props} />
+      </main>
+    </div>
+  );
+};
+
+export default withAuth(DashboardRoute);

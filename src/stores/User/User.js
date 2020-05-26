@@ -29,6 +29,10 @@ class User {
     this.publish();
   }
 
+  isLoggedIn() {
+    return Boolean(this.data);
+  }
+
   publish() {
     this.subscribers.forEach((subscriber) => subscriber(this.data));
   }
@@ -41,7 +45,7 @@ class User {
     const index = this.subscribers.indexOf(fun);
 
     if (index !== -1) {
-      this.subscribers.array.splice(index, 1);
+      this.subscribers.splice(index, 1);
     }
   }
 }

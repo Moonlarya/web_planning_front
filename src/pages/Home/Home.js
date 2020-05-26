@@ -24,13 +24,13 @@ class Home extends Component {
       <div id="accordion">
         {tasks.map((task) => (
           <div className="card" key={task._id}>
-            <div className="d-flex justify-content-between" id="headingOne">
+            <div className="d-flex justify-content-between" id={task._id}>
               <h5
                 className="mb-0 btn btn-link"
                 data-toggle="collapse"
-                data-target="#collapseOne"
+                data-target={"#collapseOne" + task._id}
                 aria-expanded="true"
-                aria-controls="collapseOne"
+                aria-controls={"collapseOne" + task._id}
               >
                 {task.name}
               </h5>
@@ -38,9 +38,9 @@ class Home extends Component {
               <h6 className="mb-0 btn">{task.employee.name}</h6>
             </div>
             <div
-              id="collapseOne"
+              id={"collapseOne" + task._id}
               className="collapse"
-              aria-labelledby="headingOne"
+              aria-labelledby={task._id}
               data-parent="#accordion"
             >
               <div className="card-body text-left">

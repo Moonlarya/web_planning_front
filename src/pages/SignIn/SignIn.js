@@ -1,15 +1,21 @@
 import React from "react";
+import { Formik, Form } from "formik";
+
 import "./style.scss";
 import Wrapper from "../../components/Wrapper";
 import Button from "../../components/Button";
-import { Formik, Form } from "formik";
+
 import EmployeesService from "../../services/EmployeesService";
 import { ErrorMsg, Input } from "./view";
 
+import User, { withAuth } from "../../stores/User";
+
 const SignIn = (props) => {
+  console.log(props);
   //const history = useHistory();
   return (
     <Wrapper>
+      <div>{props.user && props.user.name}</div>
       <h1>Sign in</h1>
       <Formik
         initialValues={{ email: "", password: "" }}
@@ -29,8 +35,11 @@ const SignIn = (props) => {
         }}
         onSubmit={async (values, { setErrors }) => {
           try {
-            const employees = await EmployeesService.login(values);
-            props.history.push("/home");
+            const user = await EmployeesService.login(values);
+
+            User.setUser(user);
+
+            // props.history.push("/home");
           } catch {
             setErrors({ error: "Invalid email or password" });
           }
@@ -72,4 +81,4 @@ const SignIn = (props) => {
     </Wrapper>
   );
 };
-export default SignIn;
+export default withAuth(SignIn);

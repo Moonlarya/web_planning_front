@@ -2,6 +2,14 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "serverdev": "nodemon server/server.js",
+    "postinstall": "npm rebuild node-sass"
+  },
   "dependencies": {
     "@popperjs/core": "^2.1.1",
     "@testing-library/jest-dom": "^4.2.4",
@@ -25,13 +33,6 @@
     "react-scripts": "3.4.0",
     "reactstrap": "^8.4.1",
     "styled-components": "^5.1.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "serverdev": "nodemon server/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"

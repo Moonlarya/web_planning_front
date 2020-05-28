@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path");
 const cors = require("cors");
 
 const app = express();
@@ -26,13 +27,6 @@ mongoose
     process.exit();
   });
 
-app.get("/", (req, res) => {
-  res.json({
-    message:
-      "Welcome to EasyNotes application. Take notes quickly. Organize and keep track of all your notes.",
-  });
-});
-
 require("./app/routes/client.routes.js")(app);
 require("./app/routes/criterias.routes.js")(app);
 require("./app/routes/grades.routes.js")(app);
@@ -46,6 +40,16 @@ require("./app/routes/salaries.routes.js")(app);
 require("./app/routes/tasks.routes.js")(app);
 require("./app/routes/calendar.routes.js")(app);
 
-app.listen(3001, () => {
-  console.log("Server is listening on port 3001");
+const webBuildFolderName = "build";
+app.use(express.static(webBuildFolderName));
+app.get("*", (req, res) => {
+  res.sendFile(
+    path.resolve(__dirname, `../${webBuildFolderName}`, "index.html")
+  );
+});
+
+const port = process.env.PORT || 3001;
+
+app.listen(port, () => {
+  console.log("Server is listening on port" + port);
 });

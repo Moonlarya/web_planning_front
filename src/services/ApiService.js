@@ -2,11 +2,14 @@ import axios from "axios";
 
 class ApiService {
   api = axios.create({
-    baseURL: "http://localhost:3001/",
+    baseURL:
+      process.env.NODE_ENV === "production"
+        ? window.location.origin + "/"
+        : "http://localhost:3001/",
   });
 
   getSlug() {
-    throw new Error("abstract method"); //return "clients";
+    throw new Error("abstract method");
   }
   async getAll() {
     const response = await this.api.get(this.getSlug()); //"http://localhost:3001/" ("clients")

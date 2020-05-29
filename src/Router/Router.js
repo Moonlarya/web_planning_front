@@ -22,6 +22,7 @@ import {
   Grades,
   SignIn,
   FinishedTasks,
+  FinishedReports,
   AddCriteria,
 } from "../pages";
 
@@ -47,6 +48,11 @@ const RouteSchema = () => (
       <DashboardRoute exact path="/addreport" component={AddReport} />
       <DashboardRoute exact path="/addcriteria" component={AddCriteria} />
       <DashboardRoute exact path="/finishedtasks" component={FinishedTasks} />
+      <DashboardRoute
+        exact
+        path="/finishedreports"
+        component={FinishedReports}
+      />
 
       <Route exact component={() => <h1 className="text-center"> 404 </h1>} />
     </Switch>

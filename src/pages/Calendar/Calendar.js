@@ -30,7 +30,21 @@ class Calendar extends Component {
     try {
       values.date = this.state.date;
       await CalendarService.create(values);
+      this.loadInfo();
     } catch {}
+  };
+  validator = (values) => {
+    const errors = {};
+    if (!values.name) {
+      errors.name = "Required";
+    }
+    if (!values.description) {
+      errors.description = "Required";
+    }
+    if (!values.time) {
+      errors.time = "Required";
+    }
+    return errors;
   };
 
   render() {
@@ -56,6 +70,7 @@ class Calendar extends Component {
             <div>
               <h5>Добавить событие:</h5>
               <Formik
+                validate={this.validator}
                 onSubmit={this.onSubmit}
                 initialValues={{
                   employee: "",
@@ -122,7 +137,7 @@ class Calendar extends Component {
                       <option value="" label="Выберите претендента" />
                       {reviews.map((review) => (
                         <option value={review._id} key={review._id}>
-                          {(review.surname, review.name, review.patronymic)}
+                          {`${review.surname} ${review.name} ${review.patronymic}`}
                         </option>
                       ))}
                     </select>
@@ -154,7 +169,9 @@ class Calendar extends Component {
               <div>
                 <li>{event.name}</li>
                 <li>{event.description}</li>
-                <li>{event.review}</li>
+                <li>{`${event.review.surname && event.review.surname} ${
+                  event.review.name && event.review.name
+                } ${event.review.patronymic && event.review.patronymic}`}</li>
               </div>
               <button
                 style={{ height: "40px", width: "40px" }}

@@ -64,22 +64,8 @@ exports.findOne = (req, res) => {
 
 // Update a report identified by the reportId in the request
 exports.update = (req, res) => {
-  // Validate Request
-  if (!req.body.content) {
-    return res.status(400).send({
-      message: "Reports content can not be empty",
-    });
-  }
-
   // Find report and update it with the request body
-  Reports.findByIdAndUpdate(
-    req.params.reportId,
-    {
-      title: req.body.title || "Untitled Reports",
-      content: req.body.content,
-    },
-    { new: true }
-  )
+  Reports.findByIdAndUpdate(req.params.reportId, req.body, { new: true })
     .then((report) => {
       if (!report) {
         return res.status(404).send({

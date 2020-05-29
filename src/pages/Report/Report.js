@@ -17,11 +17,18 @@ class Report extends Component {
     await ReportsService.delete(id);
     this.loadInfo();
   };
+  completeReport = async (id) => {
+    await ReportsService.complete(id);
+    this.loadInfo();
+  };
   render() {
     const { reports } = this.state;
+    const filteredReports = reports.filter(
+      (report) => report.status !== "finished"
+    );
     return (
       <main className="col-9 d-flex justify-around align-items-start flex-wrap">
-        {reports.map((report) => (
+        {filteredReports.map((report) => (
           <div className="card col-4 text-left">
             <h5 className="card-header">Отчет по задаче {report.task_id}</h5>
             <div className="card-body">
@@ -40,7 +47,11 @@ class Report extends Component {
               <a href="#" className="btn btn-primary  m-1">
                 Изменить
               </a>
-              <a href="#" className="btn btn-primary  m-1">
+              <a
+                href="#"
+                className="btn btn-primary  m-1"
+                onClick={() => this.completeReport(report._id)}
+              >
                 Завершить
               </a>
             </div>

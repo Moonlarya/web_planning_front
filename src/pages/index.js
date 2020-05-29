@@ -17,6 +17,7 @@ import Grades from "./Grades";
 import AddCriteria from "./AddCriteria";
 import SignIn from "./SignIn";
 import FinishedTasks from "./FinishedTasks";
+import FinishedReports from "./FinishedReports";
 
 export {
   Home,
@@ -38,4 +39,5 @@ export {
   SignIn,
   AddCriteria,
   FinishedTasks,
+  FinishedReports,
 };

@@ -20,7 +20,10 @@ class Calendar extends Component {
   componentDidMount() {
     this.loadInfo();
   }
-
+  deleteInfo = async (id) => {
+    await CalendarService.delete(id);
+    this.loadInfo();
+  };
   onChange = (date) => this.setState({ date });
 
   onSubmit = async (values) => {
@@ -119,41 +122,49 @@ class Calendar extends Component {
                       <option value="" label="Выберите претендента" />
                       {reviews.map((review) => (
                         <option value={review._id} key={review._id}>
-                          {review.name}
+                          {(review.surname, review.name, review.patronymic)}
                         </option>
                       ))}
                     </select>
                     <div className="d-flex justify-content-center">
                       <button
-                        className="btn btn-primary mx-3 rounded-circle px-2.7"
+                        className="btn btn-primary mx-3"
                         type="submit"
                         disabled={isSubmitting}
                       >
-                        +
-                      </button>
-                      <button
-                        className="btn btn-primary mx-3 rounded-circle px-2.7"
-                        //onClick={() => this.deleteInfo(el._id)}
-                      >
-                        −
+                        Добавить событие
                       </button>
                     </div>
                   </form>
                 )}
               </Formik>
             </div>
-            <div>
-              {!!dayEvents.length && <h5>События на этот день:</h5>}
-              {dayEvents.map((event) => (
-                <ul key={event._id} className="card list-group list-unstyled">
-                  <li>{event.name}</li>
-                  <li>{event.description}</li>
-                  <li>{event.time}</li>
-                  <li>{event.review}</li>
-                </ul>
-              ))}
-            </div>
           </div>
+        </div>
+        <div>
+          {!!dayEvents.length && <h5>События на этот день:</h5>}
+          {dayEvents.map((event) => (
+            <ul
+              key={event._id}
+              className="list-unstyled list-group-item list-group-item-action col-6 text-left d-flex justify-content-between mx-auto"
+            >
+              <div className="px-5">
+                <h2 className="mt-3">{event.time}</h2>
+              </div>
+              <div>
+                <li>{event.name}</li>
+                <li>{event.description}</li>
+                <li>{event.review}</li>
+              </div>
+              <button
+                style={{ height: "40px", width: "40px" }}
+                className="btn btn-primary m-3"
+                onClick={() => this.deleteInfo(event._id)}
+              >
+                -
+              </button>
+            </ul>
+          ))}
         </div>
       </main>
     );

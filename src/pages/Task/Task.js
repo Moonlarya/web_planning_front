@@ -41,7 +41,18 @@ class Task extends Component {
                   Дедлайн: {moment(`${task.deadline}`).format("Do MMMM YYYY")}
                 </p>
                 <p className="card-title">Бонусы: {task.bonuce}</p>
-                <p className="card-title">Исполнитель: {task.employee.name}</p>
+                {task.employee && (
+                  <p className="card-title">
+                    Исполнитель:
+                    {
+                      (task.employee.surname ? task.employee.surname : null,
+                      task.employee.name ? task.employee.name : null,
+                      task.employee.patronymic
+                        ? task.employee.patronymic
+                        : null)
+                    }
+                  </p>
+                )}
                 <div className="d-flex flex-wrap justify-content-between">
                   <button
                     disabled={disabled}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ProjectService from "../../services/ProjectService";
 import { Link } from "react-router-dom";
+import * as moment from "moment";
 
 class Project extends Component {
   state = {
@@ -29,7 +30,9 @@ class Project extends Component {
             <div className="card col-3" key={project._id}>
               <h5 className="card-header">{project.name}</h5>
               <p className="card-text">{project.description}</p>
-              <p className="card-text">Дедлайн: {project.deadline}</p>
+              <p className="card-text">
+                Дедлайн: {moment(`${project.deadline}`).format("Do MMMM YYYY")}
+              </p>
               <p className="card-text">Бюджет: {project.budget}</p>
               <p className="card-text">Клиент: {project.clientId.name}</p>
               <div

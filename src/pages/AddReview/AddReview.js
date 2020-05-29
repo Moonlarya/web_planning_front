@@ -91,14 +91,20 @@ class AddReview extends Component {
               />
               {errors.email && touched.email && errors.email}
               <span>Должность</span>
-              <input
+              <select
                 className="mb-3"
-                type="text"
                 name="type"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.type}
-              />
+              >
+                <option value="" disabled label="Должность" />
+                <option value="marketolog">Маркетолог</option>
+                <option value="copywriter">Копирайтер</option>
+                <option value="designer">Дизайнер</option>
+                <option value="developer">Разработчик</option>
+                <option value="hr">HR (рекрутер)</option>
+              </select>
               {errors.type && touched.type && errors.type}
               <span>Номер телефона</span>
               <input

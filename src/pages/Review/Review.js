@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import ReviewsService from "../../services/ReviewsService";
+import { positionTypes } from "../../constants/translation";
 
 class Review extends Component {
   state = {
@@ -38,7 +39,9 @@ class Review extends Component {
                 <p className="card-text">e-mail: {review.email}</p>
                 <p className="card-text">Телефон: {review.phone}</p>
                 <p className="card-text">Приоритет: {review.priority}</p>
-                <p className="card-text">Должность: {review.type}</p>
+                <p className="card-text">
+                  Должность: {positionTypes[review.type]}
+                </p>
                 <a href="#" className="btn btn-primary m-1">
                   Редактировать
                 </a>

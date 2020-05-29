@@ -23,6 +23,10 @@ class ApiService {
     const response = await this.api.delete(this.getSlug() + "/" + id);
     return response.data;
   }
+  async update(id, data) {
+    const response = await this.api.put(this.getSlug() + "/" + id, data);
+    return response.data;
+  }
 }
 
 export default ApiService;

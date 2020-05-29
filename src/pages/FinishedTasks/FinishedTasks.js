@@ -22,9 +22,6 @@ class FinishedTasks extends Component {
     const { tasks } = this.state;
     return (
       <div>
-        <Link to="/addtask" className="btn btn-primary mt-3">
-          Создать задачу
-        </Link>
         <div className="d-flex text-left">
           {tasks.map((task) => (
             <div className="card col-3" key={task._id}>

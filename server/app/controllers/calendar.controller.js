@@ -1,4 +1,5 @@
 const Calendar = require("../models/calendar.model.js");
+const Review = require("../models/reviews.model.js");
 
 // Create and Save a new calendars
 exports.create = (req, res) => {
@@ -39,6 +40,32 @@ exports.findAll = (req, res) => {
           err.message || "Some error occurred while retrieving calendars.",
       });
     });
+};
+
+exports.findAll = async (req, res) => {
+  try {
+    const events = await Calendar.find().lean();
+    const populatedEvents = await Promise.all(
+      events.map(async (el) => {
+        try {
+          if (el.review) {
+            const review = await Review.findById(el.review);
+            return { ...el, review: review };
+          } else {
+            return el;
+          }
+        } catch (err) {
+          console.log(err);
+          return el;
+        }
+      })
+    );
+    res.send(populatedEvents);
+  } catch (err) {
+    res.status(500).send({
+      message: err.message || "Some error occurred while retrieving tasks.",
+    });
+  }
 };
 
 // Find a single calendar with a calendarId

@@ -47,11 +47,11 @@ const Sidebar = (props) => (
           Задачи
         </a>
         <div className="dropdown-menu dropdown-menu-right">
-          <Link to="/finishedtasks" className="dropdown-item" type="button">
-            Выполненные задачи
-          </Link>
           <Link to="/task" className="dropdown-item" type="button">
             Задачи к выполнению
+          </Link>
+          <Link to="/finishedtasks" className="dropdown-item" type="button">
+            Выполненные задачи
           </Link>
         </div>
       </li>
@@ -60,10 +60,23 @@ const Sidebar = (props) => (
           Бонусы
         </a>
       </li>
-      <li className="nav-item">
-        <Link to="/report" className="nav-link">
+      <li className="nav-item dropright">
+        <a
+          className="nav-link dropdown-toggle"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
           Отчеты
-        </Link>
+        </a>
+        <div className="dropdown-menu dropdown-menu-right">
+          <Link to="/report" className="nav-link">
+            Активные отчеты
+          </Link>
+          <Link to="/finishedreports" className="dropdown-item" type="button">
+            Завершенные отчеты
+          </Link>
+        </div>
       </li>
       <li className="nav-item dropright">
         <Link to="/payout" className="nav-link">

@@ -51,7 +51,7 @@ class Task extends Component {
                   Дедлайн: {moment(`${task.deadline}`).format("Do MMMM YYYY")}
                 </p>
                 <p className="card-title">Бонусы: {task.bonuce}</p>
-                {typeof task.employee !== "string" && (
+                {task.employee && typeof task.employee !== "string" && (
                   <p className="card-title">
                     Исполнитель:
                     {`${task.employee.surname} ${task.employee.name} ${task.employee.patronymic}`}

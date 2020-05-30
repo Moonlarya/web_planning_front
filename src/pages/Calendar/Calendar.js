@@ -5,7 +5,7 @@ import ReviewsService from "../../services/ReviewsService";
 import CalendarService from "../../services/CalendarService";
 import { Formik } from "formik";
 import * as moment from "moment";
-import { typeReview } from "../../constants/translation";
+import { typeReview, resultEvent } from "../../constants/translation";
 
 class Calendar extends Component {
   state = {
@@ -31,6 +31,12 @@ class Calendar extends Component {
     try {
       values.date = this.state.date;
       await CalendarService.create(values);
+      this.loadInfo();
+    } catch {}
+  };
+  resultFunc = async (id, value) => {
+    try {
+      await CalendarService.update(id, { result: value });
       this.loadInfo();
     } catch {}
   };
@@ -189,6 +195,35 @@ class Calendar extends Component {
                 <p>{`${event.review.surname && event.review.surname} ${
                   event.review.name && event.review.name
                 } ${event.review.patronymic && event.review.patronymic}`}</p>
+                {typeof event.result === "undefined" && (
+                  <div>
+                    <p>
+                      <i>Кандидат подходит?</i>
+                    </p>
+                    <button
+                      style={{ height: "40px", width: "max-content" }}
+                      className="btn btn-primary m-1"
+                      onClick={() => {
+                        this.resultFunc(event._id, true);
+                      }}
+                    >
+                      Да
+                    </button>
+                    <button
+                      style={{ height: "40px", width: "max-content" }}
+                      className="btn btn-primary m-1"
+                      onClick={() => this.resultFunc(event._id, false)}
+                    >
+                      Нет
+                    </button>
+                  </div>
+                )}
+                {typeof event.result !== "undefined" && (
+                  <p>
+                    <i>Результат: </i>
+                    {resultEvent[event.result]}
+                  </p>
+                )}
               </div>
               <button
                 style={{ height: "40px", width: "40px" }}

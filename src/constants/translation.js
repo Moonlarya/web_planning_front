@@ -18,3 +18,8 @@ export const typeReview = {
   hr: "Собеседование с рекрутером",
   technical: "Техническое собеседование",
 };
+
+export const resultEvent = {
+  true: "Успешно пройдено",
+  false: "Кандидат провалил собеседование",
+};

@@ -12,6 +12,7 @@ exports.create = (req, res) => {
     deadline: req.body.deadline,
     bonuce: req.body.bonuce,
     employee: req.body.employee,
+    project: req.body.project,
   });
 
   // Save Tasks in the database

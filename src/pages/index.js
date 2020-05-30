@@ -19,6 +19,7 @@ import SignIn from "./SignIn";
 import FinishedTasks from "./FinishedTasks";
 import FinishedReports from "./FinishedReports";
 import Profile from "./Profile";
+import ProjectPage from "./ProjectPage";
 
 export {
   Home,
@@ -42,4 +43,5 @@ export {
   FinishedTasks,
   FinishedReports,
   Profile,
+  ProjectPage,
 };

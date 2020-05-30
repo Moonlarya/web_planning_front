@@ -35,8 +35,14 @@ class Project extends Component {
               </p>
               <p className="card-text">Бюджет: {project.budget}</p>
               <p className="card-text">Клиент: {project.clientId.name}</p>
+              <Link
+                to={`/projects/${project._id}`}
+                className="btn btn-primary m-1"
+              >
+                Информация о проекте
+              </Link>
               <div
-                className="btn btn-primary"
+                className="btn btn-primary m-1"
                 onClick={() => this.deleteProject(project._id)}
               >
                 Удалить проект

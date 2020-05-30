@@ -25,6 +25,7 @@ import {
   FinishedReports,
   AddCriteria,
   Profile,
+  ProjectPage,
 } from "../pages";
 
 const RouteSchema = () => (
@@ -48,6 +49,11 @@ const RouteSchema = () => (
       <DashboardRoute exact path="/addproject" component={AddProject} />
       <DashboardRoute exact path="/addreview" component={AddReview} />
       <DashboardRoute exact path="/addreport/:taskId" component={AddReport} />
+      <DashboardRoute
+        exact
+        path="/projects/:projectId"
+        component={ProjectPage}
+      />
       <DashboardRoute exact path="/addcriteria" component={AddCriteria} />
       <DashboardRoute exact path="/finishedtasks" component={FinishedTasks} />
       <DashboardRoute

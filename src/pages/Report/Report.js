@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReportsService from "../../services/ReportsService";
 import * as moment from "moment";
+import { status } from "../../constants/translation";
 
 class Report extends Component {
   state = {
@@ -38,7 +39,7 @@ class Report extends Component {
               <p className="card-text">
                 {moment(`${report.date}`).format("Do MMMM YYYY")}
               </p>
-              <p className="card-text">Состояние: {report.status}</p>
+              <p className="card-text">Состояние: {status[report.status]}</p>
               <p className="card-text">Исполнитель: {report.employee_id}</p>
               <p className="card-text">Количество бонусов: {report.points}</p>
               <a href="#" className="btn btn-primary  m-1">

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReportsService from "../../services/ReportsService";
 import * as moment from "moment";
+import { status } from "../../constants/translation";
 
 class FinishedReports extends Component {
   state = {
@@ -44,10 +45,16 @@ class FinishedReports extends Component {
                 <p className="card-text">
                   {moment(report.finishDate).format("Do MMMM YYYY")}
                 </p>
-                <p className="card-text">Состояние: {report.status}</p>
+                <p className="card-text">Состояние: {status[report.status]}</p>
                 <p className="card-text">Исполнитель: {report.employee_id}</p>
                 <p className="card-text">Количество бонусов: {report.points}</p>
                 <p className="card-text">Количество полученных бонусов:</p>
+              </div>
+              <div
+                className="btn btn-primary m-1"
+                onClick={() => this.deleteInfo(report._id)}
+              >
+                Удалить
               </div>
             </div>
           ))}

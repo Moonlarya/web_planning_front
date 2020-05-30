@@ -6,3 +6,10 @@ export const positionTypes = {
   designer: "Дизайнер",
   developer: "Разработчик",
 };
+
+export const status = {
+  active: "активно",
+  disabled: "неактивно",
+  problem: "проблемно",
+  finished: "завершено",
+};

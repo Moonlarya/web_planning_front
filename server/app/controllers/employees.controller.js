@@ -62,22 +62,8 @@ exports.findOne = (req, res) => {
 
 // Update a note identified by the noteId in the request
 exports.update = (req, res) => {
-  // Validate Request
-  if (!req.body.content) {
-    return res.status(400).send({
-      message: "Employee content can not be empty",
-    });
-  }
-
   // Find note and update it with the request body
-  Employees.findByIdAndUpdate(
-    req.params.employeeId,
-    {
-      title: req.body.title || "Untitled Position",
-      content: req.body.content,
-    },
-    { new: true }
-  )
+  Employees.findByIdAndUpdate(req.params.employeeId, req.body, { new: true })
     .then((employee) => {
       if (!employee) {
         return res.status(404).send({

@@ -18,6 +18,7 @@ import AddCriteria from "./AddCriteria";
 import SignIn from "./SignIn";
 import FinishedTasks from "./FinishedTasks";
 import FinishedReports from "./FinishedReports";
+import Profile from "./Profile";
 
 export {
   Home,
@@ -40,4 +41,5 @@ export {
   AddCriteria,
   FinishedTasks,
   FinishedReports,
+  Profile,
 };

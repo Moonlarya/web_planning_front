@@ -50,6 +50,12 @@ class FinishedReports extends Component {
                 <p className="card-text">Количество бонусов: {report.points}</p>
                 <p className="card-text">Количество полученных бонусов:</p>
               </div>
+              <div
+                className="btn btn-primary m-1"
+                onClick={() => this.deleteInfo(report._id)}
+              >
+                Удалить
+              </div>
             </div>
           ))}
         </div>

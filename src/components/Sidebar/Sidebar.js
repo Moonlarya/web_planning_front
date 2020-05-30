@@ -7,21 +7,27 @@ import User from "../../stores/User";
 
 import "./style.scss";
 
-const Sidebar = (props) => (
-  <div className="sidebar col-2">
+import { withAuth } from "../../stores/User";
+
+//const {user} = this.props;
+
+const Sidebar = ({ history, user: { name, surname, patronymic } }) => (
+  <div className="sidebar">
     <ul className="nav flex-column">
-      <div className="d-flex align-items-center">
-        <img
-          src={photo}
-          style={{
-            width: "60px",
-            height: "60px",
-            borderRadius: "100%",
-            margin: "20px",
-          }}
-        ></img>
-        <h5>Гуменюк Марина</h5>
-      </div>
+      <Link className="d-flex align-items-center" to="/profile">
+        <div>
+          <img
+            src={photo}
+            style={{
+              width: "60px",
+              height: "60px",
+              borderRadius: "100%",
+              margin: "20px",
+            }}
+          />
+        </div>
+        <div>{`${surname} ${name} ${patronymic}`}</div>
+      </Link>
       <li className="nav-item">
         <Link className="nav-link" to="/home">
           Главная
@@ -127,7 +133,7 @@ const Sidebar = (props) => (
 
             User.remove();
 
-            props.history.push("/");
+            history.push("/");
           }}
         >
           Выйти
@@ -137,4 +143,4 @@ const Sidebar = (props) => (
   </div>
 );
 
-export default withRouter(Sidebar);
+export default withRouter(withAuth(Sidebar));

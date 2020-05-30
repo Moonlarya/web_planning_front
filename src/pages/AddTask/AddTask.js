@@ -12,17 +12,19 @@ class AddTask extends Component {
     this.setState({ employees: employees });
   }
 
-  onSubmit = async (values) => {
+  onSubmit = async (values, { setErrors }) => {
     try {
       await TasksService.create(values);
       this.props.history.push("/task");
-    } catch {}
+    } catch (e) {
+      setErrors({ error: e.response.data.message });
+    }
   };
   render() {
     const { employees } = this.state;
     return (
       <div className="col-3 mt-3 p-3 mx-auto">
-        <h1>Добавить задачу</h1>
+        <h4>Добавить задачу</h4>
         <Formik
           onSubmit={this.onSubmit}
           initialValues={{
@@ -105,14 +107,15 @@ class AddTask extends Component {
                 onBlur={handleBlur}
                 value={values.employee}
               >
-                <option value="" label="Выберите исполнителя" />
+                <option value="" disabled label="Выберите исполнителя" />
                 {employees.map((employee) => (
                   <option value={employee._id} key={employee._id}>
-                    {employee.name}
+                    {`${employee.surname} ${employee.name} ${employee.patronymic}`}
                   </option>
                 ))}
               </select>
               {errors.employee && touched.employee && errors.employee}
+              <p>{errors.error}</p>
               <button
                 type="submit"
                 className="btn btn-primary m-1"

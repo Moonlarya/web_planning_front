@@ -47,7 +47,7 @@ const RouteSchema = () => (
       <DashboardRoute exact path="/addtask" component={AddTask} />
       <DashboardRoute exact path="/addproject" component={AddProject} />
       <DashboardRoute exact path="/addreview" component={AddReview} />
-      <DashboardRoute exact path="/addreport" component={AddReport} />
+      <DashboardRoute exact path="/addreport/:taskId" component={AddReport} />
       <DashboardRoute exact path="/addcriteria" component={AddCriteria} />
       <DashboardRoute exact path="/finishedtasks" component={FinishedTasks} />
       <DashboardRoute

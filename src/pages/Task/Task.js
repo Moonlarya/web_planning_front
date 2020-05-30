@@ -28,20 +28,22 @@ class Task extends Component {
     await TaskService.delete(id);
     this.loadInfo();
   };
-  createReport = () => {
+  createReport = (id) => {
     this.setState({ disabled: true });
-    this.props.history.push("/addreport");
+    this.props.history.push("/addreport/" + id);
   };
   completeTask;
   render() {
     const { tasks, disabled } = this.state;
+    const filteredTasks = tasks.filter((task) => task.status !== "finished");
+    console.log(tasks);
     return (
       <div>
         <Link to="/addtask" className="btn btn-primary mt-3">
           Создать задачу
         </Link>
         <div className="d-flex flex-wrap">
-          {tasks.map((task) => (
+          {filteredTasks.map((task) => (
             <div className="card col-3" key={task._id}>
               <div className="card-body text-left">
                 <h5 className="card-header">{task.name}</h5>
@@ -60,7 +62,7 @@ class Task extends Component {
                 <div className="d-flex flex-wrap justify-content-between">
                   <button
                     disabled={disabled}
-                    onClick={this.createReport}
+                    onClick={() => this.createReport(task._id)}
                     className="btn btn-primary m-1"
                   >
                     Отчет

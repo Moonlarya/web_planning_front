@@ -89,22 +89,7 @@ exports.findOne = (req, res) => {
 
 // Update a task identified by the taskId in the request
 exports.update = (req, res) => {
-  // Validate Request
-  if (!req.body.content) {
-    return res.status(400).send({
-      message: "Tasks content can not be empty",
-    });
-  }
-
-  // Find task and update it with the request body
-  Tasks.findByIdAndUpdate(
-    req.params.taskId,
-    {
-      title: req.body.title || "Untitled Tasks",
-      content: req.body.content,
-    },
-    { new: true }
-  )
+  Tasks.findByIdAndUpdate(req.params.taskId, req.body, { new: true })
     .then((task) => {
       if (!task) {
         return res.status(404).send({

@@ -7,7 +7,7 @@ exports.create = (req, res) => {
   const report = new Reports({
     link: req.body.link,
     date: req.body.date,
-    points: req.body.points, // (ReportPoints >0),
+    bonuce: req.body.bonuce,
     status: req.body.status,
     employeeId: req.body.employeeId,
     taskId: req.body.taskId,

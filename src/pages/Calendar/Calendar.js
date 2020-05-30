@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import CalendarView from "react-calendar";
+
 import "../../style/Calendar.css";
+
 import ReviewsService from "../../services/ReviewsService";
 import CalendarService from "../../services/CalendarService";
+
 import { Formik } from "formik";
 import * as moment from "moment";
+
 import { typeReview, resultEvent } from "../../constants/translation";
 
 class Calendar extends Component {
@@ -28,6 +32,7 @@ class Calendar extends Component {
   onChange = (date) => this.setState({ date });
 
   onSubmit = async (values) => {
+    console.log(values);
     try {
       values.date = this.state.date;
       await CalendarService.create(values);
@@ -35,8 +40,12 @@ class Calendar extends Component {
     } catch {}
   };
   resultFunc = async (id, value) => {
+    const input = document.getElementById(id);
     try {
-      await CalendarService.update(id, { result: value });
+      await CalendarService.update(id, {
+        result: value,
+        description: input.value,
+      });
       this.loadInfo();
     } catch {}
   };
@@ -45,11 +54,14 @@ class Calendar extends Component {
     if (!values.name) {
       errors.name = "Required";
     }
-    if (!values.description) {
-      errors.description = "Required";
-    }
     if (!values.time) {
       errors.time = "Required";
+    }
+    if (!values.review) {
+      errors.review = "Required";
+    }
+    if (!values.type) {
+      errors.type = "Required";
     }
     return errors;
   };
@@ -85,7 +97,6 @@ class Calendar extends Component {
                   date: this.state.date,
                   time: "",
                   name: "",
-                  description: "",
                 }}
               >
                 {({
@@ -112,18 +123,7 @@ class Calendar extends Component {
                       value={values.name}
                     />
                     {errors.name && touched.name && errors.name}
-                    <span>Описание</span>
-                    <input
-                      className="m-3 w-100 mx-auto"
-                      type="text"
-                      name="description"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.description}
-                    />
-                    {errors.description &&
-                      touched.description &&
-                      errors.description}
+
                     <span>Время</span>
                     <input
                       className="m-3 w-100 mx-auto"
@@ -185,12 +185,10 @@ class Calendar extends Component {
               className="list-unstyled list-group-item list-group-item-action col-6 text-left d-flex justify-content-between mx-auto"
             >
               <div className="px-5">
-                {console.log(event.type)}
                 <h2 className="mt-3">{event.time}</h2>
               </div>
               <div>
                 <h5>{event.name}</h5>
-                <p>{event.description}</p>
                 <p>{typeReview[event.type]}</p>
                 <p>{`${event.review.surname && event.review.surname} ${
                   event.review.name && event.review.name
@@ -200,6 +198,13 @@ class Calendar extends Component {
                     <p>
                       <i>Кандидат подходит?</i>
                     </p>
+                    <span>Комментарий</span>
+                    <input
+                      className="m-3 w-100 mx-auto"
+                      type="text"
+                      name="description"
+                      id={event._id}
+                    />
                     <button
                       style={{ height: "40px", width: "max-content" }}
                       className="btn btn-primary m-1"
@@ -219,10 +224,18 @@ class Calendar extends Component {
                   </div>
                 )}
                 {typeof event.result !== "undefined" && (
-                  <p>
-                    <i>Результат: </i>
-                    {resultEvent[event.result]}
-                  </p>
+                  <div>
+                    <p>
+                      <i>Результат: </i>
+                      {resultEvent[event.result]}
+                    </p>
+                    {event.description && (
+                      <p>
+                        <i>Комментарий: </i>
+                        {event.description}
+                      </p>
+                    )}
+                  </div>
                 )}
               </div>
               <button

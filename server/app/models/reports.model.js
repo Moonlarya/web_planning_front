@@ -14,6 +14,7 @@ const Reports = mongoose.Schema(
     },
     employeeId: { type: String, require: true },
     taskId: { type: String, require: true },
+    project: { type: String, require: true },
   },
   {
     timestamps: true,

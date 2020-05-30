@@ -60,7 +60,9 @@ class Task extends Component {
                     {`${task.employee.surname} ${task.employee.name} ${task.employee.patronymic}`}
                   </p>
                 )}
-                <p className="card-title">Проект: {task.project}</p>
+                {task.project && (
+                  <p className="card-title">Проект: {task.project.name}</p>
+                )}
                 <div className="d-flex flex-wrap justify-content-between">
                   <button
                     disabled={disabled}

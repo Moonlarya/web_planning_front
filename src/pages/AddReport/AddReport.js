@@ -6,20 +6,26 @@ import { Formik } from "formik";
 class AddReport extends Component {
   onSubmit = async (values) => {
     const { taskId } = this.props.match.params;
-    const submitValues = { ...values, taskId };
     try {
+      const task = await TasksService.get(taskId);
+      console.log(task);
+      const submitValues = {
+        ...values,
+        taskId,
+        project: task.project,
+        date: Date.now(),
+      };
       await ReportsService.create(submitValues);
       this.props.history.push("/report");
     } catch {}
   };
   render() {
-    console.log();
     return (
       <div>
         <h1>Создать отчет</h1>
         <Formik
           onSubmit={this.onSubmit}
-          initialValues={{ link: "", date: Date.now(), status: "active" }}
+          initialValues={{ link: "", status: "active" }}
         >
           {({
             values,
@@ -29,7 +35,6 @@ class AddReport extends Component {
             handleBlur,
             handleSubmit,
             isSubmitting,
-            /* and other goodies */
           }) => (
             <form
               onSubmit={handleSubmit}

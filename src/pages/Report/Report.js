@@ -34,7 +34,9 @@ class Report extends Component {
         <main className="col-9 d-flex justify-around align-items-start flex-wrap">
           {filteredReports.map((report) => (
             <div className="card col-4 text-left">
-              <h5 className="card-header">Отчет по задаче {report.taskId}</h5>
+              <h5 className="card-header">
+                Отчет по задаче {report.taskId.name}
+              </h5>
               <div className="card-body">
                 <h5 className="card-title">{report.description}</h5>
                 <p className="card-text">{report.link}</p>
@@ -44,7 +46,11 @@ class Report extends Component {
                 </p>
                 <p className="card-text">Состояние: {status[report.status]}</p>
                 <p className="card-text">Исполнитель: {report.employee_id}</p>
-                <p className="card-text">Количество бонусов: {report.points}</p>
+                <p className="card-text">Получено бонусов: {report.points}</p>
+                {report.project && (
+                  <p className="card-text">Проект: {report.project.name}</p>
+                )}
+
                 <a href="#" className="btn btn-primary  m-1">
                   Сохранить
                 </a>

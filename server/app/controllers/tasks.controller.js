@@ -1,5 +1,6 @@
 const Tasks = require("../models/tasks.model.js");
 const Employee = require("../models/employees.model.js");
+const Project = require("../models/projects.model.js");
 
 // Create and Save a new Tasks
 exports.create = (req, res) => {
@@ -31,7 +32,7 @@ exports.create = (req, res) => {
 exports.findAll = async (req, res) => {
   try {
     const tasks = await Tasks.find().lean();
-    const populatedTasks = await Promise.all(
+    const taskWithEmployee = await Promise.all(
       tasks.map(async (el) => {
         try {
           if (el.employee) {
@@ -46,7 +47,22 @@ exports.findAll = async (req, res) => {
         }
       })
     );
-    res.send(populatedTasks);
+    const taskWithProject = await Promise.all(
+      taskWithEmployee.map(async (el) => {
+        try {
+          if (el.project) {
+            const project = await Project.findById(el.project);
+            return { ...el, project: project };
+          } else {
+            return el;
+          }
+        } catch (err) {
+          console.log(err);
+          return el;
+        }
+      })
+    );
+    res.send(taskWithProject);
   } catch (err) {
     res.status(500).send({
       message: err.message || "Some error occurred while retrieving tasks.",

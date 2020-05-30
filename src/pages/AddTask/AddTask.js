@@ -31,7 +31,7 @@ class AddTask extends Component {
             description: "",
             name: "",
             order: "",
-            bonuces: "",
+            bonuce: "",
             deadline: "",
             employee: "",
           }}
@@ -94,7 +94,7 @@ class AddTask extends Component {
               <input
                 className="mb-3"
                 type="text"
-                name="bonuces"
+                name="bonuce"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.bonuce}

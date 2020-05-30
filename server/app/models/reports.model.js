@@ -6,7 +6,7 @@ const Reports = mongoose.Schema(
     description: { type: String },
     date: { type: Date, default: Date.now, require: true },
     finishDate: { type: Date },
-    points: { type: Number, require: true },
+    bonuce: { type: Number, require: true },
     status: {
       type: String,
       enum: ["active", "disabled", "problem", "finished"],

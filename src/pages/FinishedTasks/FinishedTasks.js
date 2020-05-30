@@ -20,10 +20,11 @@ class FinishedTasks extends Component {
   };
   render() {
     const { tasks } = this.state;
+    const filteredTasks = tasks.filter((task) => task.status === "finished");
     return (
       <div>
         <div className="d-flex text-left">
-          {tasks.map((task) => (
+          {filteredTasks.map((task) => (
             <div className="card col-3" key={task._id}>
               <div className="card-body">
                 <h5 className="card-title card-header">{task.name}</h5>

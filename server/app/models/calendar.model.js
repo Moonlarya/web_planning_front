@@ -8,6 +8,8 @@ const Calendar = mongoose.Schema(
     time: { type: String, required: true },
     name: { type: String, required: true },
     description: { type: String },
+    type: { type: String, enum: ["hr", "technical"] },
+    result: { type: Boolean },
   },
   {
     timestamps: true,

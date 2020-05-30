@@ -45,9 +45,6 @@ class Review extends Component {
                 <a href="#" className="btn btn-primary m-1">
                   Редактировать
                 </a>
-                <a href="#" className="btn btn-primary m-1">
-                  Назначить собеседование
-                </a>
                 <a
                   href="#"
                   className="btn btn-primary m-1"

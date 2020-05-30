@@ -12,6 +12,8 @@ exports.create = (req, res) => {
     time: req.body.time,
     name: req.body.name,
     description: req.body.description,
+    type: req.body.type,
+    result: req.body.result,
   });
 
   // Save Calendar in the database
@@ -93,22 +95,8 @@ exports.findOne = (req, res) => {
 
 // Update a calendar identified by the calendarId in the request
 exports.update = (req, res) => {
-  // Validate Request
-  if (!req.body.content) {
-    return res.status(400).send({
-      message: "calendars content can not be empty",
-    });
-  }
-
   // Find calendar and update it with the request body
-  Calendar.findByIdAndUpdate(
-    req.params.calendarId,
-    {
-      title: req.body.title || "Untitled calendars",
-      content: req.body.content,
-    },
-    { new: true }
-  )
+  Calendar.findByIdAndUpdate(req.params.calendarId, req.body, { new: true })
     .then((calendar) => {
       if (!calendar) {
         return res.status(404).send({

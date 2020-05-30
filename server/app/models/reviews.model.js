@@ -7,7 +7,7 @@ const Reviews = mongoose.Schema(
     patronymic: { type: String, required: true },
     email: { type: String, required: true, min: 0, max: 100 },
     phone: { type: String },
-    type: { type: String, min: 0, max: 20 },
+    type: { type: String },
     description: { type: String, min: 0, max: 300 },
     priority: { type: Number },
   },

@@ -95,7 +95,6 @@ exports.update = (req, res) => {
         return res.status(404).send({
           message: "Tasks not found with id " + req.params.taskId,
         });
-        //
       }
       res.send(task);
     })

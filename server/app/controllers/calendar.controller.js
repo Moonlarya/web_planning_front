@@ -12,6 +12,7 @@ exports.create = (req, res) => {
     time: req.body.time,
     name: req.body.name,
     description: req.body.description,
+    type: req.body.type,
   });
 
   // Save Calendar in the database

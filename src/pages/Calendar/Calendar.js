@@ -5,6 +5,7 @@ import ReviewsService from "../../services/ReviewsService";
 import CalendarService from "../../services/CalendarService";
 import { Formik } from "formik";
 import * as moment from "moment";
+import { typeReview } from "../../constants/translation";
 
 class Calendar extends Component {
   state = {
@@ -129,6 +130,20 @@ class Calendar extends Component {
                     {errors.time && touched.time && errors.time}
                     <select
                       className="mb-3"
+                      name="type"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.type}
+                    >
+                      <option value="" disabled label="Тип собеседования" />
+                      <option value="hr">Собеседование с рекрутером</option>
+                      <option value="technical">
+                        Техническое собеседование
+                      </option>
+                      ))}
+                    </select>
+                    <select
+                      className="mb-3"
                       name="review"
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -164,14 +179,16 @@ class Calendar extends Component {
               className="list-unstyled list-group-item list-group-item-action col-6 text-left d-flex justify-content-between mx-auto"
             >
               <div className="px-5">
+                {console.log(event.type)}
                 <h2 className="mt-3">{event.time}</h2>
               </div>
               <div>
-                <li>{event.name}</li>
-                <li>{event.description}</li>
-                <li>{`${event.review.surname && event.review.surname} ${
+                <h5>{event.name}</h5>
+                <p>{event.description}</p>
+                <p>{typeReview[event.type]}</p>
+                <p>{`${event.review.surname && event.review.surname} ${
                   event.review.name && event.review.name
-                } ${event.review.patronymic && event.review.patronymic}`}</li>
+                } ${event.review.patronymic && event.review.patronymic}`}</p>
               </div>
               <button
                 style={{ height: "40px", width: "40px" }}

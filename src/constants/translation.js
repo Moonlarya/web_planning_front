@@ -13,3 +13,8 @@ export const status = {
   problem: "проблемно",
   finished: "завершено",
 };
+
+export const typeReview = {
+  hr: "Собеседование с рекрутером",
+  technical: "Техническое собеседование",
+};

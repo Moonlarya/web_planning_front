@@ -49,6 +49,9 @@ class FinishedReports extends Component {
                 <p className="card-text">Исполнитель: {report.employee_id}</p>
                 <p className="card-text">Количество бонусов: {report.points}</p>
                 <p className="card-text">Количество полученных бонусов:</p>
+                {report.project && (
+                  <p className="card-text">Проект: {report.project.name}</p>
+                )}
               </div>
               <div
                 className="btn btn-primary m-1"

@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 import TaskService from "../../services/TasksService";
+
 import * as moment from "moment";
+
 import { withAuth } from "../../stores/User";
 
 class Task extends Component {
@@ -32,11 +35,9 @@ class Task extends Component {
     this.setState({ disabled: true });
     this.props.history.push("/addreport/" + id);
   };
-  completeTask;
   render() {
     const { tasks, disabled } = this.state;
     const filteredTasks = tasks.filter((task) => task.status !== "finished");
-    console.log(tasks);
     return (
       <div>
         <Link to="/addtask" className="btn btn-primary mt-3">
@@ -58,6 +59,9 @@ class Task extends Component {
                     Исполнитель:
                     {`${task.employee.surname} ${task.employee.name} ${task.employee.patronymic}`}
                   </p>
+                )}
+                {task.project && (
+                  <p className="card-title">Проект: {task.project.name}</p>
                 )}
                 <div className="d-flex flex-wrap justify-content-between">
                   <button

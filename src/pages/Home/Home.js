@@ -35,16 +35,11 @@ class Home extends Component {
                 >
                   {task.name}
                 </h5>
-                <h6 className="state mb-0 btn">Состояние</h6>
+                <h6 className="state mb-0 btn">{task.state}</h6>
+                {console.log(task)}
                 {task.employee && (
                   <h6 className="mb-0 btn">
-                    {
-                      (task.employee.surname ? task.employee.surname : null,
-                      task.employee.name ? task.employee.name : null,
-                      task.employee.patronymic
-                        ? task.employee.patronymic
-                        : null)
-                    }
+                    {`${task.employee.surname} ${task.employee.name} ${task.employee.patronymic}`}
                   </h6>
                 )}
               </div>

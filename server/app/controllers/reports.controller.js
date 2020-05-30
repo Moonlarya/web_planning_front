@@ -1,5 +1,6 @@
 const Reports = require("../models/reports.model.js");
 const Tasks = require("../models/tasks.model.js");
+const Project = require("../models/projects.model.js");
 
 // Create and Save a new Reports
 exports.create = (req, res) => {
@@ -28,16 +29,45 @@ exports.create = (req, res) => {
 };
 
 // Retrieve and return all reports from the database.
-exports.findAll = (req, res) => {
-  Reports.find()
-    .then((reports) => {
-      res.send(reports);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Some error occurred while retrieving reports.",
-      });
+exports.findAll = async (req, res) => {
+  try {
+    const reports = await Reports.find().lean();
+    const reportWithTask = await Promise.all(
+      reports.map(async (el) => {
+        try {
+          if (el.taskId) {
+            const task = await Tasks.findById(el.taskId);
+            return { ...el, taskId: task };
+          } else {
+            return el;
+          }
+        } catch (err) {
+          console.log(err);
+          return el;
+        }
+      })
+    );
+    const reportWithProject = await Promise.all(
+      reportWithTask.map(async (el) => {
+        try {
+          if (el.project) {
+            const project = await Project.findById(el.project);
+            return { ...el, project: project };
+          } else {
+            return el;
+          }
+        } catch (err) {
+          console.log(err);
+          return el;
+        }
+      })
+    );
+    res.send(reportWithProject);
+  } catch (err) {
+    res.status(500).send({
+      message: err.message || "Some error occurred while retrieving reports.",
     });
+  }
 };
 
 // Find a single report with a reportId

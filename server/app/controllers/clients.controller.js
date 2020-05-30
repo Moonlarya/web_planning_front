@@ -2,7 +2,6 @@ const Clients = require("../models/clients.model.js");
 
 // Create and Save a new Clients
 exports.create = (req, res) => {
-  console.log(req.body);
   // Create a Clients
   const client = new Clients({
     phone: req.body.phone,

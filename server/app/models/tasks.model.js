@@ -9,6 +9,7 @@ const Tasks = mongoose.Schema(
     bonuce: { type: Number },
     employee: { type: String },
     status: { type: String, default: "active", enum: ["active", "finished"] },
+    project: { type: String },
   },
   {
     timestamps: true,

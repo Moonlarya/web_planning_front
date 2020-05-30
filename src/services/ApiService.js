@@ -27,6 +27,10 @@ class ApiService {
     const response = await this.api.put(this.getSlug() + "/" + id, data);
     return response.data;
   }
+  async get(id) {
+    const response = await this.api.get(this.getSlug() + "/" + id);
+    return response.data;
+  }
 }
 
 export default ApiService;

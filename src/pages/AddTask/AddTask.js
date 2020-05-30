@@ -1,15 +1,20 @@
 import React, { Component } from "react";
+
 import TasksService from "../../services/TasksService";
 import EmployeesService from "../../services/EmployeesService";
+import ProjectService from "../../services/ProjectService";
+
 import { Formik } from "formik";
 
 class AddTask extends Component {
   state = {
     employees: [],
+    projects: [],
   };
   async componentDidMount() {
     const employees = await EmployeesService.getAll();
-    this.setState({ employees: employees });
+    const projects = await ProjectService.getAll();
+    this.setState({ employees: employees, projects: projects });
   }
 
   onSubmit = async (values, { setErrors }) => {
@@ -21,7 +26,7 @@ class AddTask extends Component {
     }
   };
   render() {
-    const { employees } = this.state;
+    const { employees, projects } = this.state;
     return (
       <div className="col-3 mt-3 p-3 mx-auto">
         <h4>Добавить задачу</h4>
@@ -34,6 +39,7 @@ class AddTask extends Component {
             bonuce: "",
             deadline: "",
             employee: "",
+            project: "",
           }}
         >
           {({
@@ -115,6 +121,23 @@ class AddTask extends Component {
                 ))}
               </select>
               {errors.employee && touched.employee && errors.employee}
+
+              <span>Проект</span>
+              <select
+                className="mb-3"
+                name="project"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.project}
+              >
+                <option value="" disabled label="Выберите проект" />
+                {projects.map((project) => (
+                  <option value={project._id} key={project._id}>
+                    {project.name}
+                  </option>
+                ))}
+              </select>
+              {errors.project && touched.project && errors.project}
               <p>{errors.error}</p>
               <button
                 type="submit"

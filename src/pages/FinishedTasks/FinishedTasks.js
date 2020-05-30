@@ -42,6 +42,9 @@ class FinishedTasks extends Component {
                 <p className="card-text">
                   Дата завершения:{moment(``).format("Do MMMM YYYY")}
                 </p>
+                {task.project && (
+                  <p className="card-title">Проект: {task.project.name}</p>
+                )}
                 <p className="card-text">Полученные бонусы:</p>
                 <div
                   className="btn btn-primary m-1"

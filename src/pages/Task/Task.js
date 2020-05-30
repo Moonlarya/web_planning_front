@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import TaskService from "../../services/TasksService";
 import * as moment from "moment";
+import { withAuth } from "../../stores/User";
 
 class Task extends Component {
   state = {
@@ -12,7 +13,15 @@ class Task extends Component {
     this.loadInfo();
   }
   loadInfo = async () => {
-    const tasks = await TaskService.getAll();
+    const {
+      user: { type, _id },
+    } = this.props;
+    let tasks = [];
+    if (type === "manager") {
+      tasks = await TaskService.getAll();
+    } else {
+      tasks = await TaskService.getAllbyUserId(_id);
+    }
     this.setState({ tasks: tasks });
   };
   deleteInfo = async (id) => {
@@ -42,7 +51,7 @@ class Task extends Component {
                   Дедлайн: {moment(`${task.deadline}`).format("Do MMMM YYYY")}
                 </p>
                 <p className="card-title">Бонусы: {task.bonuce}</p>
-                {task.employee && (
+                {typeof task.employee !== "string" && (
                   <p className="card-title">
                     Исполнитель:
                     {`${task.employee.surname} ${task.employee.name} ${task.employee.patronymic}`}
@@ -74,4 +83,4 @@ class Task extends Component {
   }
 }
 
-export default Task;
+export default withAuth(Task);

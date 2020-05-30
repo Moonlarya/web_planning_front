@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import TaskService from "../../services/TasksService";
 import * as moment from "moment";
+import { withAuth } from "../../stores/User";
 
 class Task extends Component {
   state = {
@@ -12,27 +13,37 @@ class Task extends Component {
     this.loadInfo();
   }
   loadInfo = async () => {
-    const tasks = await TaskService.getAll();
+    const {
+      user: { type, _id },
+    } = this.props;
+    let tasks = [];
+    if (type === "manager") {
+      tasks = await TaskService.getAll();
+    } else {
+      tasks = await TaskService.getAllbyUserId(_id);
+    }
     this.setState({ tasks: tasks });
   };
   deleteInfo = async (id) => {
     await TaskService.delete(id);
     this.loadInfo();
   };
-  createReport = () => {
+  createReport = (id) => {
     this.setState({ disabled: true });
-    this.props.history.push("/addreport");
+    this.props.history.push("/addreport/" + id);
   };
   completeTask;
   render() {
     const { tasks, disabled } = this.state;
+    const filteredTasks = tasks.filter((task) => task.status !== "finished");
+    console.log(tasks);
     return (
       <div>
         <Link to="/addtask" className="btn btn-primary mt-3">
           Создать задачу
         </Link>
         <div className="d-flex flex-wrap">
-          {tasks.map((task) => (
+          {filteredTasks.map((task) => (
             <div className="card col-3" key={task._id}>
               <div className="card-body text-left">
                 <h5 className="card-header">{task.name}</h5>
@@ -42,7 +53,7 @@ class Task extends Component {
                   Дедлайн: {moment(`${task.deadline}`).format("Do MMMM YYYY")}
                 </p>
                 <p className="card-title">Бонусы: {task.bonuce}</p>
-                {task.employee && (
+                {task.employee && typeof task.employee !== "string" && (
                   <p className="card-title">
                     Исполнитель:
                     {`${task.employee.surname} ${task.employee.name} ${task.employee.patronymic}`}
@@ -51,7 +62,7 @@ class Task extends Component {
                 <div className="d-flex flex-wrap justify-content-between">
                   <button
                     disabled={disabled}
-                    onClick={this.createReport}
+                    onClick={() => this.createReport(task._id)}
                     className="btn btn-primary m-1"
                   >
                     Отчет
@@ -74,4 +85,4 @@ class Task extends Component {
   }
 }
 
-export default Task;
+export default withAuth(Task);

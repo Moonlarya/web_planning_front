@@ -1,4 +1,5 @@
 const Reports = require("../models/reports.model.js");
+const Tasks = require("../models/tasks.model.js");
 
 // Create and Save a new Reports
 exports.create = (req, res) => {

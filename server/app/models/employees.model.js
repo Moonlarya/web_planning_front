@@ -9,7 +9,7 @@ const Employees = mongoose.Schema(
     email: { type: String, required: true, min: 0, max: 20 },
     password: { type: String, required: true, default: "1234" },
     status: { type: String, enum: ["free", "left", "busy"], default: "free" },
-    role: {
+    type: {
       type: String,
       enum: [
         "manager",

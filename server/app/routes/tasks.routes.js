@@ -14,6 +14,9 @@ module.exports = (app) => {
   app.put("/tasks/:taskId", tasks.update);
 
   app.delete("/tasks/delete-all", tasks.deleteAll);
+
   // Delete a client with taskId
   app.delete("/tasks/:taskId", tasks.delete);
+
+  app.get("/tasks/employee/:employeeId", tasks.findAllbyEmployee);
 };

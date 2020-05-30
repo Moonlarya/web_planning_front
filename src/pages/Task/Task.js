@@ -45,13 +45,7 @@ class Task extends Component {
                 {task.employee && (
                   <p className="card-title">
                     Исполнитель:
-                    {
-                      (task.employee.surname ? task.employee.surname : null,
-                      task.employee.name ? task.employee.name : null,
-                      task.employee.patronymic
-                        ? task.employee.patronymic
-                        : null)
-                    }
+                    {`${task.employee.surname} ${task.employee.name} ${task.employee.patronymic}`}
                   </p>
                 )}
                 <div className="d-flex flex-wrap justify-content-between">

@@ -53,6 +53,17 @@ exports.findAll = async (req, res) => {
   }
 };
 
+exports.findAllbyEmployee = async (req, res) => {
+  try {
+    const tasks = await Tasks.find({ employee: req.params.employeeId }).lean();
+    res.send(tasks);
+  } catch (err) {
+    res.status(500).send({
+      message: err.message || "Some error occurred while retrieving tasks.",
+    });
+  }
+};
+
 // Find a single task with a taskId
 exports.findOne = (req, res) => {
   Tasks.findById(req.params.taskId)

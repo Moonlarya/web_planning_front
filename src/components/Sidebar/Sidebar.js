@@ -9,9 +9,7 @@ import "./style.scss";
 
 import { withAuth } from "../../stores/User";
 
-//const {user} = this.props;
-
-const Sidebar = ({ history, user: { name, surname, patronymic } }) => (
+const Sidebar = ({ history, user: { name, surname, patronymic, type } }) => (
   <div className="sidebar">
     <ul className="nav flex-column">
       <Link className="d-flex align-items-center" to="/profile">
@@ -33,16 +31,20 @@ const Sidebar = ({ history, user: { name, surname, patronymic } }) => (
           Главная
         </Link>
       </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/clients">
-          Клиенты
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link className="nav-link" to="/projects">
-          Проекты
-        </Link>
-      </li>
+      {["manager"].includes(type) && (
+        <li className="nav-item">
+          <Link className="nav-link" to="/clients">
+            Клиенты
+          </Link>
+        </li>
+      )}
+      {["manager"].includes(type) && (
+        <li className="nav-item">
+          <Link className="nav-link" to="/projects">
+            Проекты
+          </Link>
+        </li>
+      )}
       <li className="nav-item dropright">
         <a
           className="nav-link dropdown-toggle"
@@ -89,42 +91,46 @@ const Sidebar = ({ history, user: { name, surname, patronymic } }) => (
           Выплаты
         </Link>
       </li>
-      <li className="nav-item dropright">
-        <a
-          className="nav-link dropdown-toggle"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Персонал
-        </a>
-        <div className="dropdown-menu dropdown-menu-right">
-          <Link to="/employees" className="dropdown-item" type="button">
-            Сотрудники
-          </Link>
-          <Link to="/grades" className="dropdown-item" type="button">
-            Оценивание
-          </Link>
-        </div>
-      </li>
-      <li className="nav-item dropright">
-        <a
-          className="nav-link dropdown-toggle"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Собеседования
-        </a>
-        <div className="dropdown-menu dropdown-menu-right">
-          <Link to="/review" className="dropdown-item" type="button">
-            Резюме
-          </Link>
-          <Link to="/calendar" className="dropdown-item" type="button">
-            Календарь собеседований
-          </Link>
-        </div>
-      </li>
+      {["manager", "hr"].includes(type) && (
+        <li className="nav-item dropright">
+          <a
+            className="nav-link dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Персонал
+          </a>
+          <div className="dropdown-menu dropdown-menu-right">
+            <Link to="/employees" className="dropdown-item" type="button">
+              Сотрудники
+            </Link>
+            <Link to="/grades" className="dropdown-item" type="button">
+              Оценивание
+            </Link>
+          </div>
+        </li>
+      )}
+      {["manager", "hr"].includes(type) && (
+        <li className="nav-item dropright">
+          <a
+            className="nav-link dropdown-toggle"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Собеседования
+          </a>
+          <div className="dropdown-menu dropdown-menu-right">
+            <Link to="/review" className="dropdown-item" type="button">
+              Резюме
+            </Link>
+            <Link to="/calendar" className="dropdown-item" type="button">
+              Календарь собеседований
+            </Link>
+          </div>
+        </li>
+      )}
       <li className="nav-item">
         <a
           className="nav-link"

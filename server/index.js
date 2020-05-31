@@ -26,7 +26,7 @@ mongoose
     console.log("Could not connect to the database. Exiting now...", err);
     process.exit();
   });
-
+//
 require("./app/routes/client.routes.js")(app);
 require("./app/routes/criterias.routes.js")(app);
 require("./app/routes/grades.routes.js")(app);

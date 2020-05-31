@@ -13,6 +13,11 @@ class ReportsService extends ApiService {
     await TasksService.complete(report.taskId);
     console.log(report.taskId);
   }
+
+  async getAllbyProjectId(id) {
+    const response = await this.api.get(this.getSlug() + "/project/" + id);
+    return response.data;
+  }
 }
 
 export default new ReportsService();

@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import TaskService from "../../services/TasksService";
 import "./style.scss";
 import * as moment from "moment";
+import { status } from "../../constants/translation";
 
 class Home extends Component {
   state = {
     tasks: [],
+    backgroundColor: { active: "yellow", finished: "green" },
   };
   async componentDidMount() {
     this.loadInfo();
@@ -19,7 +21,7 @@ class Home extends Component {
     this.loadInfo();
   };
   render() {
-    const { tasks } = this.state;
+    const { tasks, backgroundColor } = this.state;
     return (
       <div id="accordion">
         {tasks &&
@@ -35,8 +37,19 @@ class Home extends Component {
                 >
                   {task.name}
                 </h5>
-                <h6 className="state mb-0 btn">{task.state}</h6>
-                {console.log(task)}
+                <div className="d-flex">
+                  <div
+                    className="m-auto"
+                    style={{
+                      width: "15px",
+                      height: "15px",
+                      backgroundColor: `${backgroundColor[task.status]}`,
+                      borderRadius: "100%",
+                    }}
+                  ></div>
+                  <h6 className="mb-0 btn">{status[task.status]}</h6>
+                </div>
+
                 {task.employee && (
                   <h6 className="mb-0 btn">
                     {`${task.employee.surname} ${task.employee.name} ${task.employee.patronymic}`}

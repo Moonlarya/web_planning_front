@@ -31,9 +31,9 @@ class Report extends Component {
     return (
       <div>
         <h3 className="m-3">Активные отчеты</h3>
-        <main className="col-9 d-flex justify-around align-items-start flex-wrap">
+        <main className="col-12 d-flex justify-around align-items-start flex-wrap">
           {filteredReports.map((report) => (
-            <div className="card col-4 text-left">
+            <div className="card col-3 text-left">
               <h5 className="card-header">
                 Отчет по задаче {report.taskId.name}
               </h5>

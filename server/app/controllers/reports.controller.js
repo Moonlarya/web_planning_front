@@ -5,14 +5,7 @@ const Project = require("../models/projects.model.js");
 // Create and Save a new Reports
 exports.create = (req, res) => {
   // Create a Reports
-  const report = new Reports({
-    link: req.body.link,
-    date: req.body.date,
-    bonuce: req.body.bonuce,
-    status: req.body.status,
-    employeeId: req.body.employeeId,
-    taskId: req.body.taskId,
-  });
+  const report = new Reports(req.body);
 
   // Save Reports in the database
   report
@@ -138,4 +131,17 @@ exports.delete = (req, res) => {
         message: "Could not delete report with id " + req.params.reportId,
       });
     });
+};
+
+exports.findAllbyProject = async (req, res) => {
+  try {
+    const reports = await Reports.find({
+      project: req.params.projectId,
+    }).lean();
+    res.send(reports);
+  } catch (err) {
+    res.status(500).send({
+      message: err.message || "Some error occurred while retrieving tasks.",
+    });
+  }
 };

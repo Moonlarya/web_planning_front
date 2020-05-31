@@ -15,4 +15,6 @@ module.exports = (app) => {
 
   // Delete a client with reportId
   app.delete("/reports/:reportId", reports.delete);
+
+  app.get("/reports/project/:projectId", reports.findAllbyProject);
 };

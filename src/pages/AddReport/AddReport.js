@@ -8,7 +8,7 @@ class AddReport extends Component {
     const { taskId } = this.props.match.params;
     try {
       const task = await TasksService.get(taskId);
-      console.log(task);
+
       const submitValues = {
         ...values,
         taskId,

@@ -20,6 +20,7 @@ import FinishedTasks from "./FinishedTasks";
 import FinishedReports from "./FinishedReports";
 import Profile from "./Profile";
 import ProjectPage from "./ProjectPage";
+import GradePage from "./GradePage";
 
 export {
   Home,
@@ -44,4 +45,5 @@ export {
   FinishedReports,
   Profile,
   ProjectPage,
+  GradePage,
 };

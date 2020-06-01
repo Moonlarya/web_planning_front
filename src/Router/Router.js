@@ -26,6 +26,7 @@ import {
   AddCriteria,
   Profile,
   ProjectPage,
+  GradePage,
 } from "../pages";
 
 const RouteSchema = () => (
@@ -33,6 +34,11 @@ const RouteSchema = () => (
     <Switch>
       <Route exact path="/" component={SignIn} />
       <DashboardRoute exact path="/home" component={Home} />
+      <DashboardRoute
+        exact
+        path="/gradepage/:employeeId"
+        component={GradePage}
+      />
       <DashboardRoute exact path="/profile" component={Profile} />
       <DashboardRoute exact path="/task" component={Task} />
       <DashboardRoute exact path="/report" component={Report} />

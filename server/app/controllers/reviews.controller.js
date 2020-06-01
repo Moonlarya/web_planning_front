@@ -2,7 +2,14 @@ const Reviews = require("../models/reviews.model.js");
 const Employees = require("../models/employees.model.js");
 
 // Create and Save a new Reviews
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
+  const email = req.body.email;
+  const existUser = await Reviews.findOne({ email: email });
+  if (existUser) {
+    return res
+      .status(500)
+      .send({ message: "Review with this email already exists" });
+  }
   // Create a Reviews
   const review = new Reviews({
     name: req.body.name,

@@ -15,4 +15,6 @@ module.exports = (app) => {
 
   // Delete a client with gradeId
   app.delete("/grades/:gradeId", grades.delete);
+
+  app.get("/grades/employee/:employeeId", grades.findAllbyEmployee);
 };

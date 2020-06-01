@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 import CriteriasService from "../../services/CriteriasService";
+import GradesService from "../../services/GradesService";
+import EmployeesService from "../../services/EmployeesService";
+
+import EmployeeGrades from "../../components/EmployeeGrades";
 
 class Grades extends Component {
   state = {
@@ -8,7 +13,14 @@ class Grades extends Component {
   };
   loadInfo = async () => {
     const criterias = await CriteriasService.getAll();
-    this.setState({ criterias: criterias });
+    const employee = await EmployeesService.getAll();
+    const employeeIds = employee.map((el) => el._id);
+    const employeeGrades = await Promise.all(
+      employeeIds.map(async (id) => {
+        return await GradesService.getAllbyEmployeeId(id);
+      })
+    );
+    this.setState({ criterias, employeeGrades });
   };
   deleteInfo = async (id) => {
     await CriteriasService.delete(id);
@@ -18,7 +30,8 @@ class Grades extends Component {
     this.loadInfo();
   };
   render() {
-    const { criterias } = this.state;
+    const { criterias, employeeGrades } = this.state;
+    console.log(employeeGrades);
     return (
       <div>
         <h3 className="m-3">Оценивание персонала</h3>
@@ -44,11 +57,11 @@ class Grades extends Component {
           ))}
         </ul>
         <h4>Результаты предыдущего тестирования:</h4>
-        <div className="card col-3">
-          <h3>Имя сотрудника</h3>
-          <p>Должность: </p>
-          <p>Оценка1:2 </p>
-          <p>Оценка2:4</p>
+        <div className="d-flex">
+          {employeeGrades &&
+            employeeGrades.map((el, index) => (
+              <EmployeeGrades data={el} key={index} />
+            ))}
         </div>
       </div>
     );

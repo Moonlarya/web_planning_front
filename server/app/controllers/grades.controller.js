@@ -1,12 +1,10 @@
 const Grades = require("../models/grades.model.js");
+const Employees = require("../models/employees.model.js");
 
 // Create and Save a new Grades
 exports.create = (req, res) => {
-  const grade = new Grades({
-    employeeId: req.body.phone,
-    criteriaId: req.body.name,
-    grade: req.body.email,
-  });
+  const grade = new Grades(req.body);
+  console.log(req.body);
 
   // Save Grades in the database
   grade
@@ -117,4 +115,18 @@ exports.delete = (req, res) => {
         message: "Could not delete grade with id " + req.params.gradeId,
       });
     });
+};
+
+exports.findAllbyEmployee = async (req, res) => {
+  console.log(req.params);
+  try {
+    const grades = await Grades.find({
+      employeeId: req.params.employeeId,
+    }).lean();
+    res.send(grades);
+  } catch (err) {
+    res.status(500).send({
+      message: err.message || "Some error occurred while retrieving grades.",
+    });
+  }
 };

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import EmployeesService from "../../services/EmployeesService";
 import * as moment from "moment";
+import { Link } from "react-router-dom";
+
 import { positionTypes } from "../../constants/translation";
 
 class Employees extends Component {
@@ -41,7 +43,12 @@ class Employees extends Component {
                   Удалить сотрудника
                 </div>
                 <div className="btn btn-primary m-1">Изменить</div>
-                <div className="btn btn-primary m-1">Оценить</div>
+                <Link
+                  to={`/gradepage/${employee._id}`}
+                  className="btn btn-primary m-1"
+                >
+                  Оценивание
+                </Link>
               </div>
             </div>
           ))}

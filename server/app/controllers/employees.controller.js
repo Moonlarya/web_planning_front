@@ -1,6 +1,13 @@
 const Employees = require("../models/employees.model.js");
 
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
+  const email = req.body.email;
+  const existUser = await Employees.findOne({ email: email });
+  if (existUser) {
+    return res
+      .status(500)
+      .send({ message: "User with this email already exists" });
+  }
   const employee = new Employees({
     name: req.body.name,
     surname: req.body.surname,

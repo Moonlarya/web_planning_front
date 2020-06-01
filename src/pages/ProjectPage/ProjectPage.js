@@ -19,7 +19,6 @@ class ProjectPage extends Component {
     const project = await ProjectService.get(projectId);
     const reports = await ReportsService.getAllbyProjectId(projectId);
     this.setState({ project, reports });
-    console.log(reports);
   };
   render() {
     const { projectId } = this.props.match.params;

@@ -25,4 +25,4 @@ class EmployeeGrades extends Component {
   }
 }
 
-export default EmployeeGrade;
+export default EmployeeGrades;

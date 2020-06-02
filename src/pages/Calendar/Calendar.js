@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CalendarView from "react-calendar";
 
-import "../../style/Calendar.css";
+import "../../style/Calendar.scss";
 
 import ReviewsService from "../../services/ReviewsService";
 import CalendarService from "../../services/CalendarService";

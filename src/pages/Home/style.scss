@@ -44,19 +44,19 @@ body {
 }
 
 .btn-primary {
-  background-color: #89ECFC !important;
-  border-color: #89ECFC !important;
+  background-color: #89ecfc !important;
+  border-color: #89ecfc !important;
   color: #333 !important;
 }
 .btn-primary:focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.0);
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0);
 }
 .btn-primary:hover {
   background-color: rgb(192, 244, 252) !important;
 }
 
 .dropdown-menu .dropdown-item:hover {
-  background-color: #89ECFC;
+  background-color: #89ecfc;
 }
 .dropdown-menu .dropdown-item:active {
   background-color: rgb(168, 242, 253);

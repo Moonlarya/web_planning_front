@@ -14,7 +14,11 @@
   "extends": ["prettier", "eslint:recommended", "plugin:react/recommended"],
   "globals": {
     "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
+    "SharedArrayBuffer": "readonly",
+    "describe": "readonly",
+    "test": "readonly",
+    "it": "readonly",
+    "expect": "readonly"
   },
   "parser": "babel-eslint",
   "parserOptions": {

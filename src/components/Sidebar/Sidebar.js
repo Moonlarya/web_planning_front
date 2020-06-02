@@ -64,9 +64,9 @@ const Sidebar = ({ history, user: { name, surname, patronymic, type } }) => (
         </div>
       </li>
       <li className="nav-item">
-        <a href="#" className="nav-link">
-          Бонусы
-        </a>
+        <Link className="nav-link" to="/balance" type="button">
+          Баланс
+        </Link>
       </li>
       <li className="nav-item dropright">
         <a
@@ -85,11 +85,6 @@ const Sidebar = ({ history, user: { name, surname, patronymic, type } }) => (
             Завершенные отчеты
           </Link>
         </div>
-      </li>
-      <li className="nav-item dropright">
-        <Link to="/payout" className="nav-link">
-          Выплаты
-        </Link>
       </li>
       {["manager", "hr"].includes(type) && (
         <li className="nav-item dropright">

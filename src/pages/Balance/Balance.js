@@ -1,63 +1,115 @@
-import React from "react";
+import React, { Component } from "react";
+import * as moment from "moment";
+import TaskService from "../../services/TasksService";
 
-const Balance = () => {
-  return (
-    <div>
-      <section className="d-flex align-items-start flex-wrap">
-        <div className="card">
-          <h5 className="card-header">Текущий баланс</h5>
-          <div className="card-body">
-            <h5 className="card-title">Бонусы</h5>
-            <p className="card-text">50</p>
-            <h5 className="card-title">Штрафы</h5>
-            <p className="card-text">20</p>
-            <h5 className="card-title">Ожидаемые выплаты</h5>
-            <p className="card-text">30</p>
-          </div>
-        </div>
-      </section>
-      <section>
-        <h5 className="mx-auto">Бонусы</h5>
-        <div className="d-flex align-items-start flex-wrap">
-          <div className="card col-3">
-            <h5 className="card-header">Выполненная задача</h5>
-            <div className="card-body">
-              <h5 className="card-title">Описание</h5>
-              <p className="card-text">
-                With supporting text below as a natural lead-in to additional
-                content.
-              </p>
-              <h5 className="card-title">Дедлайн</h5>
-              <p className="card-text">10/2/2020</p>
-              <h5 className="card-title">Бонусы</h5>
-              <p className="card-text">50</p>
-              <a href="#" className="btn btn-primary">
-                Создать отчет
-              </a>
+import { withAuth } from "../../stores/User";
+
+class Balance extends Component {
+  state = {
+    tasks: [],
+  };
+  async componentDidMount() {
+    this.loadInfo();
+  }
+  loadInfo = async () => {
+    const {
+      user: { type, _id },
+    } = this.props;
+    let tasks = [];
+    if (type === "manager") {
+      tasks = await TaskService.getAll();
+    } else {
+      tasks = await TaskService.getAllbyUserId(_id);
+    }
+    this.setState({ tasks: tasks });
+  };
+  render() {
+    const { tasks } = this.state;
+    console.log(tasks);
+    return (
+      <div>
+        <section className="d-flex align-items-start flex-wrap">
+          <div className="card">
+            <h5 className="card-header">Текущий баланс</h5>
+            <div className="card-body d-flex">
+              <p className="card-text mx-3">Полученные бонусы: 50</p>
+              <p className="card-text mx-3">Полученные штрафы: 20</p>
+              <p className="card-text mx-3">Ожидаемые выплаты: 30</p>
+              <p className="card-text mx-3">Доступные бонусы: 300</p>
             </div>
           </div>
-          <div className="card col-3">
-            <h5 className="card-header">Выполненная задача</h5>
-            <div className="card-body">
-              <h5 className="card-title">Описание</h5>
-              <p className="card-text">
-                With supporting text below as a natural lead-in to additional
-                content.
-              </p>
-              <h5 className="card-title">Дедлайн</h5>
-              <p className="card-text">10/2/2020</p>
-              <h5 className="card-title">Выполнено</h5>
-              <p className="card-text">8/2/2020</p>
-              <h5 className="card-title">Бонусы</h5>
-              <p className="card-text">50</p>
-              <h5 className="card-title">Полученные бонусы</h5>
-              <p className="card-text">10</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-};
+        </section>
+        <section>
+          <h5 className="mx-auto">Бонусы</h5>
+          <div className="d-flex align-items-start flex-wrap">
+            {tasks.map((task) => {
+              if (task.status === "finished")
+                return (
+                  <div className="card col-3 text-left" key={task._id}>
+                    <div className="card-body">
+                      <h5 className="card-title card-header">{task.name}</h5>
+                      <p className="card-title">
+                        Дедлайн:{" "}
+                        {moment(`${task.deadline}`).format("Do MMMM YYYY")}
+                      </p>
+                      <p className="card-text">
+                        Дата завершения:{moment(``).format("Do MMMM YYYY")}
+                      </p>
 
-export default Balance;
+                      {task.employee &&
+                        typeof task.employee !== "string" &&
+                        this.props.user.type === "manager" && (
+                          <p className="card-title">
+                            Исполнитель:
+                            {`${task.employee.surname} ${task.employee.name} ${task.employee.patronymic}`}
+                          </p>
+                        )}
+
+                      {task.project && (
+                        <p className="card-title">
+                          Проект: {task.project.name}
+                        </p>
+                      )}
+                      <p className="card-title">
+                        Количество бонусов: {task.bonuce}
+                      </p>
+                      <p className="card-text">Полученные бонусы:</p>
+                    </div>
+                  </div>
+                );
+              else
+                return (
+                  <div className="card col-3" key={task._id}>
+                    <div className="card-body text-left">
+                      <h5 className="card-header">{task.name}</h5>
+                      <p className="card-title">
+                        Дедлайн:{" "}
+                        {moment(`${task.deadline}`).format("Do MMMM YYYY")}
+                      </p>
+
+                      {task.employee && typeof task.employee !== "string" && (
+                        <p className="card-title">
+                          Исполнитель:
+                          {`${task.employee.surname} ${task.employee.name} ${task.employee.patronymic}`}
+                        </p>
+                      )}
+                      {task.project && (
+                        <p className="card-title">
+                          Проект: {task.project.name}
+                        </p>
+                      )}
+                      <p className="card-title">
+                        Количество бонусов: {task.bonuce}
+                      </p>
+                    </div>
+                  </div>
+                );
+            })}
+          </div>
+        </section>
+      </div>
+    );
+  }
+}
+
+export default withAuth(Balance);

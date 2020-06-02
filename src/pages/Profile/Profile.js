@@ -4,6 +4,8 @@ import { withAuth } from "../../stores/User";
 
 import EmployeesService from "../../services/EmployeesService";
 
+import photo from "../../assets/images/avatar1.jpg";
+
 class Profile extends Component {
   onSubmit = async (values) => {
     const { user } = this.props;
@@ -17,6 +19,28 @@ class Profile extends Component {
       <div>
         <main className="m-3 text-center">
           <h5>Мой кабинет</h5>
+          <div style={{ position: "relative" }}>
+            <div
+              style={{
+                width: "100px",
+                height: "100px",
+                borderRadius: "100%",
+                margin: "0 auto",
+              }}
+            >
+              <div
+                style={{
+                  width: "25px",
+                  height: "25px",
+                  borderRadius: "100%",
+                  position: "absolute",
+                  backgroundColor: "#333",
+                  cursor: "pointer",
+                }}
+              ></div>
+              <img src={photo} style={{ width: "inherit" }}></img>
+            </div>
+          </div>
           <Formik
             validate={(values) => {
               if (values.newPassword !== values.repeatPassword)

@@ -32,18 +32,19 @@ class FinishedTasks extends Component {
                 <p className="card-title">
                   Дедлайн: {moment(`${task.deadline}`).format("Do MMMM YYYY")}
                 </p>
+                <p className="card-text">
+                  Дата завершения:{moment(``).format("Do MMMM YYYY")}
+                </p>
+                {task.project && (
+                  <p className="card-title">Проект: {task.project.name}</p>
+                )}
+
                 <p className="card-title">Количество бонусов: {task.bonuce}</p>
                 {task.employee && typeof task.employee !== "string" && (
                   <p className="card-title">
                     Исполнитель:
                     {`${task.employee.surname} ${task.employee.name} ${task.employee.patronymic}`}
                   </p>
-                )}
-                <p className="card-text">
-                  Дата завершения:{moment(``).format("Do MMMM YYYY")}
-                </p>
-                {task.project && (
-                  <p className="card-title">Проект: {task.project.name}</p>
                 )}
                 <p className="card-text">Полученные бонусы:</p>
                 <div

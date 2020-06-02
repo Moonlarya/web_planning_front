@@ -53,7 +53,7 @@ class Task extends Component {
                 <p className="card-title">
                   Дедлайн: {moment(`${task.deadline}`).format("Do MMMM YYYY")}
                 </p>
-                <p className="card-title">Бонусы: {task.bonuce}</p>
+                <p className="card-title">Количество бонусов: {task.bonuce}</p>
                 {task.employee && typeof task.employee !== "string" && (
                   <p className="card-title">
                     Исполнитель:

@@ -9,7 +9,7 @@
     "dev:server": "nodemon index.js",
     "dev:web": "react-scripts start",
     "test": "react-scripts test",
-    "lint": "eslint \"**/*.{js,jsx}\" --quiet",
+    "lint": "node_modules/.bin/eslint \"**/*.{js,jsx}\" --quiet",
     "pretty": "prettier --write '**/*.{js,jsx,css,scss,json}'",
     "eject": "react-scripts eject",
     "postinstall": "npm rebuild node-sass"

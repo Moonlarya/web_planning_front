@@ -14,6 +14,11 @@
     "eject": "react-scripts eject",
     "postinstall": "npm rebuild node-sass"
   },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm test"
+    }
+  },
   "dependencies": {
     "@popperjs/core": "^2.1.1",
     "@testing-library/jest-dom": "^4.2.4",
@@ -60,6 +65,7 @@
     "eslint": "^7.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-react": "^7.20.0",
+    "husky": "^4.2.5",
     "jest-enzyme": "^7.1.2",
     "node-sass": "^4.13.1",
     "prettier": "^2.0.5",

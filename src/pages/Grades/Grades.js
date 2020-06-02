@@ -10,6 +10,8 @@ import EmployeeGrades from "../../components/EmployeeGrades";
 class Grades extends Component {
   state = {
     criterias: [],
+    employeeGrades: [],
+    employee: [],
   };
   loadInfo = async () => {
     const criterias = await CriteriasService.getAll();
@@ -20,7 +22,7 @@ class Grades extends Component {
         return await GradesService.getAllbyEmployeeId(id);
       })
     );
-    this.setState({ criterias, employeeGrades });
+    this.setState({ criterias, employeeGrades, employee });
   };
   deleteInfo = async (id) => {
     await CriteriasService.delete(id);
@@ -31,7 +33,6 @@ class Grades extends Component {
   };
   render() {
     const { criterias, employeeGrades } = this.state;
-    console.log(employeeGrades);
     return (
       <div>
         <h3 className="m-3">Оценивание персонала</h3>
@@ -60,7 +61,7 @@ class Grades extends Component {
         <div className="d-flex">
           {employeeGrades &&
             employeeGrades.map((el, index) => (
-              <EmployeeGrades data={el} key={index} />
+              <EmployeeGrades data={el} key={index} criterias={criterias} />
             ))}
         </div>
       </div>

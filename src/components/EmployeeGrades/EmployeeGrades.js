@@ -1,24 +1,48 @@
 import React, { Component } from "react";
 
+import EmployeesService from "../../services/EmployeesService";
+
+import { positionTypes } from "../../constants/translation";
+
 class EmployeeGrades extends Component {
+  state = {
+    employee: null,
+  };
+
+  componentDidMount = async () => {
+    const { employeeId } = this.props.data[0];
+    const employee = await EmployeesService.get(employeeId);
+    this.setState({ employee });
+  };
+
+  getCriteriaById = (id) => {
+    return this.props.criterias.find((el) => el._id === id);
+  };
+
   render() {
-    console.log(this.props.data);
+    const { employeeId } = this.props.data[0];
+    const { data, criterias } = this.props;
+    const { employee } = this.state;
+    if (!employee) {
+      return null;
+    }
+
     return (
       <div className="card col-3">
-        <h3>Имя сотрудника</h3>
-        <p>Должность: </p>
+        <h4>{`${employee.surname} ${employee.name} ${employee.patronymic}`}</h4>
+        <p>Должность: {positionTypes[employee.type]}</p>
         <ul className="list-group">
-          <li className="list-group-item">
-            <p>Дата</p>
-            <p className="text-left">Оценка1:2 </p>
-            <p className="text-left">Оценка2:4</p>
-          </li>
-
-          <li className="list-group-item">
-            <p>Дата</p>
-            <p className="text-left">Оценка1:2 </p>
-            <p className="text-left">Оценка2:4</p>
-          </li>
+          {data.map((element) => {
+            const criteria = this.getCriteriaById(element.criteriaId);
+            return (
+              <li className="list-group-item" key={element._id}>
+                <p>Дата</p>
+                <p className="text-left">
+                  {criteria.name}: {element.grade}
+                </p>
+              </li>
+            );
+          })}
         </ul>
       </div>
     );

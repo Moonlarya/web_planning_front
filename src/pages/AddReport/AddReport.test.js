@@ -1,10 +1,10 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import AddProject from "./AddProject";
+import AddReport from "./AddReport";
 
 describe("<AddProject />", () => {
   it("should render without crashing", () => {
-    mount(<AddProject />);
+    mount(<AddReport />);
   });
 });

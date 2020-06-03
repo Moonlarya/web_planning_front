@@ -1,10 +1,15 @@
 import React from "react";
-import { mount } from "enzyme";
+import { shallow } from "enzyme";
+import { BrowserRouter } from "react-router-dom";
 
 import ProjectPage from "./ProjectPage";
 
 describe("<ProjectPage />", () => {
   it("should render without crashing", () => {
-    mount(<ProjectPage />);
+    shallow(
+      <BrowserRouter>
+        <ProjectPage />
+      </BrowserRouter>
+    );
   });
 });

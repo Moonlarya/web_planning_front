@@ -1,10 +1,15 @@
 import React from "react";
-import { mount } from "enzyme";
+import { shallow } from "enzyme";
+import { BrowserRouter } from "react-router-dom";
 
 import Task from "./Task";
 
 describe("<Task />", () => {
   it("should render without crashing", () => {
-    mount(<Task />);
+    shallow(
+      <BrowserRouter>
+        <Task />
+      </BrowserRouter>
+    );
   });
 });

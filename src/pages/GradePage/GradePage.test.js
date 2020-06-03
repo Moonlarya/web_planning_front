@@ -1,10 +1,15 @@
 import React from "react";
-import { mount } from "enzyme";
+import { shallow } from "enzyme";
+import { BrowserRouter } from "react-router-dom";
 
 import GradePage from "./GradePage";
 
 describe("<GradePage />", () => {
   it("should render without crashing", () => {
-    mount(<GradePage />);
+    shallow(
+      <BrowserRouter>
+        <GradePage />
+      </BrowserRouter>
+    );
   });
 });

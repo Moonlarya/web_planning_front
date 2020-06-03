@@ -1,10 +1,15 @@
 import React from "react";
-import { mount } from "enzyme";
+import { shallow } from "enzyme";
+import { BrowserRouter } from "react-router-dom";
 
 import Clients from "./Clients";
 
 describe("<Clients />", () => {
   it("should render without crashing", () => {
-    mount(<Clients />);
+    shallow(
+      <BrowserRouter>
+        <Clients />
+      </BrowserRouter>
+    );
   });
 });

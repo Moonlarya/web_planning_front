@@ -24,7 +24,6 @@ class Report extends Component {
   };
   render() {
     const { reports } = this.state;
-    console.log(reports);
     const filteredReports = reports.filter(
       (report) => report.status !== "finished"
     );

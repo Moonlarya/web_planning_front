@@ -29,10 +29,11 @@ class FinishedTasks extends Component {
                 <h5 className="card-title card-header">{task.name}</h5>
                 <p className="card-text">{task.description}</p>
                 <p className="card-title">
-                  Дедлайн: {moment(`${task.deadline}`).format("Do MMMM YYYY")}
+                  Дедлайн: {moment(task.deadline).format("Do MMMM YYYY")}
                 </p>
                 <p className="card-text">
-                  Дата завершения:{moment(``).format("Do MMMM YYYY")}
+                  Дата завершения:
+                  {moment(task.finishDate).format("Do MMMM YYYY")}
                 </p>
                 {task.project && (
                   <p className="card-title">Проект: {task.project.name}</p>
@@ -45,7 +46,11 @@ class FinishedTasks extends Component {
                     {`${task.employee.surname} ${task.employee.name} ${task.employee.patronymic}`}
                   </p>
                 )}
-                <p className="card-text">Полученные бонусы:</p>
+                {task.earnedBonuce && (
+                  <p className="card-text">
+                    Полученные бонусы: {task.earnedBonuce.toFixed(2)}
+                  </p>
+                )}
                 <div
                   className="btn btn-primary m-1"
                   onClick={() => this.deleteInfo(task._id)}

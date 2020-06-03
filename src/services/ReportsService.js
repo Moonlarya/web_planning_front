@@ -11,7 +11,6 @@ class ReportsService extends ApiService {
       finishDate: new Date(),
     });
     await TasksService.complete(report.taskId);
-    console.log(report.taskId);
   }
 
   async getAllbyProjectId(id) {

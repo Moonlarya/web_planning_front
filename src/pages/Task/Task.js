@@ -78,7 +78,6 @@ class Task extends Component {
                   >
                     Удалить
                   </div>
-                  <div className="btn btn-primary m-1">Завершить</div>
                 </div>
               </div>
             </div>

@@ -5,16 +5,7 @@ const Project = require("../models/projects.model.js");
 // Create and Save a new Tasks
 exports.create = (req, res) => {
   // Create a Tasks
-  const task = new Tasks({
-    number: req.body.number,
-    name: req.body.name,
-    order: req.body.order,
-    description: req.body.description,
-    deadline: req.body.deadline,
-    bonuce: req.body.bonuce,
-    employee: req.body.employee,
-    project: req.body.project,
-  });
+  const task = new Tasks(req.body);
 
   // Save Tasks in the database
   task

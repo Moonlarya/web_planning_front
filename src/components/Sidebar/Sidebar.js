@@ -16,6 +16,7 @@ const Sidebar = ({ history, user: { name, surname, patronymic, type } }) => (
         <div>
           <img
             src={photo}
+            alt="avatar"
             style={{
               width: "60px",
               height: "60px",
@@ -51,6 +52,7 @@ const Sidebar = ({ history, user: { name, surname, patronymic, type } }) => (
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
+          href="#"
         >
           Задачи
         </a>
@@ -74,6 +76,7 @@ const Sidebar = ({ history, user: { name, surname, patronymic, type } }) => (
           data-toggle="dropdown"
           aria-haspopup="true"
           aria-expanded="false"
+          href="#"
         >
           Отчеты
         </a>
@@ -93,6 +96,7 @@ const Sidebar = ({ history, user: { name, surname, patronymic, type } }) => (
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
+            href="#"
           >
             Персонал
           </a>
@@ -113,6 +117,7 @@ const Sidebar = ({ history, user: { name, surname, patronymic, type } }) => (
             data-toggle="dropdown"
             aria-haspopup="true"
             aria-expanded="false"
+            href="#"
           >
             Собеседования
           </a>
@@ -129,6 +134,7 @@ const Sidebar = ({ history, user: { name, surname, patronymic, type } }) => (
       <li className="nav-item">
         <a
           className="nav-link"
+          href="#"
           onClick={(event) => {
             event.preventDefault();
 

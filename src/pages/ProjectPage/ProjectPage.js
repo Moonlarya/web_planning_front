@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import ProjectService from "../../services/ProjectService";
 import ReportsService from "../../services/ReportsService";
@@ -21,7 +21,6 @@ class ProjectPage extends Component {
     this.setState({ project, reports });
   };
   render() {
-    const { projectId } = this.props.match.params;
     const { project, reports } = this.state;
     if (!project) {
       return null;
@@ -38,8 +37,8 @@ class ProjectPage extends Component {
         </div>
         <div className="col-12">
           <h4 className="m-3">Отчетная информация</h4>
-          {reports.map((report) => (
-            <div className="card col-3">
+          {reports.map((report, index) => (
+            <div className="card col-3" key={index}>
               <h5 className="card-header">
                 Отчет по задаче {report.taskId.name}
               </h5>

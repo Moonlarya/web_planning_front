@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import TaskService from "../../services/TasksService";
 import * as moment from "moment";
 

@@ -1,6 +1,5 @@
 const Projects = require("../models/projects.model.js");
 const Clients = require("../models/clients.model.js");
-const Reports = require("../models/reports.model.js");
 
 // Create and Save a new Projects
 exports.create = (req, res) => {

@@ -4,7 +4,7 @@ class Payout extends Component {
   render() {
     return (
       <div>
-        <main class="col-8 bonuce">
+        <main className="col-8 bonuce">
           <h5>История начислений</h5>
         </main>
       </div>

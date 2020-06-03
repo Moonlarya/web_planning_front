@@ -45,8 +45,11 @@ class Grades extends Component {
           </h5>
         )}
         <ul className="text-left list-group col-3">
-          {criterias.map((el) => (
-            <li className="list-group-item d-flex justify-content-between align-items-center">
+          {criterias.map((el, index) => (
+            <li
+              className="list-group-item d-flex justify-content-between align-items-center"
+              key={index}
+            >
               {el.name}
               <div
                 className="btn btn-primary mx-3 rounded-circle px-2.7"

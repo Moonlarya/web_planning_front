@@ -81,7 +81,7 @@ class SignIn extends Component {
                 Sign In
               </Button>
               {errors.error && <p>{errors.error}</p>}
-              <label for="check" className="checkbox_pseudo">
+              <label htmlFor="check" className="checkbox_pseudo">
                 <Input
                   type="checkbox"
                   name="check"

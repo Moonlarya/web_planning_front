@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
-import * as moment from "moment";
-import { status } from "../../constants/translation";
+import { withRouter } from "react-router-dom";
 
 import EmployeesService from "../../services/EmployeesService";
 import GradesService from "../../services/GradesService";
@@ -43,7 +41,6 @@ class GradePage extends Component {
     const { employee, criterias } = this.state;
     const criteriaInitialValues = {};
     criterias.forEach((criteria) => (criteriaInitialValues[criteria._id] = ""));
-    console.log(criteriaInitialValues);
 
     if (!employee) {
       return null;
@@ -62,8 +59,6 @@ class GradePage extends Component {
         <Formik onSubmit={this.onSubmit} initialValues={criteriaInitialValues}>
           {({
             values,
-            errors,
-            touched,
             handleChange,
             handleBlur,
             handleSubmit,

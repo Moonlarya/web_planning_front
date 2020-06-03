@@ -20,8 +20,7 @@ class EmployeeGrades extends Component {
   };
 
   render() {
-    const { employeeId } = this.props.data[0];
-    const { data, criterias } = this.props;
+    const { data } = this.props;
     const { employee } = this.state;
     if (!employee) {
       return null;

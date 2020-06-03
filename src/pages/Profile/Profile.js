@@ -38,7 +38,7 @@ class Profile extends Component {
                   cursor: "pointer",
                 }}
               ></div>
-              <img src={photo} style={{ width: "inherit" }}></img>
+              <img src={photo} alt="img" style={{ width: "inherit" }}></img>
             </div>
           </div>
           <Formik

@@ -1,5 +1,4 @@
 const Grades = require("../models/grades.model.js");
-const Employees = require("../models/employees.model.js");
 
 // Create and Save a new Grades
 exports.create = (req, res) => {

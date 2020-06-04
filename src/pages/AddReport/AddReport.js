@@ -52,6 +52,16 @@ class AddReport extends Component {
                 value={values.link}
               />
               {errors.link && touched.link && errors.link}
+              <span>Описание</span>
+              <input
+                className="mb-3"
+                type="text"
+                name="description"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.description}
+              />
+              {errors.description && touched.description && errors.description}
               <button
                 type="submit"
                 className="btn btn-primary m-1"

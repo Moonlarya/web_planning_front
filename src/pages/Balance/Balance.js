@@ -53,9 +53,9 @@ class Balance extends Component {
                         {moment(`${task.deadline}`).format("Do MMMM YYYY")}
                       </p>
                       <p className="card-text">
-                        Дата завершения:{moment(``).format("Do MMMM YYYY")}
+                        Дата завершения:
+                        {moment(task.finishDate).format("Do MMMM YYYY")}
                       </p>
-
                       {task.employee &&
                         typeof task.employee !== "string" &&
                         this.props.user.type === "manager" && (
@@ -64,7 +64,6 @@ class Balance extends Component {
                             {`${task.employee.surname} ${task.employee.name} ${task.employee.patronymic}`}
                           </p>
                         )}
-
                       {task.project && (
                         <p className="card-title">
                           Проект: {task.project.name}
@@ -73,7 +72,11 @@ class Balance extends Component {
                       <p className="card-title">
                         Количество бонусов: {task.bonuce}
                       </p>
-                      <p className="card-text">Полученные бонусы:</p>
+                      {task.earnedBonuce && (
+                        <p className="card-text">
+                          Полученные бонусы: {task.earnedBonuce.toFixed(2)}
+                        </p>
+                      )}
                     </div>
                   </div>
                 );

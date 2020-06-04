@@ -1,18 +1,20 @@
 import React, { Component } from "react";
 import ReportsService from "../../services/ReportsService";
-import * as moment from "moment";
+import ReportCard from "../../components/ReportCard/";
 import { status } from "../../constants/translation";
+import { withAuth } from "../../stores/User";
 
 class Report extends Component {
   state = {
     reports: [],
+    tasks: [],
   };
   async componentDidMount() {
     this.loadInfo();
   }
   loadInfo = async () => {
     const reports = await ReportsService.getAll();
-    this.setState({ reports: reports });
+    this.setState({ reports });
   };
   deleteInfo = async (id) => {
     await ReportsService.delete(id);
@@ -23,53 +25,26 @@ class Report extends Component {
     this.loadInfo();
   };
   render() {
-    const { reports } = this.state;
+    const { reports, tasks } = this.state;
     const filteredReports = reports.filter(
       (report) => report.status !== "finished"
     );
     return (
-      <div>
-        <h3 className="m-3">Активные отчеты</h3>
-        <main className="col-12 d-flex justify-around align-items-start flex-wrap">
-          {filteredReports.map((report, index) => (
-            <div className="card col-3 text-left" key={index}>
-              <h5 className="card-header">
-                Отчет по задаче {report.taskId.name}
-              </h5>
-              <div className="card-body">
-                <h5 className="card-title">{report.description}</h5>
-                <p className="card-text">{report.link}</p>
-                <h5 className="card-title">Дата создания</h5>
-                <p className="card-text">
-                  {moment(`${report.date}`).format("Do MMMM YYYY")}
-                </p>
-                <p className="card-text">Состояние: {status[report.status]}</p>
-                <p className="card-text">Исполнитель: {report.employee_id}</p>
-                <p className="card-text">Получено бонусов: {report.points}</p>
-                {report.project && (
-                  <p className="card-text">Проект: {report.project.name}</p>
-                )}
-
-                <a href="#" className="btn btn-primary  m-1">
-                  Сохранить
-                </a>
-                <a href="#" className="btn btn-primary  m-1">
-                  Изменить
-                </a>
-                <a
-                  href="#"
-                  className="btn btn-primary  m-1"
-                  onClick={() => this.completeReport(report._id)}
-                >
-                  Завершить
-                </a>
-              </div>
-            </div>
+      <main className="col-9">
+        <h3 className="m-3 text-center">Активные отчеты</h3>
+        <div className="d-flex justify-around align-items-start flex-wrap">
+          {filteredReports.map((report) => (
+            <ReportCard
+              key={report._id}
+              data={report}
+              onDelete={() => this.deleteInfo(report._id)}
+              onComplete={() => this.completeReport(report._id)}
+            />
           ))}
-        </main>
-      </div>
+        </div>
+      </main>
     );
   }
 }
 
-export default Report;
+export default withAuth(Report);

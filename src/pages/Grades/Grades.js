@@ -44,22 +44,45 @@ class Grades extends Component {
             На данный момент оценивание проходит по таким факторам:
           </h5>
         )}
-        <ul className="text-left list-group col-3">
+
+        <div id="accordion" className="col-3">
           {criterias.map((el, index) => (
-            <li
-              className="list-group-item d-flex justify-content-between align-items-center"
-              key={index}
-            >
-              {el.name}
-              <div
-                className="btn btn-primary mx-3 rounded-circle px-2.7"
-                onClick={() => this.deleteInfo(el._id)}
-              >
-                −
+            <div>
+              <div>
+                <li
+                  className="list-group-item d-flex justify-content-between align-items-center"
+                  data-toggle="collapse"
+                  data-target={"#collapseOne" + index}
+                  aria-expanded="true"
+                  aria-controls={"collapseOne" + index}
+                  key={index}
+                >
+                  {el.name}
+                  <div
+                    className="btn btn-primary mx-3 rounded-circle px-2.7"
+                    onClick={() => this.deleteInfo(el._id)}
+                  >
+                    −
+                  </div>
+                </li>
               </div>
-            </li>
+              {el.description && (
+                <div
+                  id={"collapseOne" + index}
+                  className="collapse"
+                  aria-labelledby={index}
+                  data-parent="#accordion"
+                >
+                  <div className="card-body text-left">
+                    <h5>Описание</h5>
+                    <p className="card-text">{el.description}</p>
+                  </div>
+                </div>
+              )}
+            </div>
           ))}
-        </ul>
+        </div>
+
         <h4>Результаты предыдущего тестирования:</h4>
         <div className="d-flex">
           {employeeGrades &&

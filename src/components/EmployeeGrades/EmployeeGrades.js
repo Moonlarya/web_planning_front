@@ -33,6 +33,9 @@ class EmployeeGrades extends Component {
         <ul className="list-group">
           {data.map((element) => {
             const criteria = this.getCriteriaById(element.criteriaId);
+            if (!criteria) {
+              return null;
+            }
             return (
               <li className="list-group-item" key={element._id}>
                 <p>Дата</p>

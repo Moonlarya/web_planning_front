@@ -43,6 +43,16 @@ class AddCriteria extends Component {
                 value={values.name}
               />
               {errors.name && touched.name && errors.name}
+              <span>Описание</span>
+              <input
+                className="mb-3"
+                type="text"
+                name="description"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.description}
+              />
+              {errors.description && touched.description && errors.description}
               <button
                 type="submit"
                 className="btn btn-primary m-1"

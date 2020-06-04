@@ -5,6 +5,7 @@ exports.create = (req, res) => {
   // Create a Criterias
   const criteria = new Criterias({
     name: req.body.name,
+    description: req.body.description,
   });
 
   // Save Criterias in the database

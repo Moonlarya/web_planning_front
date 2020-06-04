@@ -22,6 +22,7 @@ class Home extends Component {
   };
   render() {
     const { tasks, backgroundColor } = this.state;
+
     return (
       <div id="accordion">
         {tasks &&

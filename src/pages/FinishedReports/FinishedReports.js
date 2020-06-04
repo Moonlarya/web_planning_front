@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReportsService from "../../services/ReportsService";
 import ReportCard from "../../components/ReportCard/";
+import { withAuth } from "../../stores/User";
 
 class FinishedReports extends Component {
   state = {
@@ -24,6 +25,7 @@ class FinishedReports extends Component {
   };
   render() {
     const { reports } = this.state;
+
     const filteredReports = reports.filter(
       (report) => report.status === "finished"
     );
@@ -44,4 +46,4 @@ class FinishedReports extends Component {
   }
 }
 
-export default FinishedReports;
+export default withAuth(FinishedReports);

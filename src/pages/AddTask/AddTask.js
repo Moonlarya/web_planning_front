@@ -76,16 +76,7 @@ class AddTask extends Component {
                 value={values.description}
               />
               {errors.description && touched.description && errors.description}
-              <span>Порядковый номер</span>
-              <input
-                className="mb-3"
-                type="text"
-                name="order"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.order}
-              />
-              {errors.order && touched.order && errors.order}
+
               <span>Срок выполнения</span>
               <input
                 className="mb-3"

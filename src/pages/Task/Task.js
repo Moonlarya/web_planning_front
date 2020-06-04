@@ -36,20 +36,29 @@ class Task extends Component {
     this.props.history.push("/addreport/" + id);
   };
   render() {
-    const { tasks, disabled } = this.state;
+    const { tasks, disabled, user } = this.state;
+    const {
+      user: { type, _id },
+    } = this.props;
+
     const filteredTasks = tasks.filter((task) => task.status !== "finished");
     return (
       <div>
-        <Link to="/addtask" className="btn btn-primary mt-3">
-          Создать задачу
-        </Link>
+        {user && user.type === "manager" && (
+          <Link to="/addtask" className="btn btn-primary mt-3">
+            Создать задачу
+          </Link>
+        )}
+
         <div className="d-flex flex-wrap">
           {filteredTasks.map((task) => (
             <div className="card col-3" key={task._id}>
               <div className="card-body text-left">
                 <h5 className="card-header">{task.name}</h5>
                 <p className="card-text">{task.description}</p>
-                <p className="card-title">Порядок: {task.order}</p>
+                <p className="card-title">
+                  Дата создания: {moment(task.createdAt).format("Do MMMM YYYY")}
+                </p>
                 <p className="card-title">
                   Дедлайн: {moment(`${task.deadline}`).format("Do MMMM YYYY")}
                 </p>
@@ -64,20 +73,23 @@ class Task extends Component {
                   <p className="card-title">Проект: {task.project.name}</p>
                 )}
                 <div className="d-flex flex-wrap justify-content-between">
-                  <button
-                    disabled={disabled}
-                    onClick={() => this.createReport(task._id)}
-                    className="btn btn-primary m-1"
-                  >
-                    Отчет
-                  </button>
-
-                  <div
-                    className="btn btn-primary m-1"
-                    onClick={() => this.deleteInfo(task._id)}
-                  >
-                    Удалить
-                  </div>
+                  {_id && _id === task.employee && (
+                    <button
+                      disabled={disabled}
+                      onClick={() => this.createReport(task._id)}
+                      className="btn btn-primary m-1"
+                    >
+                      Отчет
+                    </button>
+                  )}
+                  {type && type === "manager" && (
+                    <div
+                      className="btn btn-primary m-1"
+                      onClick={() => this.deleteInfo(task._id)}
+                    >
+                      Удалить
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

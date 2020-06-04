@@ -25,17 +25,23 @@ class Balance extends Component {
   };
   render() {
     const { tasks } = this.state;
-    console.log(tasks);
+
+    const bonucesArr = tasks.filter((task) => task.bonuce > 0);
+    const fineArr = tasks.filter((task) => task.bonuce < 0);
+
+    const bonuceSum = bonucesArr.reduce((acc, el) => acc + el.bonuce, 0);
+    const fineSum = fineArr.reduce((acc, el) => acc + el.bonuce, 0);
+    const final = bonuceSum - fineSum;
     return (
       <div>
         <section className="d-flex align-items-start flex-wrap">
           <div className="card">
             <h5 className="card-header">Текущий баланс</h5>
             <div className="card-body d-flex">
-              <p className="card-text mx-3">Полученные бонусы: 50</p>
-              <p className="card-text mx-3">Полученные штрафы: 20</p>
-              <p className="card-text mx-3">Ожидаемые выплаты: 30</p>
-              <p className="card-text mx-3">Доступные бонусы: 300</p>
+              <p className="card-text mx-3">Полученные бонусы: {bonuceSum}</p>
+              <p className="card-text mx-3">Полученные штрафы: {fineSum}</p>
+              <p className="card-text mx-3">Ожидаемые выплаты: {final}</p>
+              <p className="card-text mx-3">Доступные бонусы: </p>
             </div>
           </div>
         </section>

@@ -4,6 +4,8 @@ import moment from "moment";
 import { status } from "../../constants/translation";
 import EmployeesService from "../../services/EmployeesService";
 
+import { withAuth } from "../../stores/User";
+
 class ReportCard extends Component {
   state = {
     employee: null,
@@ -16,6 +18,9 @@ class ReportCard extends Component {
   render() {
     const { data, onDelete } = this.props;
     const { employee } = this.state;
+    const {
+      user: { type, _id },
+    } = this.props;
     return (
       <div className="card col-4 text-left">
         <div className="card-header">
@@ -46,24 +51,29 @@ class ReportCard extends Component {
             <p className="card-text">Проект: {data.project.name}</p>
           )}
         </div>
-        <div className="btn btn-primary m-1" onClick={onDelete}>
-          Удалить
-        </div>
-        <a href="#" className="btn btn-primary  m-1">
-          Изменить
-        </a>
-        {this.props.onComplete && (
-          <a
-            href="#"
-            className="btn btn-primary  m-1"
-            onClick={this.props.onComplete}
-          >
-            Завершить
-          </a>
-        )}
+        {(type && type === "manager") ||
+          (_id === data.taskId.employee && (
+            <div>
+              <div className="btn btn-primary m-1" onClick={onDelete}>
+                Удалить
+              </div>
+              <a href="#" className="btn btn-primary  m-1">
+                Изменить
+              </a>
+              {this.props.onComplete && (
+                <a
+                  href="#"
+                  className="btn btn-primary  m-1"
+                  onClick={this.props.onComplete}
+                >
+                  Завершить
+                </a>
+              )}
+            </div>
+          ))}
       </div>
     );
   }
 }
 
-export default ReportCard;
+export default withAuth(ReportCard);

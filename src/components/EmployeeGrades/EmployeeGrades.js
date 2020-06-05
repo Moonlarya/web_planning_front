@@ -28,10 +28,25 @@ class EmployeeGrades extends Component {
 
     return (
       <div className="card col-3">
-        <h4>{`${employee.surname} ${employee.name} ${employee.patronymic}`}</h4>
-        <p>Должность: {positionTypes[employee.type]}</p>
+        <h4>
+          Имя сотрудника
+          {/*`${employee.surname} ${employee.name} ${employee.patronymic}`*/}
+        </h4>
+        <p>Должность: дизайнер {/*positionTypes[employee.type]*/}</p>
         <ul className="list-group">
-          {data.map((element) => {
+          <li className="list-group-item">
+            <p>Дата 1</p>
+            <p className="text-left">Критерий 1: оценка</p>
+            <p className="text-left">Оптимистичность : 3</p>
+            <p className="text-left">Продуктивность : 4</p>
+          </li>
+          <li className="list-group-item">
+            <p>Дата 2</p>
+            <p className="text-left">Критерий 1: оценка</p>
+            <p className="text-left">Оптимистичность : 1</p>
+            <p className="text-left">Продуктивность : 5</p>
+          </li>
+          {/*data.map((element) => {
             const criteria = this.getCriteriaById(element.criteriaId);
             if (!criteria) {
               return null;
@@ -44,7 +59,7 @@ class EmployeeGrades extends Component {
                 </p>
               </li>
             );
-          })}
+          })*/}
         </ul>
       </div>
     );

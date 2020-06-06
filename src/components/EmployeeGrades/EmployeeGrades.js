@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import moment from "moment";
+import _ from "lodash";
 
 import EmployeesService from "../../services/EmployeesService";
 
@@ -23,40 +25,50 @@ class EmployeeGrades extends Component {
     return criterias.find((el) => el._id === id);
   };
 
-  render() {
+  getGradesData() {
     const { data } = this.props;
-    const { employee } = this.state;
 
+    const group = _.chain(data)
+      .groupBy((el) => moment(el.createdAt).format("Do MMMM YYYY"))
+      .map((el, key) => ({
+        title: key,
+        data: el,
+      }))
+      .value();
+
+    return group;
+  }
+
+  render() {
+    const { employee } = this.state;
     if (!employee) {
       return null;
     }
 
-    console.log(data);
+    const data = this.getGradesData();
+
     return (
       <div className="card col-3">
         <h4>{`${employee.surname} ${employee.name} ${employee.patronymic}`}</h4>
         <p>Должность: {positionTypes[employee.type]}</p>
         <ul className="list-group">
-          <li className="list-group-item">
-            <p>Дата 1</p>
-            <p className="text-left">Критерий 1: оценка</p>
-            <p className="text-left">Оптимистичность : 3</p>
-            <p className="text-left">Продуктивность : 4</p>
-          </li>
-          {/*data.map((element) => {
-            const criteria = this.getCriteriaById(element.criteriaId);
-            if (!criteria) {
-              return null;
-            }
-            return (
-              <li className="list-group-item" key={element._id}>
-                <p>Дата</p>
-                <p className="text-left">
-                  {criteria.name}: {element.grade}
-                </p>
-              </li>
-            );
-          })*/}
+          {data.map((day) => (
+            <li className="list-group-item" key={day.title}>
+              <p>{day.title}</p>
+              {day.data.map((el) => {
+                const criteria = this.getCriteriaById(el.criteriaId);
+                if (!criteria) {
+                  return null;
+                }
+
+                return (
+                  <p className="text-left" key={el._id}>
+                    {criteria.name}: {el.grade}
+                  </p>
+                );
+              })}
+            </li>
+          ))}
         </ul>
       </div>
     );

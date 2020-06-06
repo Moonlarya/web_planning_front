@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 
 const Employees = mongoose.Schema(
   {
@@ -25,5 +26,13 @@ const Employees = mongoose.Schema(
     timestamps: true,
   }
 );
+
+Employees.methods.generateAuthToken = function () {
+  const { password, ...user } = this.toObject();
+  console.log({ user });
+  const token = jwt.sign(user, process.env.JWT_SECRET);
+
+  return token;
+};
 
 module.exports = mongoose.model("Employees", Employees);

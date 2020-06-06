@@ -27,17 +27,8 @@ mongoose
     process.exit();
   });
 //
-require("./app/routes/client.routes.js")(app);
-require("./app/routes/criterias.routes.js")(app);
-require("./app/routes/grades.routes.js")(app);
-require("./app/routes/employees.routes.js")(app);
-require("./app/routes/positions.routes.js")(app);
-require("./app/routes/projects.routes.js")(app);
-require("./app/routes/reports.routes.js")(app);
-require("./app/routes/reviews.routes.js")(app);
-require("./app/routes/salaries.routes.js")(app);
-require("./app/routes/tasks.routes.js")(app);
-require("./app/routes/calendar.routes.js")(app);
+
+require("./app/routes").setUpRouter(app);
 
 const webBuildFolderName = "build";
 app.use(express.static(webBuildFolderName));

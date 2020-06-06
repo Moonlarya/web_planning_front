@@ -1,18 +1,38 @@
 import axios from "axios";
 
+import User from "../stores/User";
+
 class ApiService {
-  api = axios.create({
+  static api = axios.create({
     baseURL:
       process.env.NODE_ENV === "production"
         ? window.location.origin + "/"
         : "http://localhost:3001/",
   });
 
+  constructor() {
+    if (new.target === ApiService)
+      throw new Error("Cannot create instance of abstract class");
+  }
+
+  get api() {
+    const token = User.getToken();
+
+    if (token) {
+      ApiService.api.defaults.headers.common["authorization"] = token;
+    } else if (ApiService.defaults.headers.common["authorization"]) {
+      delete ApiService.defaults.headers.common["authorization"];
+    }
+
+    return ApiService.api;
+  }
+
   getSlug() {
     throw new Error("abstract method");
   }
+
   async getAll() {
-    const response = await this.api.get(this.getSlug()); //"http://localhost:3001/" ("clients")
+    const response = await this.api.get(this.getSlug());
     return response.data;
   }
   async create(data) {

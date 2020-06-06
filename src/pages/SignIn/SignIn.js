@@ -27,9 +27,9 @@ class SignIn extends Component {
     const { history } = this.props;
 
     try {
-      const user = await EmployeesService.login(values);
-
-      User.setUser(user);
+      const authData = await EmployeesService.login(values);
+      console.log(authData);
+      User.setUser(authData);
 
       history.push("/home");
     } catch {

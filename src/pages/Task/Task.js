@@ -44,7 +44,7 @@ class Task extends Component {
     const filteredTasks = tasks.filter((task) => task.status !== "finished");
     return (
       <div>
-        {user && user.type === "manager" && (
+        {type && type === "manager" && (
           <Link to="/addtask" className="btn btn-primary mt-3">
             Создать задачу
           </Link>

@@ -51,26 +51,25 @@ class ReportCard extends Component {
             <p className="card-text">Проект: {data.project.name}</p>
           )}
         </div>
-        {(type && type === "manager") ||
-          (_id === data.taskId.employee && (
-            <div>
-              <div className="btn btn-primary m-1" onClick={onDelete}>
-                Удалить
-              </div>
-              <a href="#" className="btn btn-primary  m-1">
-                Изменить
-              </a>
-              {this.props.onComplete && (
-                <a
-                  href="#"
-                  className="btn btn-primary  m-1"
-                  onClick={this.props.onComplete}
-                >
-                  Завершить
-                </a>
-              )}
+        {((type && type === "manager") || _id === data.taskId.employee) && (
+          <div>
+            <div className="btn btn-primary m-1" onClick={onDelete}>
+              Удалить
             </div>
-          ))}
+            <a href="#" className="btn btn-primary  m-1">
+              Изменить
+            </a>
+            {this.props.onComplete && (
+              <a
+                href="#"
+                className="btn btn-primary  m-1"
+                onClick={this.props.onComplete}
+              >
+                Завершить
+              </a>
+            )}
+          </div>
+        )}
       </div>
     );
   }

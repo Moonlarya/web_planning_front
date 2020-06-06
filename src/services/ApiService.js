@@ -20,8 +20,8 @@ class ApiService {
 
     if (token) {
       ApiService.api.defaults.headers.common["authorization"] = token;
-    } else if (ApiService.defaults.headers.common["authorization"]) {
-      delete ApiService.defaults.headers.common["authorization"];
+    } else if (ApiService.api.defaults.headers.common["authorization"]) {
+      delete ApiService.api.defaults.headers.common["authorization"];
     }
 
     return ApiService.api;

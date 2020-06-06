@@ -28,11 +28,12 @@ class SignIn extends Component {
 
     try {
       const authData = await EmployeesService.login(values);
-      console.log(authData);
+
       User.setUser(authData);
 
       history.push("/home");
-    } catch {
+    } catch (err) {
+      console.log(err);
       setErrors({ error: "Invalid email or password" });
     }
   };

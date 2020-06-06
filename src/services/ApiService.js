@@ -10,6 +10,11 @@ class ApiService {
         : "http://localhost:3001/",
   });
 
+  constructor() {
+    if (new.target === ApiService)
+      throw new Error("Cannot create instance of abstract class");
+  }
+
   get api() {
     const token = User.getToken();
 

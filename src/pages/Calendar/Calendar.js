@@ -5,9 +5,11 @@ import "../../style/Calendar.scss";
 
 import ReviewsService from "../../services/ReviewsService";
 import CalendarService from "../../services/CalendarService";
+import Datetime from "react-datetime";
+import "../../style/datetime.css";
 
 import { Formik } from "formik";
-import * as moment from "moment";
+import moment from "moment";
 
 import { typeReview, resultEvent } from "../../constants/translation";
 
@@ -63,6 +65,7 @@ class Calendar extends Component {
     if (!values.type) {
       errors.type = "Required";
     }
+
     return errors;
   };
 
@@ -107,7 +110,7 @@ class Calendar extends Component {
                   handleBlur,
                   handleSubmit,
                   isSubmitting,
-                  /* and other goodies */
+                  setFieldValue,
                 }) => (
                   <form
                     onSubmit={handleSubmit}
@@ -125,13 +128,12 @@ class Calendar extends Component {
                     {errors.name && touched.name && errors.name}
 
                     <span>Время</span>
-                    <input
+                    <Datetime
+                      dateFormat={false}
                       className="m-3 w-100 mx-auto"
-                      type="text"
                       name="time"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
                       value={values.time}
+                      onChange={(e) => setFieldValue("time", e)}
                     />
                     {errors.time && touched.time && errors.time}
                     <select
@@ -185,7 +187,13 @@ class Calendar extends Component {
               className="list-unstyled list-group-item list-group-item-action col-6 text-left d-flex justify-content-between mx-auto"
             >
               <div className="px-5">
-                <h2 className="mt-3">{event.time}</h2>
+                <h5 className="mt-3 w-20">
+                  {moment(
+                    `${event.date.split("T").slice(0, 1)}T${event.time
+                      .split("T")
+                      .slice(1)}`
+                  ).format("MMMM Do, H:mm")}
+                </h5>
               </div>
               <div>
                 <h5>{event.name}</h5>

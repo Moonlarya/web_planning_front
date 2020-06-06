@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import TasksService from "../../services/TasksService";
 import EmployeesService from "../../services/EmployeesService";
 import ProjectService from "../../services/ProjectService";
+import Datetime from "react-datetime";
+import "../../style/datetime.css";
 
 import { Formik } from "formik";
 
@@ -50,7 +52,7 @@ class AddTask extends Component {
             handleBlur,
             handleSubmit,
             isSubmitting,
-            /* and other goodies */
+            setFieldValue,
           }) => (
             <form
               onSubmit={handleSubmit}
@@ -78,13 +80,11 @@ class AddTask extends Component {
               {errors.description && touched.description && errors.description}
 
               <span>Срок выполнения</span>
-              <input
+              <Datetime
                 className="mb-3"
-                type="text"
                 name="deadline"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.deadline}
+                value={values["deadline"]}
+                onChange={(e) => setFieldValue("deadline", e)}
               />
               {errors.deadline && touched.deadline && errors.deadline}
               <span>Количество бонусов</span>

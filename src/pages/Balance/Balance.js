@@ -28,9 +28,11 @@ class Balance extends Component {
 
     const bonucesArr = tasks.filter((task) => task.bonuce > 0);
     const fineArr = tasks.filter((task) => task.bonuce < 0);
+    const availableArr = tasks.filter((task) => task.status !== "finished");
 
     const bonuceSum = bonucesArr.reduce((acc, el) => acc + el.bonuce, 0);
     const fineSum = fineArr.reduce((acc, el) => acc + el.bonuce, 0);
+    const available = availableArr.reduce((acc, el) => acc + el.bonuce, 0);
     const final = bonuceSum - fineSum;
     return (
       <div>
@@ -41,7 +43,7 @@ class Balance extends Component {
               <p className="card-text mx-3">Полученные бонусы: {bonuceSum}</p>
               <p className="card-text mx-3">Полученные штрафы: {fineSum}</p>
               <p className="card-text mx-3">Ожидаемые выплаты: {final}</p>
-              <p className="card-text mx-3">Доступные бонусы: </p>
+              <p className="card-text mx-3">Доступные бонусы: {available}</p>
             </div>
           </div>
         </section>

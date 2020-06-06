@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import ProjectService from "../../services/ProjectService";
 import ClientService from "../../services/ClientService";
 import { Formik } from "formik";
+import Datetime from "react-datetime";
+import "../../style/datetime.css";
 
 class AddProject extends Component {
   state = {
@@ -41,7 +43,7 @@ class AddProject extends Component {
             handleBlur,
             handleSubmit,
             isSubmitting,
-            /* and other goodies */
+            setFieldValue,
           }) => (
             <form
               onSubmit={handleSubmit}
@@ -68,13 +70,11 @@ class AddProject extends Component {
               />
               {errors.description && touched.description && errors.description}
               <span>Срок</span>
-              <input
+              <Datetime
                 className="mb-3"
-                type="text"
                 name="deadline"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.deadline}
+                value={values["deadline"]}
+                onChange={(e) => setFieldValue("deadline", e)}
               />
               {errors.deadline && touched.deadline && errors.deadline}
               <span>Заказчик</span>

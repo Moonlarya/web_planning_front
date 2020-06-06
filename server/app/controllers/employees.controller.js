@@ -113,19 +113,28 @@ exports.delete = (req, res) => {
     });
 };
 
-exports.auth = (req, res) => {
-  Employees.findOne({ email: req.body.email, password: req.body.password })
-    .then((employee) => {
-      if (!employee) {
-        throw new Error("Incorrect login/password");
-      }
-      res.send(employee);
-    })
-    .catch((err) => {
-      res.status(404).send({
-        message: err.message || "Incorrect login/password",
-      });
+exports.auth = async (req, res) => {
+  try {
+    const employee = await Employees.findOne({
+      email: req.body.email,
+      password: req.body.password,
     });
+
+    if (!employee) {
+      throw new Error("Incorrect login/password");
+    }
+    const token = employee.generateAuthToken();
+
+    res.send({
+      token,
+      user: employee.toObject(),
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(404).send({
+      message: err.message || "Incorrect login/password",
+    });
+  }
 };
 
 exports.deleteAll = (req, res) => {

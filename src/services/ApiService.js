@@ -1,18 +1,31 @@
 import axios from "axios";
 
+import User from "../stores/User";
+
 class ApiService {
-  api = axios.create({
+  static api = axios.create({
     baseURL:
       process.env.NODE_ENV === "production"
         ? window.location.origin + "/"
         : "http://localhost:3001/",
   });
 
+  get api() {
+    const token = User.getToken();
+
+    if (token) {
+      ApiService.api.defaults.headers.common["authorization"] = token;
+    }
+
+    return ApiService.api;
+  }
+
   getSlug() {
     throw new Error("abstract method");
   }
+
   async getAll() {
-    const response = await this.api.get(this.getSlug()); //"http://localhost:3001/" ("clients")
+    const response = await this.api.get(this.getSlug());
     return response.data;
   }
   async create(data) {

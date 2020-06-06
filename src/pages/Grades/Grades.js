@@ -47,7 +47,7 @@ class Grades extends Component {
 
         <div id="accordion" className="col-3">
           {criterias.map((el, index) => (
-            <div>
+            <div key={el._id}>
               <div>
                 <li
                   className="list-group-item d-flex justify-content-between align-items-center"

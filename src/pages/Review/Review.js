@@ -22,6 +22,7 @@ class Review extends Component {
     const { reviews } = this.state;
     return (
       <main className="col-12 bonuce ">
+        <h3 className="m-3">Резюме</h3>
         <Link to="/addreview" className="btn btn-primary mt-3">
           Создать резюме
         </Link>

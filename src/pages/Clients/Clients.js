@@ -21,6 +21,7 @@ class Clients extends Component {
     const { clients } = this.state;
     return (
       <div>
+        <h3 className="m-3">Клиенты</h3>
         <Link to="/addclient" className="btn btn-primary mt-3">
           Добавить клиента
         </Link>

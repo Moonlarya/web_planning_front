@@ -22,6 +22,7 @@ class Project extends Component {
     const { projects } = this.state;
     return (
       <div>
+        <h3 className="m-3">Проекты</h3>
         <Link to="/addproject" className="btn btn-primary mt-3">
           Создать проект
         </Link>

@@ -24,6 +24,7 @@ class Employees extends Component {
     const { employees } = this.state;
     return (
       <main>
+        <h3 className="m-3">Сотрудники</h3>
         <div className="d-flex flex-wrap">
           {employees.map((employee) => (
             <div className="card col-3" key={employee._id}>

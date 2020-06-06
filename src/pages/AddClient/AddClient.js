@@ -11,7 +11,7 @@ class AddClient extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="col-5">
         <h1>Добавить клиента</h1>
         <Formik
           /* validate={(values) => {

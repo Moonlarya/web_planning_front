@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 
+const utils = require("../../utils");
+
 const Employees = mongoose.Schema(
   {
     name: { type: String, required: true },
@@ -29,10 +31,14 @@ const Employees = mongoose.Schema(
 
 Employees.methods.generateAuthToken = function () {
   const { password, ...user } = this.toObject();
-  console.log({ user });
+
   const token = jwt.sign(user, process.env.JWT_SECRET);
 
   return token;
 };
+
+Employees.pre("save", async function () {
+  this.password = await utils.getPasswordHash(this.password);
+});
 
 module.exports = mongoose.model("Employees", Employees);

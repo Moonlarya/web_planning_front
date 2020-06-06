@@ -1,4 +1,8 @@
+const bcrypt = require("bcrypt");
+
 const Employees = require("../models/employees.model.js");
+
+const utils = require("../../utils");
 
 exports.create = async (req, res) => {
   const email = req.body.email;
@@ -8,6 +12,7 @@ exports.create = async (req, res) => {
       .status(500)
       .send({ message: "User with this email already exists" });
   }
+
   const employee = new Employees({
     name: req.body.name,
     surname: req.body.surname,
@@ -15,21 +20,20 @@ exports.create = async (req, res) => {
     status: req.body.status,
     phone: req.body.phone,
     email: req.body.email,
-    password: req.body.password,
     role: req.body.role,
+    password: req.body.password,
   });
 
-  employee
-    .save()
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Employee.",
-      });
+  try {
+    const data = await employee.save();
+
+    res.send(data);
+  } catch (err) {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while creating the Employee.",
     });
+  }
 };
 
 exports.findAll = (req, res) => {
@@ -67,28 +71,35 @@ exports.findOne = (req, res) => {
     });
 };
 
-// Update a note identified by the noteId in the request
-exports.update = (req, res) => {
-  // Find note and update it with the request body
-  Employees.findByIdAndUpdate(req.params.employeeId, req.body, { new: true })
-    .then((employee) => {
-      if (!employee) {
-        return res.status(404).send({
-          message: "Note not found with id " + req.params.employeeId,
-        });
-      }
-      res.send(employee);
-    })
-    .catch((err) => {
-      if (err.kind === "ObjectId") {
-        return res.status(404).send({
-          message: "Note not found with id " + req.params.employeeId,
-        });
-      }
-      return res.status(500).send({
-        message: "Error updating note with id " + req.params.employeeId,
+exports.update = async (req, res) => {
+  const data = { ...req.body };
+  if (data.password) {
+    data.password = await utils.getPasswordHash(data.password);
+  }
+
+  try {
+    const employee = await Employees.findByIdAndUpdate(
+      req.params.employeeId,
+      data,
+      { new: true }
+    );
+
+    if (!employee) {
+      return res.status(404).send({
+        message: "Note not found with id " + req.params.employeeId,
       });
+    }
+    res.send(employee);
+  } catch (err) {
+    if (err.kind === "ObjectId") {
+      return res.status(404).send({
+        message: "Note not found with id " + req.params.employeeId,
+      });
+    }
+    return res.status(500).send({
+      message: "Error updating note with id " + req.params.employeeId,
     });
+  }
 };
 
 exports.delete = (req, res) => {
@@ -115,14 +126,19 @@ exports.delete = (req, res) => {
 
 exports.auth = async (req, res) => {
   try {
+    const hash = await utils.getPasswordHash(req.body.password);
+
     const employee = await Employees.findOne({
       email: req.body.email,
-      password: req.body.password,
     });
 
-    if (!employee) {
+    if (
+      !employee ||
+      !utils.comparePasswords(req.body.password, employee.password)
+    ) {
       throw new Error("Incorrect login/password");
     }
+
     const token = employee.generateAuthToken();
 
     res.send({
@@ -130,7 +146,6 @@ exports.auth = async (req, res) => {
       user: employee.toObject(),
     });
   } catch (err) {
-    console.log(err);
     res.status(404).send({
       message: err.message || "Incorrect login/password",
     });

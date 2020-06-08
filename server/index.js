@@ -10,13 +10,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
-const dbConfig = require("./config/database.config.js");
 const mongoose = require("mongoose");
 
 mongoose.Promise = global.Promise;
 
 mongoose
-  .connect(dbConfig.url, {
+  .connect(process.env.MONGODB_URL, {
     useNewUrlParser: true,
   })
   .then(() => {

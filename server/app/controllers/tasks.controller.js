@@ -64,7 +64,37 @@ exports.findAll = async (req, res) => {
 exports.findAllbyEmployee = async (req, res) => {
   try {
     const tasks = await Tasks.find({ employee: req.params.employeeId }).lean();
-    res.send(tasks);
+    const taskWithEmployee = await Promise.all(
+      tasks.map(async (el) => {
+        try {
+          if (el.employee) {
+            const employee = await Employee.findById(el.employee);
+            return { ...el, employee: employee };
+          } else {
+            return el;
+          }
+        } catch (err) {
+          console.log(err);
+          return el;
+        }
+      })
+    );
+    const taskWithProject = await Promise.all(
+      taskWithEmployee.map(async (el) => {
+        try {
+          if (el.project) {
+            const project = await Project.findById(el.project);
+            return { ...el, project: project };
+          } else {
+            return el;
+          }
+        } catch (err) {
+          console.log(err);
+          return el;
+        }
+      })
+    );
+    res.send(taskWithProject);
   } catch (err) {
     res.status(500).send({
       message: err.message || "Some error occurred while retrieving tasks.",

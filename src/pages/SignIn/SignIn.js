@@ -33,7 +33,6 @@ class SignIn extends Component {
 
       history.push("/home");
     } catch (err) {
-      console.log(err);
       setErrors({ error: "Invalid email or password" });
     }
   };

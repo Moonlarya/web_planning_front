@@ -6,8 +6,8 @@ class ApiService {
   static api = axios.create({
     baseURL:
       process.env.NODE_ENV === "production"
-        ? window.location.origin + "/"
-        : "http://localhost:3001/",
+        ? window.location.origin + "/api/"
+        : "http://localhost:3001/api/",
   });
 
   constructor() {

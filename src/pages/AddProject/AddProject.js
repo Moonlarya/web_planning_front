@@ -89,7 +89,7 @@ class AddProject extends Component {
                 <option value="" label="Выберите заказчика" />
                 {clients.map((client) => (
                   <option value={client._id} key={client._id}>
-                    {client.name}
+                    {`${client.surname} ${client.name} ${client.patronymic}`}
                   </option>
                 ))}
               </select>

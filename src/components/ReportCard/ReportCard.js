@@ -11,9 +11,11 @@ class ReportCard extends Component {
     employee: null,
   };
   async componentDidMount() {
-    const employeeId = this.props.data.taskId.employee;
-    const employee = await EmployeesService.get(employeeId);
-    this.setState({ employee });
+    if (this.props.data.taskId) {
+      const employeeId = this.props.data.taskId.employee;
+      const employee = await EmployeesService.get(employeeId);
+      this.setState({ employee });
+    }
   }
   render() {
     const { data, onDelete } = this.props;
@@ -25,7 +27,7 @@ class ReportCard extends Component {
       <div className="card col-4 text-left">
         <div className="card-header">
           <h5>Отчет по задаче</h5>
-          <p>{data.taskId.name}</p>
+          {data.taskId && <p>{data.taskId.name}</p>}
         </div>
 
         <div className="card-body">
@@ -36,10 +38,14 @@ class ReportCard extends Component {
           <p className="card-text">
             {moment(data.date).format("Do MMMM YYYY")}
           </p>
-          <h5 className="card-title">Дата завершения</h5>
-          <p className="card-text">
-            {moment(data.finishDate).format("Do MMMM YYYY")}
-          </p>
+          {data.finishDate && (
+            <div>
+              <h5 className="card-title">Дата завершения</h5>
+              <p className="card-text">
+                {moment(data.finishDate).format("Do MMMM YYYY")}
+              </p>
+            </div>
+          )}
           <p className="card-text">Состояние: {status[data.status]}</p>
           {employee && (
             <p className="card-title">

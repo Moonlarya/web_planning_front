@@ -84,7 +84,7 @@ class Grades extends Component {
         </div>
 
         <h4>Результаты предыдущего тестирования:</h4>
-        <div className="d-flex">
+        <div className="d-flex flex-wrap">
           {employeeGrades &&
             employeeGrades.map((el, index) => (
               <EmployeeGrades data={el} key={index} criterias={criterias} />

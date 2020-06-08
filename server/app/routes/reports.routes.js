@@ -4,19 +4,19 @@ module.exports = (app) => {
   const reports = require("../controllers/reports.controller.js");
 
   // Create a new client
-  app.post("/reports", auth, reports.create);
+  app.post("/api/reports", auth, reports.create);
 
   // Retrieve all reports
-  app.get("/reports", auth, reports.findAll);
+  app.get("/api/reports", auth, reports.findAll);
 
   // Retrieve a single client with reportId
-  app.get("/reports/:reportId", auth, reports.findOne);
+  app.get("/api/reports/:reportId", auth, reports.findOne);
 
   // Update a client with reportId
-  app.put("/reports/:reportId", auth, reports.update);
+  app.put("/api/reports/:reportId", auth, reports.update);
 
   // Delete a client with reportId
-  app.delete("/reports/:reportId", auth, reports.delete);
+  app.delete("/api/reports/:reportId", auth, reports.delete);
 
-  app.get("/reports/project/:projectId", auth, reports.findAllbyProject);
+  app.get("/api/reports/project/:projectId", auth, reports.findAllbyProject);
 };

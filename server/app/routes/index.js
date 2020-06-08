@@ -7,7 +7,6 @@ module.exports.setUpRouter = (app) => {
   require("./projects.routes.js")(app);
   require("./reports.routes.js")(app);
   require("./reviews.routes.js")(app);
-  require("./salaries.routes.js")(app);
   require("./tasks.routes.js")(app);
   require("./calendar.routes.js")(app);
 };

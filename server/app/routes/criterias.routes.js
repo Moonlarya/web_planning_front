@@ -4,17 +4,17 @@ module.exports = (app) => {
   const criterias = require("../controllers/criterias.controller.js");
 
   // Create a new client
-  app.post("/criterias", auth, criterias.create);
+  app.post("/api/criterias", auth, criterias.create);
 
   // Retrieve all criterias
-  app.get("/criterias", auth, criterias.findAll);
+  app.get("/api/criterias", auth, criterias.findAll);
 
   // Retrieve a single client with criteriaId
-  app.get("/criterias/:criteriaId", auth, criterias.findOne);
+  app.get("/api/criterias/:criteriaId", auth, criterias.findOne);
 
   // Update a client with criteriaId
-  app.put("/criterias/:criteriaId", auth, criterias.update);
+  app.put("/api/criterias/:criteriaId", auth, criterias.update);
 
   // Delete a client with criteriaId
-  app.delete("/criterias/:criteriaId", auth, criterias.delete);
+  app.delete("/api/criterias/:criteriaId", auth, criterias.delete);
 };

@@ -12,11 +12,13 @@ class EmployeeGrades extends Component {
   };
 
   componentDidMount = async () => {
-    const { employeeId } = this.props.data[0];
+    if (this.props.data[0]) {
+      const { employeeId } = this.props.data[0];
 
-    const employee = await EmployeesService.get(employeeId);
+      const employee = await EmployeesService.get(employeeId);
 
-    this.setState({ employee });
+      this.setState({ employee });
+    }
   };
 
   getCriteriaById = (id) => {

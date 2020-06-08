@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Tasks = mongoose.Schema(
   {
-    order: { type: Number, required: true }, //порядок задачи
+    order: { type: Number }, //порядок задачи
     name: { type: String, required: true, min: 0, max: 100 },
     description: { type: String, required: true, min: 0, max: 300 },
     deadline: { type: Date, required: true },

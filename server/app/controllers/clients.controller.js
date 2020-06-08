@@ -7,7 +7,7 @@ exports.create = (req, res) => {
     phone: req.body.phone,
     name: req.body.name,
     surname: req.body.surname,
-    patronymic: req.body.surname,
+    patronymic: req.body.patronymic,
     email: req.body.email,
   });
 

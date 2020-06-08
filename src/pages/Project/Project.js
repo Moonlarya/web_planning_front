@@ -35,7 +35,12 @@ class Project extends Component {
                 Дедлайн: {moment(`${project.deadline}`).format("Do MMMM YYYY")}
               </p>
               <p className="card-text">Бюджет: {project.budget}</p>
-              <p className="card-text">Клиент: {project.clientId.name}</p>
+              {project.clientId && (
+                <p className="card-text">
+                  Клиент:
+                  {`${project.clientId.surname} ${project.clientId.name} ${project.clientId.patronymic}`}
+                </p>
+              )}
               <Link
                 to={`/projects/${project._id}`}
                 className="btn btn-primary m-1"

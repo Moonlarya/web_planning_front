@@ -4,17 +4,17 @@ module.exports = (app) => {
   const calendar = require("../controllers/calendar.controller.js");
 
   // Create a new client
-  app.post("/calendar", auth, calendar.create);
+  app.post("/api/calendar", auth, calendar.create);
 
   // Retrieve all clients
-  app.get("/calendar", auth, calendar.findAll);
+  app.get("/api/calendar", auth, calendar.findAll);
 
   // Retrieve a single client with clientId
-  app.get("/calendar/:calendarId", auth, calendar.findOne);
+  app.get("/api/calendar/:calendarId", auth, calendar.findOne);
 
   // Update a client with clientId
-  app.put("/calendar/:calendarId", auth, calendar.update);
+  app.put("/api/calendar/:calendarId", auth, calendar.update);
 
   // Delete a client with clientId
-  app.delete("/calendar/:calendarId", auth, calendar.delete);
+  app.delete("/api/calendar/:calendarId", auth, calendar.delete);
 };

@@ -126,8 +126,6 @@ exports.delete = (req, res) => {
 
 exports.auth = async (req, res) => {
   try {
-    const hash = await utils.getPasswordHash(req.body.password);
-
     const employee = await Employees.findOne({
       email: req.body.email,
     });

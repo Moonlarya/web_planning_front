@@ -34,7 +34,6 @@ class Calendar extends Component {
   onChange = (date) => this.setState({ date });
 
   onSubmit = async (values) => {
-    console.log(values);
     try {
       values.date = this.state.date;
       await CalendarService.create(values);
@@ -65,7 +64,7 @@ class Calendar extends Component {
     if (!values.type) {
       errors.type = "Required";
     }
-
+    console.log(errors);
     return errors;
   };
 
@@ -100,6 +99,7 @@ class Calendar extends Component {
                   date: this.state.date,
                   time: "",
                   name: "",
+                  type: "",
                 }}
               >
                 {({
@@ -198,9 +198,11 @@ class Calendar extends Component {
               <div>
                 <h5>{event.name}</h5>
                 <p>{typeReview[event.type]}</p>
-                <p>{`${event.review.surname && event.review.surname} ${
-                  event.review.name && event.review.name
-                } ${event.review.patronymic && event.review.patronymic}`}</p>
+                {event.review && (
+                  <p>{`${event.review.surname && event.review.surname} ${
+                    event.review.name && event.review.name
+                  } ${event.review.patronymic && event.review.patronymic}`}</p>
+                )}
                 {typeof event.result === "undefined" && (
                   <div>
                     <p>

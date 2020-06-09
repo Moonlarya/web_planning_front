@@ -2,7 +2,6 @@ const Clients = require("../models/clients.model.js");
 
 // Create and Save a new Clients
 exports.create = (req, res) => {
-  // Create a Clients
   const client = new Clients({
     phone: req.body.phone,
     name: req.body.name,
@@ -10,8 +9,6 @@ exports.create = (req, res) => {
     patronymic: req.body.patronymic,
     email: req.body.email,
   });
-
-  // Save Clients in the database
   client
     .save()
     .then((data) => {

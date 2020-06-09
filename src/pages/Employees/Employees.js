@@ -43,7 +43,7 @@ class Employees extends Component {
                 >
                   Удалить сотрудника
                 </div>
-                <div className="btn btn-primary m-1">Изменить</div>
+
                 <Link
                   to={`/gradepage/${employee._id}`}
                   className="btn btn-primary m-1"

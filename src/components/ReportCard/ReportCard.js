@@ -53,7 +53,7 @@ class ReportCard extends Component {
               {`${employee.surname} ${employee.name} ${employee.patronymic}`}
             </p>
           )}
-          {data.project && (
+          {data.project.name && (
             <p className="card-text">Проект: {data.project.name}</p>
           )}
         </div>

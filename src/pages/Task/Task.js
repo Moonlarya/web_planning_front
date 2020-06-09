@@ -73,9 +73,8 @@ class Task extends Component {
                 {task.project && (
                   <p className="card-title">Проект: {task.project.name}</p>
                 )}
-                {console.log(task.project)}
                 <div className="d-flex flex-wrap justify-content-between">
-                  {_id && _id === task.employee && (
+                  {_id && _id === task.employee._id && (
                     <button
                       disabled={disabled}
                       onClick={() => this.createReport(task._id)}

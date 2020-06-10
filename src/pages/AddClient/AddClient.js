@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ClientService from "../../services/ClientService";
 import { Formik } from "formik";
+import { ErrorMsg } from "../SignIn/view";
 
 class AddClient extends Component {
   onSubmit = async (values) => {
@@ -9,14 +10,29 @@ class AddClient extends Component {
       this.props.history.push("/clients");
     } catch {}
   };
+
+  validator = (values) => {
+    const errors = {};
+    if (!values.email) {
+      errors.email = "Обязательно к заполнению";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+      errors.email = "Invalid email address";
+    }
+    if (!values.phone) {
+      errors.phone = "Обязательно к заполнению";
+    }
+    if (!values.name) {
+      errors.name = "Обязательно к заполнению";
+    }
+    return errors;
+  };
+
   render() {
     return (
       <div className="col-3 mx-auto m-3">
         <h3>Добавить клиента</h3>
         <Formik
-          /* validate={(values) => {
-            if (values.name.length < 3) return { name: "err" };
-          }}*/
+          validate={this.validator}
           onSubmit={this.onSubmit}
           initialValues={{
             email: "",
@@ -40,7 +56,7 @@ class AddClient extends Component {
               onSubmit={handleSubmit}
               className="d-flex flex-column mt-3 p-3 mx-auto"
             >
-              <span>e-mail клиента</span>
+              <span>e-mail клиента *</span>
               <input
                 className="mb-3"
                 type="email"
@@ -49,7 +65,7 @@ class AddClient extends Component {
                 onBlur={handleBlur}
                 value={values.email}
               />
-              {errors.email && touched.email && errors.email}
+              <ErrorMsg name="email" component="div" />
               <span>Фамилия</span>
               <input
                 className="mb-3"
@@ -59,8 +75,8 @@ class AddClient extends Component {
                 onBlur={handleBlur}
                 value={values.surname}
               />
-              {errors.surname && touched.surname && errors.surname}
-              <span>Имя</span>
+              <ErrorMsg name="surname" component="div" />
+              <span>Имя (Название компании) *</span>
               <input
                 className="mb-3"
                 type="text"
@@ -69,7 +85,7 @@ class AddClient extends Component {
                 onBlur={handleBlur}
                 value={values.name}
               />
-              {errors.name && touched.name && errors.name}
+              <ErrorMsg name="name" component="div" />
               <span>Отчество</span>
               <input
                 className="mb-3"
@@ -79,8 +95,8 @@ class AddClient extends Component {
                 onBlur={handleBlur}
                 value={values.patronymic}
               />
-              {errors.patronymic && touched.patronymic && errors.patronymic}
-              <span>Телефон</span>
+              <ErrorMsg name="patronymic" component="div" />
+              <span>Телефон *</span>
               <input
                 className="mb-3"
                 type="text"
@@ -89,7 +105,7 @@ class AddClient extends Component {
                 onBlur={handleBlur}
                 value={values.phone}
               />
-              {errors.phone && touched.phone && errors.phone}
+              <ErrorMsg name="phone" component="div" />
               <button
                 type="submit"
                 className="btn btn-primary m-1"

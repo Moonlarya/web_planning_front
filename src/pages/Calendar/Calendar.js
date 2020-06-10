@@ -53,16 +53,16 @@ class Calendar extends Component {
   validator = (values) => {
     const errors = {};
     if (!values.name) {
-      errors.name = "Required";
+      errors.name = "Обязательно к заполнению";
     }
     if (!values.time) {
-      errors.time = "Required";
+      errors.time = "Обязательно к заполнению";
     }
     if (!values.review) {
-      errors.review = "Required";
+      errors.review = "Обязательно к заполнению";
     }
     if (!values.type) {
-      errors.type = "Required";
+      errors.type = "Обязательно к заполнению";
     }
     console.log(errors);
     return errors;

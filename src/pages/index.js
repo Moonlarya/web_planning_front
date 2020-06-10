@@ -21,6 +21,7 @@ import FinishedReports from "./FinishedReports";
 import Profile from "./Profile";
 import ProjectPage from "./ProjectPage";
 import GradePage from "./GradePage";
+import EditReport from "./EditReport";
 
 export {
   Home,
@@ -46,4 +47,5 @@ export {
   Profile,
   ProjectPage,
   GradePage,
+  EditReport,
 };

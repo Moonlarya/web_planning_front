@@ -4,6 +4,7 @@ import moment from "moment";
 import { status } from "../../constants/translation";
 import EmployeesService from "../../services/EmployeesService";
 
+import { Link } from "react-router-dom";
 import { withAuth } from "../../stores/User";
 
 class ReportCard extends Component {
@@ -47,7 +48,6 @@ class ReportCard extends Component {
             </div>
           )}
           <p className="card-text">Состояние: {status[data.status]}</p>
-          {console.log(data.project, employee, data.taskId)}
           {employee && (
             <p className="card-title">
               Исполнитель:
@@ -64,9 +64,9 @@ class ReportCard extends Component {
               <div className="btn btn-primary m-1" onClick={onDelete}>
                 Удалить
               </div>
-              <a href="#" className="btn btn-primary  m-1">
+              <Link to={`/report/${data._id}`} className="btn btn-primary  m-1">
                 Изменить
-              </a>
+              </Link>
               {this.props.onComplete && (
                 <a
                   href="#"

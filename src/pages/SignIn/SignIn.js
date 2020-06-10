@@ -40,12 +40,12 @@ class SignIn extends Component {
   validator = (values) => {
     const errors = {};
     if (!values.email) {
-      errors.email = "Required";
+      errors.email = "Обязательно к заполнению";
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
       errors.email = "Invalid email address";
     }
     if (!values.password) {
-      errors.password = "Required";
+      errors.password = "Обязательно к заполнению";
     }
     return errors;
   };

@@ -16,11 +16,11 @@ exports.create = async (req, res) => {
   const employee = new Employees({
     name: req.body.name,
     surname: req.body.surname,
-    patronymic: req.body.surname,
+    patronymic: req.body.patronymic,
     status: req.body.status,
     phone: req.body.phone,
     email: req.body.email,
-    role: req.body.role,
+    type: req.body.type,
     password: req.body.password,
   });
 

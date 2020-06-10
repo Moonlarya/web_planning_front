@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const Reports = mongoose.Schema(
   {
-    link: { type: String, max: 20, require: true },
+    link: { type: String, require: true },
     description: { type: String },
     date: { type: Date, default: Date.now, require: true },
     finishDate: { type: Date },
@@ -12,9 +13,13 @@ const Reports = mongoose.Schema(
       enum: ["active", "disabled", "problem", "finished"],
       max: 8,
     },
-    employeeId: { type: String, require: true },
-    taskId: { type: String, require: true },
-    project: { type: String, require: true },
+    employeeId: {
+      type: Schema.Types.ObjectId,
+      ref: "Employees",
+      require: true,
+    },
+    taskId: { type: Schema.Types.ObjectId, ref: "Tasks", require: true },
+    project: { type: Schema.Types.ObjectId, ref: "Projects", require: true },
   },
   {
     timestamps: true,

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const Projects = mongoose.Schema(
   {
@@ -6,7 +7,7 @@ const Projects = mongoose.Schema(
     description: { type: String, required: true },
     deadline: { type: Date, required: true },
     budget: { type: Number },
-    clientId: { type: String, required: true },
+    clientId: { type: Schema.Types.ObjectId, ref: "Clients" },
   },
   {
     timestamps: true,

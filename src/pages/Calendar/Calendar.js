@@ -188,11 +188,7 @@ class Calendar extends Component {
             >
               <div className="px-5">
                 <h5 className="mt-3 w-20">
-                  {moment(
-                    `${event.date.split("T").slice(0, 1)}T${event.time
-                      .split("T")
-                      .slice(1)}`
-                  ).format("MMMM Do, H:mm")}
+                  {moment(`${event.date}`).format("MMMM Do, H:mm")}
                 </h5>
               </div>
               <div>

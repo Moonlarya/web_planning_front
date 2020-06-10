@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const Clients = mongoose.Schema(
   {
-    phone: { type: Number, required: true },
+    phone: { type: String, required: true },
     name: { type: String, required: true },
-    surname: { type: String, required: true },
-    patronymic: { type: String, required: true },
+    surname: { type: String },
+    patronymic: { type: String },
     email: String,
   },
   {

@@ -145,3 +145,15 @@ exports.findAllbyProject = async (req, res) => {
     });
   }
 };
+
+exports.deleteAll = (req, res) => {
+  Reports.deleteMany({})
+    .then(() => {
+      res.send({ message: "Position deleted successfully!" });
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Cannot delete",
+      });
+    });
+};

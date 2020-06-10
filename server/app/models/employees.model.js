@@ -7,7 +7,7 @@ const Employees = mongoose.Schema(
   {
     name: { type: String, required: true },
     surname: { type: String, required: true },
-    patronymic: { type: String, required: true },
+    patronymic: { type: String },
     phone: { type: String, required: true, min: 0, max: 20 },
     email: { type: String, required: true, min: 0, max: 20 },
     password: { type: String, required: true, default: "1234" },

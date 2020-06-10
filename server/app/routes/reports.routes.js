@@ -9,6 +9,7 @@ module.exports = (app) => {
   // Retrieve all reports
   app.get("/api/reports", auth, reports.findAll);
 
+  app.delete("/api/reports/delete-all", auth, reports.deleteAll);
   // Retrieve a single client with reportId
   app.get("/api/reports/:reportId", auth, reports.findOne);
 

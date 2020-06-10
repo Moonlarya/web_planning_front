@@ -6,7 +6,6 @@ import ReportsService from "../../services/ReportsService";
 import ReportCard from "../../components/ReportCard/";
 
 import * as moment from "moment";
-import { status } from "../../constants/translation";
 
 class ProjectPage extends Component {
   state = {

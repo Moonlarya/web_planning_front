@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import ProjectService from "../../services/ProjectService";
 import ReportsService from "../../services/ReportsService";
 import ReportCard from "../../components/ReportCard/";
+import { extractHostname } from "../../helpers";
 
 import * as moment from "moment";
 
@@ -30,13 +31,21 @@ class ProjectPage extends Component {
         <div className="mx-auto col-5">
           <h3 className="m-3">Информация о проекте</h3>
           <h5 className="card-header">{project.name}</h5>
-          <p className="card-text">{project.description}</p>
+          <p className="card-text">
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={project.description}
+            >
+              {extractHostname(project.description)}
+            </a>
+          </p>
           <p className="card-text">
             Дедлайн: {moment(`${project.deadline}`).format("Do MMMM YYYY")}
           </p>
         </div>
         <h4 className="m-3">Отчетная информация</h4>
-        <div className="col-12 d-flex flex-wrap">
+        <div className="col-12 d-flex justify-content-center flex-wrap">
           {reports.map((report) => (
             <ReportCard
               key={report._id}

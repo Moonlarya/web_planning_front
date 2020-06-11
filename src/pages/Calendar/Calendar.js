@@ -34,9 +34,14 @@ class Calendar extends Component {
   onChange = (date) => this.setState({ date });
 
   onSubmit = async (values) => {
+    const time = values.time;
+    const hours = time.hours();
+    const minutes = time.minutes();
+    const date = moment(this.state.date);
+    date.set({ hour: hours, minute: minutes });
+    const valuesToSubmit = { ...values, date: date.toDate() };
     try {
-      values.date = this.state.date;
-      await CalendarService.create(values);
+      await CalendarService.create(valuesToSubmit);
       this.loadInfo();
     } catch {}
   };
@@ -64,7 +69,6 @@ class Calendar extends Component {
     if (!values.type) {
       errors.type = "Обязательно к заполнению";
     }
-    console.log(errors);
     return errors;
   };
 

@@ -26,7 +26,7 @@ class Project extends Component {
         <Link to="/addproject" className="btn btn-primary mt-3">
           Создать проект
         </Link>
-        <div className="d-flex flex-wrap">
+        <div className="d-flex flex-wrap justify-content-center">
           {projects.map((project) => (
             <div className="card col-3" key={project._id}>
               <h5 className="card-header">{project.name}</h5>

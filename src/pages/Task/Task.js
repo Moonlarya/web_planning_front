@@ -51,7 +51,7 @@ class Task extends Component {
           </Link>
         )}
 
-        <div className="d-flex flex-wrap">
+        <div className="d-flex flex-wrap justify-content-center">
           {filteredTasks.map((task) => (
             <div className="card col-3" key={task._id}>
               <div className="card-body text-left">
@@ -73,33 +73,31 @@ class Task extends Component {
                 {task.project && (
                   <p className="card-title">Проект: {task.project.name}</p>
                 )}
-                <div className="d-flex flex-wrap justify-content-between">
-                  {_id && _id === task.employee._id && (
-                    <button
-                      disabled={disabled}
-                      onClick={() => this.createReport(task._id)}
-                      className="btn btn-primary m-1"
-                    >
-                      Отчет
-                    </button>
-                  )}
-                  {type && type === "manager" && (
-                    <Link
-                      to={`/task/${task._id}`}
-                      className="btn btn-primary m-1"
-                    >
-                      Изменить
-                    </Link>
-                  )}
-                  {type && type === "manager" && (
-                    <div
-                      className="btn btn-outline-danger m-1"
-                      onClick={() => this.deleteInfo(task._id)}
-                    >
-                      Удалить
-                    </div>
-                  )}
-                </div>
+                {_id && _id === task.employee._id && (
+                  <button
+                    disabled={disabled}
+                    onClick={() => this.createReport(task._id)}
+                    className="btn btn-primary m-1"
+                  >
+                    Отчет
+                  </button>
+                )}
+                {type && type === "manager" && (
+                  <Link
+                    to={`/task/${task._id}`}
+                    className="btn btn-primary m-1"
+                  >
+                    Изменить
+                  </Link>
+                )}
+                {type && type === "manager" && (
+                  <div
+                    className="btn btn-outline-danger m-1"
+                    onClick={() => this.deleteInfo(task._id)}
+                  >
+                    Удалить
+                  </div>
+                )}
               </div>
             </div>
           ))}

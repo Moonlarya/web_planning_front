@@ -30,9 +30,9 @@ class FinishedReports extends Component {
       (report) => report.status === "finished"
     );
     return (
-      <main className="col-9 ">
+      <main>
         <h3 className="m-3 text-center">Завершенные отчеты</h3>
-        <div className="d-flex justify-around align-items-start flex-wrap">
+        <div className="d-flex justify-around align-items-start justify-content-center flex-wrap">
           {filteredReports.map((report) => (
             <ReportCard
               key={report._id}

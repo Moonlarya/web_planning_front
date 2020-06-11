@@ -25,7 +25,7 @@ class Clients extends Component {
         <Link to="/addclient" className="btn btn-primary mt-3">
           Добавить клиента
         </Link>
-        <div className="d-flex flex-wrap">
+        <div className="d-flex flex-wrap justify-content-center">
           {clients.map((client) => (
             <div className="card col-3" key={client._id}>
               <h5 className="card-header">{`${client.surname} ${client.name} ${client.patronymic}`}</h5>

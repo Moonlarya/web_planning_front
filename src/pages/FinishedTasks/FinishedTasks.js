@@ -25,9 +25,9 @@ class FinishedTasks extends Component {
     } = this.props;
     const filteredTasks = tasks.filter((task) => task.status === "finished");
     return (
-      <main>
+      <div>
         <h3 className="m-3">Выполненные задачи</h3>
-        <div className="d-flex text-left flex-wrap">
+        <div className="d-flex justify-content-center text-left flex-wrap">
           {filteredTasks.map((task) => (
             <div className="card col-3" key={task._id}>
               <div className="card-body">
@@ -71,7 +71,7 @@ class FinishedTasks extends Component {
             </div>
           ))}
         </div>
-      </main>
+      </div>
     );
   }
 }

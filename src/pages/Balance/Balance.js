@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import * as moment from "moment";
+import moment from "moment";
 import TaskService from "../../services/TasksService";
 
 import { withAuth } from "../../stores/User";
@@ -7,23 +7,29 @@ import { withAuth } from "../../stores/User";
 class Balance extends Component {
   state = {
     tasks: [],
+    week: moment().startOf("week"),
   };
+
   async componentDidMount() {
     this.loadInfo();
   }
+
   loadInfo = async () => {
     const {
       user: { type, _id },
     } = this.props;
+
     let tasks = [];
     if (type === "manager") {
       tasks = await TaskService.getAll();
     } else {
       tasks = await TaskService.getAllbyUserId(_id);
     }
+
     this.setState({ tasks: tasks });
   };
-  render() {
+
+  getBalanceData() {
     const { tasks } = this.state;
 
     const bonucesArr = tasks.filter((task) => task.bonuce > 0);
@@ -34,6 +40,24 @@ class Balance extends Component {
     const fineSum = fineArr.reduce((acc, el) => acc + el.bonuce, 0);
     const available = availableArr.reduce((acc, el) => acc + el.bonuce, 0);
     const final = bonuceSum - fineSum;
+
+    return { bonuceSum, fineSum, available, final };
+  }
+
+  handleWeekChange(value) {
+    const { week } = this.state;
+
+    this.setState({
+      week: moment(week).add(value, "week"),
+    });
+  }
+
+  render() {
+    const { tasks, week } = this.state;
+
+    const { bonuceSum, fineSum, available, final } = this.getBalanceData();
+
+    const weekFormat = "Do MMMM YYYY";
     return (
       <div>
         <section className="d-flex align-items-start flex-wrap">
@@ -47,6 +71,28 @@ class Balance extends Component {
             </div>
           </div>
         </section>
+
+        <section>
+          <div className="d-flex justify-content-center align-items-center">
+            <button
+              className="btn btn-primary m-1"
+              onClick={() => this.handleWeekChange(-1)}
+            >
+              {"<"}
+            </button>
+            <div>
+              {moment(week).startOf("week").format(weekFormat)} -{" "}
+              {moment(week).endOf("week").format(weekFormat)}
+            </div>
+            <button
+              className="btn btn-primary m-1"
+              onClick={() => this.handleWeekChange(1)}
+            >
+              {">"}
+            </button>
+          </div>
+        </section>
+
         <section>
           <h5 className="mx-auto">Бонусы</h5>
           <div className="d-flex align-items-start flex-wrap">

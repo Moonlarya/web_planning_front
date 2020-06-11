@@ -22,9 +22,6 @@ class Home extends Component {
     this.loadInfo();
   };
   render() {
-    const {
-      user: { type, _id },
-    } = this.props;
     const { tasks, backgroundColor } = this.state;
 
     return (

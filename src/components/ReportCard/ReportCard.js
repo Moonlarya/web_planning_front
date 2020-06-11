@@ -68,7 +68,7 @@ class ReportCard extends Component {
         {data.taskId &&
           ((type && type === "manager") || _id === data.taskId.employee) && (
             <div>
-              <div className="btn btn-primary m-1" onClick={onDelete}>
+              <div className="btn btn-outline-danger m-1" onClick={onDelete}>
                 Удалить
               </div>
               <Link to={`/report/${data._id}`} className="btn btn-primary  m-1">

@@ -93,7 +93,7 @@ class Task extends Component {
                   )}
                   {type && type === "manager" && (
                     <div
-                      className="btn btn-primary m-1"
+                      className="btn btn-outline-danger m-1"
                       onClick={() => this.deleteInfo(task._id)}
                     >
                       Удалить

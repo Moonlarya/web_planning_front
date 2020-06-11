@@ -48,7 +48,7 @@ class Project extends Component {
                 Информация о проекте
               </Link>
               <div
-                className="btn btn-primary m-1"
+                className="btn btn-outline-danger m-1"
                 onClick={() => this.deleteProject(project._id)}
               >
                 Удалить проект

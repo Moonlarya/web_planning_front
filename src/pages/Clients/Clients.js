@@ -38,7 +38,7 @@ class Clients extends Component {
                 Изменить
               </Link>
               <div
-                className="btn btn-primary m-1"
+                className="btn btn-outline-danger m-1"
                 onClick={() => this.deleteClient(client._id)}
               >
                 Удалить клиента

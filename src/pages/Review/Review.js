@@ -57,7 +57,7 @@ class Review extends Component {
                   Взять на работу
                 </a>
                 <div
-                  className="btn btn-primary m-1"
+                  className="btn btn-outline-danger m-1"
                   onClick={() => this.deleteReview(review._id)}
                 >
                   Удалить резюме

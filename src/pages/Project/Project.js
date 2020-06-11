@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ProjectService from "../../services/ProjectService";
 import { Link } from "react-router-dom";
 import * as moment from "moment";
+import { extractHostname } from "../../helpers";
 
 class Project extends Component {
   state = {
@@ -28,9 +29,17 @@ class Project extends Component {
         </Link>
         <div className="d-flex flex-wrap justify-content-center">
           {projects.map((project) => (
-            <div className="card col-3" key={project._id}>
+            <div className="card col-6 col-md-4 col-lg-3" key={project._id}>
               <h5 className="card-header">{project.name}</h5>
-              <p className="card-text">{project.description}</p>
+              <p className="card-text">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={project.description}
+                >
+                  {extractHostname(project.description)}
+                </a>
+              </p>
               <p className="card-text">
                 Дедлайн: {moment(`${project.deadline}`).format("Do MMMM YYYY")}
               </p>

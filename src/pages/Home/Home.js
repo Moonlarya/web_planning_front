@@ -3,6 +3,7 @@ import TaskService from "../../services/TasksService";
 import "./style.scss";
 import * as moment from "moment";
 import { status } from "../../constants/translation";
+import { withAuth } from "../../stores/User";
 
 class Home extends Component {
   state = {
@@ -21,10 +22,14 @@ class Home extends Component {
     this.loadInfo();
   };
   render() {
+    const {
+      user: { type, _id },
+    } = this.props;
     const { tasks, backgroundColor } = this.state;
 
     return (
-      <div id="accordion">
+      <div id="accordion" className="col-12 m-3">
+        <h2 className="m-3">Рабочая доска процессов</h2>
         {tasks &&
           tasks.map((task) => (
             <div className="card" key={task._id}>
@@ -38,7 +43,10 @@ class Home extends Component {
                 >
                   {task.name}
                 </h5>
-                <div className="d-flex">
+                <div
+                  className="d-flex"
+                  style={{ position: "absolute", top: "20", left: "500px" }}
+                >
                   <div
                     className="m-auto"
                     style={{
@@ -68,7 +76,7 @@ class Home extends Component {
                   <p className="card-title">
                     Дедлайн: {moment(`${task.deadline}`).format("Do MMMM YYYY")}
                   </p>
-                  <p className="card-title">Бонусы: {task.bonuce}</p>
+                  <p className="card-title">Доступные бонусы: {task.bonuce}</p>
                 </div>
               </div>
             </div>
@@ -78,4 +86,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withAuth(Home);

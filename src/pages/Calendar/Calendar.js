@@ -73,7 +73,6 @@ class Calendar extends Component {
     const dayEvents = events.filter((event) =>
       moment(event.date).isSame(this.state.date, "day")
     );
-    console.log();
     return (
       <main className="col-12 bonuce h-100">
         <h3>Календарь собеседований</h3>

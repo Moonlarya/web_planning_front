@@ -43,9 +43,12 @@ class Review extends Component {
                 <p className="card-text">
                   Должность: {positionTypes[review.type]}
                 </p>
-                <a href="#" className="btn btn-primary m-1">
+                <Link
+                  to={`/review/${review._id}`}
+                  className="btn btn-primary m-1"
+                >
                   Редактировать
-                </a>
+                </Link>
                 <a
                   href="#"
                   className="btn btn-primary m-1"

@@ -25,6 +25,8 @@ import EditReport from "./EditReport";
 import EditClient from "./EditClient";
 import EditTask from "./EditTask";
 import EditEmployee from "./EditEmployee";
+import EditProject from "./EditProject";
+import EditReview from "./EditReview";
 
 export {
   Home,
@@ -54,4 +56,6 @@ export {
   EditClient,
   EditTask,
   EditEmployee,
+  EditProject,
+  EditReview,
 };

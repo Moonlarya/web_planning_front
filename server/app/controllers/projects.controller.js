@@ -77,13 +77,6 @@ exports.findOne = (req, res) => {
 
 // Update a project identified by the projectId in the request
 exports.update = (req, res) => {
-  // Validate Request
-  if (!req.body.content) {
-    return res.status(400).send({
-      message: "Projects content can not be empty",
-    });
-  }
-
   // Find project and update it with the request body
   Projects.findByIdAndUpdate(req.params.projectId, req.body, { new: true })
     .then((project) => {

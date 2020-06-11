@@ -97,13 +97,6 @@ exports.createEmployee = async (req, res) => {
 
 // Update a review identified by the reviewId in the request
 exports.update = (req, res) => {
-  // Validate Request
-  if (!req.body.content) {
-    return res.status(400).send({
-      message: "Reviews content can not be empty",
-    });
-  }
-
   // Find review and update it with the request body
   Reviews.findByIdAndUpdate(req.params.reviewId, req.body, { new: true })
     .then((review) => {

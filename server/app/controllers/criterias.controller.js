@@ -69,14 +69,7 @@ exports.update = (req, res) => {
   }
 
   // Find criteria and update it with the request body
-  Criterias.findByIdAndUpdate(
-    req.params.criteriaId,
-    {
-      title: req.body.title || "Untitled Criterias",
-      content: req.body.content,
-    },
-    { new: true }
-  )
+  Criterias.findByIdAndUpdate(req.params.criteriaId, req.body, { new: true })
     .then((criteria) => {
       if (!criteria) {
         return res.status(404).send({

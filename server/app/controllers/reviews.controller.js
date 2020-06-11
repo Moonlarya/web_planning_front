@@ -105,14 +105,7 @@ exports.update = (req, res) => {
   }
 
   // Find review and update it with the request body
-  Reviews.findByIdAndUpdate(
-    req.params.reviewId,
-    {
-      title: req.body.title || "Untitled Reviews",
-      content: req.body.content,
-    },
-    { new: true }
-  )
+  Reviews.findByIdAndUpdate(req.params.reviewId, req.body, { new: true })
     .then((review) => {
       if (!review) {
         return res.status(404).send({

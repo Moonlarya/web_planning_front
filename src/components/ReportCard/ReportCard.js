@@ -7,6 +7,8 @@ import EmployeesService from "../../services/EmployeesService";
 import { Link } from "react-router-dom";
 import { withAuth } from "../../stores/User";
 
+import { extractHostname } from "../../helpers";
+
 class ReportCard extends Component {
   state = {
     employee: null,
@@ -34,7 +36,12 @@ class ReportCard extends Component {
         <div className="card-body">
           <h5>Комментарий</h5>
           <p className="card-title">{data.description}</p>
-          <p className="card-text">Ссылка: {data.link}</p>
+          <p className="card-text">
+            Ссылка:{" "}
+            <a target="_blank" rel="noopener noreferrer" href={data.link}>
+              {extractHostname(data.link)}
+            </a>
+          </p>
           <h5 className="card-title">Дата создания</h5>
           <p className="card-text">
             {moment(data.date).format("Do MMMM YYYY")}

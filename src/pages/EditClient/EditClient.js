@@ -3,10 +3,19 @@ import ClientService from "../../services/ClientService";
 import { Formik } from "formik";
 import { ErrorMsg } from "../SignIn/view";
 
-class AddClient extends Component {
+class EditClient extends Component {
+  state = {
+    client: null,
+  };
+  componentDidMount = async () => {
+    const { id } = this.props.match.params;
+    const client = await ClientService.get(id);
+    this.setState({ client });
+  };
   onSubmit = async (values) => {
     try {
-      await ClientService.create(values);
+      const { id } = this.props.match.params;
+      await ClientService.update(id, values);
       this.props.history.push("/clients");
     } catch {}
   };
@@ -28,18 +37,22 @@ class AddClient extends Component {
   };
 
   render() {
+    const { client } = this.state;
+    if (!client) {
+      return null;
+    }
     return (
       <div className="col-3 mx-auto m-3">
-        <h3>Добавить клиента</h3>
+        <h3>Изменить информацию о клиенте</h3>
         <Formik
           validate={this.validator}
           onSubmit={this.onSubmit}
           initialValues={{
-            email: "",
-            surname: "",
-            name: "",
-            patronymic: "",
-            phone: "",
+            email: client.email,
+            surname: client.surname,
+            name: client.name,
+            patronymic: client.patronymic,
+            phone: client.phone,
           }}
         >
           {({
@@ -50,13 +63,12 @@ class AddClient extends Component {
             handleBlur,
             handleSubmit,
             isSubmitting,
-            /* and other goodies */
           }) => (
             <form
               onSubmit={handleSubmit}
               className="d-flex flex-column mt-3 p-3 mx-auto"
             >
-              <span>e-mail клиента *</span>
+              <span>e-mail клиента</span>
               <input
                 className="mb-3"
                 type="email"
@@ -76,7 +88,7 @@ class AddClient extends Component {
                 value={values.surname}
               />
               <ErrorMsg name="surname" component="div" />
-              <span>Имя (Название компании) *</span>
+              <span>Имя (Название компании)</span>
               <input
                 className="mb-3"
                 type="text"
@@ -96,7 +108,7 @@ class AddClient extends Component {
                 value={values.patronymic}
               />
               <ErrorMsg name="patronymic" component="div" />
-              <span>Телефон *</span>
+              <span>Телефон</span>
               <input
                 className="mb-3"
                 type="tel"
@@ -111,7 +123,7 @@ class AddClient extends Component {
                 className="btn btn-primary m-1"
                 disabled={isSubmitting}
               >
-                Создать
+                Сохранить
               </button>
             </form>
           )}
@@ -121,4 +133,4 @@ class AddClient extends Component {
   }
 }
 
-export default AddClient;
+export default EditClient;

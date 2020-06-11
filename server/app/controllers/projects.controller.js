@@ -85,14 +85,7 @@ exports.update = (req, res) => {
   }
 
   // Find project and update it with the request body
-  Projects.findByIdAndUpdate(
-    req.params.projectId,
-    {
-      title: req.body.title || "Untitled Projects",
-      content: req.body.content,
-    },
-    { new: true }
-  )
+  Projects.findByIdAndUpdate(req.params.projectId, req.body, { new: true })
     .then((project) => {
       if (!project) {
         return res.status(404).send({

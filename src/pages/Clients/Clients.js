@@ -31,6 +31,12 @@ class Clients extends Component {
               <h5 className="card-header">{`${client.surname} ${client.name} ${client.patronymic}`}</h5>
               <p className="card-text">e-mail: {client.email}</p>
               <p className="card-text">+380{client.phone}</p>
+              <Link
+                className="btn btn-primary m-1"
+                to={`/client/${client._id}`}
+              >
+                Изменить
+              </Link>
               <div
                 className="btn btn-primary m-1"
                 onClick={() => this.deleteClient(client._id)}

@@ -84,6 +84,14 @@ class Task extends Component {
                     </button>
                   )}
                   {type && type === "manager" && (
+                    <Link
+                      to={`/task/${task._id}`}
+                      className="btn btn-primary m-1"
+                    >
+                      Изменить
+                    </Link>
+                  )}
+                  {type && type === "manager" && (
                     <div
                       className="btn btn-primary m-1"
                       onClick={() => this.deleteInfo(task._id)}

@@ -22,6 +22,8 @@ import Profile from "./Profile";
 import ProjectPage from "./ProjectPage";
 import GradePage from "./GradePage";
 import EditReport from "./EditReport";
+import EditClient from "./EditClient";
+import EditTask from "./EditTask";
 
 export {
   Home,
@@ -48,4 +50,6 @@ export {
   ProjectPage,
   GradePage,
   EditReport,
+  EditClient,
+  EditTask,
 };

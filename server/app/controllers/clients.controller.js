@@ -60,22 +60,8 @@ exports.findOne = (req, res) => {
 
 // Update a client identified by the clientId in the request
 exports.update = (req, res) => {
-  // Validate Request
-  if (!req.body.content) {
-    return res.status(400).send({
-      message: "Clients content can not be empty",
-    });
-  }
-
   // Find client and update it with the request body
-  Clients.findByIdAndUpdate(
-    req.params.clientId,
-    {
-      title: req.body.title || "Untitled Clients",
-      content: req.body.content,
-    },
-    { new: true }
-  )
+  Clients.findByIdAndUpdate(req.params.clientId, req.body, { new: true })
     .then((client) => {
       if (!client) {
         return res.status(404).send({

@@ -65,14 +65,7 @@ exports.update = (req, res) => {
   }
 
   // Find grade and update it with the request body
-  Grades.findByIdAndUpdate(
-    req.params.gradeId,
-    {
-      title: req.body.title || "Untitled Grades",
-      content: req.body.content,
-    },
-    { new: true }
-  )
+  Grades.findByIdAndUpdate(req.params.gradeId, req.body, { new: true })
     .then((grade) => {
       if (!grade) {
         return res.status(404).send({

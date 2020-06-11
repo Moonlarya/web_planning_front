@@ -33,7 +33,7 @@ class SignIn extends Component {
 
       history.push("/home");
     } catch (err) {
-      setErrors({ error: "Invalid email or password" });
+      setErrors({ error: "Неверный логин или пароль" });
     }
   };
 
@@ -42,7 +42,7 @@ class SignIn extends Component {
     if (!values.email) {
       errors.email = "Обязательно к заполнению";
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-      errors.email = "Invalid email address";
+      errors.email = "Неверный адрес электронной почты";
     }
     if (!values.password) {
       errors.password = "Обязательно к заполнению";
@@ -53,7 +53,7 @@ class SignIn extends Component {
   render() {
     return (
       <Wrapper>
-        <h1>Sign in</h1>
+        <h1>Войти в систему</h1>
         <Formik
           initialValues={SignIn.initialValues}
           validate={this.validator}
@@ -63,15 +63,15 @@ class SignIn extends Component {
             <Form>
               <ErrorMsg name="email" component="div" />
               <Input
-                placeholder="Email*"
+                placeholder="Электронная почта*"
                 type="text"
                 name="email"
                 valid={touched.email && !errors.email}
                 error={touched.email && errors.email}
               />
-              <ErrorMsg name="password" component="div" />
+              <ErrorMsg name="email" component="div" />
               <Input
-                placeholder="Password*"
+                placeholder="Пароль*"
                 type="password"
                 name="password"
                 valid={touched.password && !errors.password}
@@ -80,7 +80,7 @@ class SignIn extends Component {
               <Button type="submit" disabled={isSubmitting}>
                 Sign In
               </Button>
-              {errors.error && <p>{errors.error}</p>}
+              <ErrorMsg name="password" component="div" />
               <label htmlFor="check" className="checkbox_pseudo">
                 <Input
                   type="checkbox"

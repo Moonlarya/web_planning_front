@@ -24,6 +24,7 @@ import GradePage from "./GradePage";
 import EditReport from "./EditReport";
 import EditClient from "./EditClient";
 import EditTask from "./EditTask";
+import EditEmployee from "./EditEmployee";
 
 export {
   Home,
@@ -52,4 +53,5 @@ export {
   EditReport,
   EditClient,
   EditTask,
+  EditEmployee,
 };

@@ -13,9 +13,10 @@ const Tasks = mongoose.Schema(
     employee: { type: Schema.Types.ObjectId, ref: "Employees" },
     status: { type: String, default: "active", enum: ["active", "finished"] },
     project: { type: Schema.Types.ObjectId, ref: "Projects" },
+    createdAt: { type: Date, default: Date.now },
   },
   {
-    timestamps: true,
+    // timestamps: true,
   }
 );
 

@@ -30,6 +30,7 @@ import {
   EditReport,
   EditClient,
   EditTask,
+  EditEmployee,
 } from "../pages";
 
 const RouteSchema = () => (
@@ -47,6 +48,7 @@ const RouteSchema = () => (
       <DashboardRoute exact path="/report" component={Report} />
       <DashboardRoute exact path="/report/:id" component={EditReport} />
       <DashboardRoute exact path="/task/:id" component={EditTask} />
+      <DashboardRoute exact path="/employee/:id" component={EditEmployee} />
       <DashboardRoute exact path="/client/:id" component={EditClient} />
       <DashboardRoute exact path="/balance" component={Balance} />
       <DashboardRoute exact path="/employees" component={Employees} />

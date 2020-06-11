@@ -37,19 +37,24 @@ class Employees extends Component {
                 {moment(`${employee.createdAt}`).format("Do MMMM YYYY")}
               </p>
               <div className="d-flex flex-wrap  justify-content-center">
-                <div
-                  className="btn btn-primary m-1"
-                  onClick={() => this.deleteEmployee(employee._id)}
-                >
-                  Удалить сотрудника
-                </div>
-
                 <Link
                   to={`/gradepage/${employee._id}`}
                   className="btn btn-primary m-1"
                 >
                   Оценивание
                 </Link>
+                <Link
+                  to={`/employee/${employee._id}`}
+                  className="btn btn-primary m-1"
+                >
+                  Изменить
+                </Link>
+                <div
+                  className="btn btn-outline-danger m-1 "
+                  onClick={() => this.deleteEmployee(employee._id)}
+                >
+                  Удалить сотрудника
+                </div>
               </div>
             </div>
           ))}

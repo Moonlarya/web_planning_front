@@ -20,9 +20,10 @@ const Reports = mongoose.Schema(
     },
     taskId: { type: Schema.Types.ObjectId, ref: "Tasks", require: true },
     project: { type: Schema.Types.ObjectId, ref: "Projects", require: true },
+    createdAt: { type: Date, default: Date.now },
   },
   {
-    timestamps: true,
+    // timestamps: true,
   }
 );
 

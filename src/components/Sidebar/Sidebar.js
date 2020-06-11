@@ -39,13 +39,13 @@ const Sidebar = ({ history, user: { name, surname, patronymic, type } }) => (
           </Link>
         </li>
       )}
-      {["manager"].includes(type) && (
+      {
         <li className="nav-item">
           <Link className="nav-link" to="/projects">
             Проекты
           </Link>
         </li>
-      )}
+      }
       <li className="nav-item dropright">
         <a
           className="nav-link dropdown-toggle"

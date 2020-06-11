@@ -9,8 +9,6 @@ import {
 } from "recharts";
 import moment from "moment";
 
-const data = [{ name: "Page A", uv: 400, pv: 2400, amt: 2400 }];
-
 const weekdays = moment.weekdaysShort();
 
 const valueName = "Бонусы";

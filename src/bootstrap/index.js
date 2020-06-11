@@ -1,5 +1,7 @@
 import React from "react";
 
+import "moment/locale/ru";
+
 import "bootstrap/scss/bootstrap.scss";
 import "../style/index.scss";
 

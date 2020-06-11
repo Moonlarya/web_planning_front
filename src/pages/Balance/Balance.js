@@ -69,7 +69,7 @@ class Balance extends Component {
 
     return (
       <div>
-        <section className="d-flex align-items-start flex-wrap">
+        <section className="d-flex align-items-start justify-content-center flex-wrap">
           <div className="card">
             <h5 className="card-header">Текущий баланс</h5>
             <div className="card-body d-flex">
@@ -106,7 +106,7 @@ class Balance extends Component {
 
         <section>
           <h5 className="mx-auto">Бонусы</h5>
-          <div className="d-flex align-items-start flex-wrap">
+          <div className="d-flex align-items-start justify-content-center flex-wrap">
             {tasksByWeek.map((task) => (
               <div className="card col-3 text-left" key={task._id}>
                 <div className="card-body">

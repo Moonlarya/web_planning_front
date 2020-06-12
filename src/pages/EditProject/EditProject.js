@@ -55,6 +55,7 @@ class EditProject extends Component {
             setFieldValue,
           }) => (
             <form
+              autoComplete="off"
               onSubmit={handleSubmit}
               className="d-flex flex-column mt-3 p-3 mx-auto"
             >

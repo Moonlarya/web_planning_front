@@ -45,7 +45,7 @@ class Balance extends Component {
     const fineSum = fineArr.reduce((acc, el) => acc + el.bonuce, 0);
     const available = availableArr.reduce((acc, el) => acc + el.bonuce, 0);
     const final = bonuceSum - fineSum;
-    
+
     return { bonuceSum, fineSum, available, final };
   }
 

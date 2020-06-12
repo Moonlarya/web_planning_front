@@ -3,6 +3,7 @@ import ProjectService from "../../services/ProjectService";
 import { Link } from "react-router-dom";
 import * as moment from "moment";
 import { extractHostname } from "../../helpers";
+import { withAuth } from "../../stores/User";
 
 class Project extends Component {
   state = {
@@ -21,6 +22,7 @@ class Project extends Component {
   };
   render() {
     const { projects } = this.state;
+    const { user } = this.props;
     return (
       <div>
         <h3 className="m-3">Проекты</h3>
@@ -56,18 +58,22 @@ class Project extends Component {
               >
                 Информация о проекте
               </Link>
-              <Link
-                to={`/project/${project._id}`}
-                className="btn btn-primary m-1"
-              >
-                Изменить
-              </Link>
-              <div
-                className="btn btn-outline-danger m-1"
-                onClick={() => this.deleteProject(project._id)}
-              >
-                Удалить проект
-              </div>
+              {user.type === "manager" && (
+                <Link
+                  to={`/project/${project._id}`}
+                  className="btn btn-primary m-1"
+                >
+                  Изменить
+                </Link>
+              )}
+              {user.type === "manager" && (
+                <div
+                  className="btn btn-outline-danger m-1"
+                  onClick={() => this.deleteProject(project._id)}
+                >
+                  Удалить проект
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -76,4 +82,4 @@ class Project extends Component {
   }
 }
 
-export default Project;
+export default withAuth(Project);

@@ -48,6 +48,7 @@ class EditEmployee extends Component {
             isSubmitting,
           }) => (
             <form
+              autoComplete="off"
               onSubmit={handleSubmit}
               className="d-flex flex-column formCreate"
             >

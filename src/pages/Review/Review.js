@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import ReviewsService from "../../services/ReviewsService";
 import { positionTypes } from "../../constants/translation";
+import { withAuth } from "../../stores/User";
 
 class Review extends Component {
   state = {
@@ -20,6 +21,7 @@ class Review extends Component {
   };
   render() {
     const { reviews } = this.state;
+    const { user } = this.props;
     return (
       <main className="col-12 bonuce ">
         <h3 className="m-3">Резюме</h3>
@@ -49,16 +51,18 @@ class Review extends Component {
                 >
                   Редактировать
                 </Link>
-                <a
-                  href="#"
-                  className="btn btn-primary m-1"
-                  onClick={async () => {
-                    await ReviewsService.createEmployee(review._id);
-                    this.props.history.push("/employees");
-                  }}
-                >
-                  Взять на работу
-                </a>
+                {user.type === "manager" && (
+                  <a
+                    href="#"
+                    className="btn btn-primary m-1"
+                    onClick={async () => {
+                      await ReviewsService.createEmployee(review._id);
+                      this.props.history.push("/employees");
+                    }}
+                  >
+                    Взять на работу
+                  </a>
+                )}
                 <div
                   className="btn btn-outline-danger m-1"
                   onClick={() => this.deleteReview(review._id)}
@@ -74,4 +78,4 @@ class Review extends Component {
   }
 }
 
-export default Review;
+export default withAuth(Review);

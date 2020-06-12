@@ -66,6 +66,7 @@ class GradePage extends Component {
             /* and other goodies */
           }) => (
             <form
+              autoComplete="off"
               onSubmit={handleSubmit}
               className="col-4 list-group mx-auto my-3"
             >

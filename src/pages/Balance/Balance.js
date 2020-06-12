@@ -34,16 +34,18 @@ class Balance extends Component {
 
   getBalanceData() {
     const { tasks } = this.state;
+    const finishedTasks = _.filter(tasks, { status: "finished" });
 
-    const bonucesArr = tasks.filter((task) => task.bonuce > 0);
-    const fineArr = tasks.filter((task) => task.bonuce < 0);
+    const bonucesArr = finishedTasks.filter((task) => task.bonuce > 0);
+    const fineArr = finishedTasks.filter((task) => task.earnedBonuce < 0);
+
     const availableArr = tasks.filter((task) => task.status !== "finished");
 
     const bonuceSum = bonucesArr.reduce((acc, el) => acc + el.bonuce, 0);
     const fineSum = fineArr.reduce((acc, el) => acc + el.bonuce, 0);
     const available = availableArr.reduce((acc, el) => acc + el.bonuce, 0);
     const final = bonuceSum - fineSum;
-
+    
     return { bonuceSum, fineSum, available, final };
   }
 

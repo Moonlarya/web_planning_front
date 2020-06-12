@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import EmployeesService from "../../services/EmployeesService";
 import * as moment from "moment";
 import { Link } from "react-router-dom";
+import { withAuth } from "../../stores/User";
 
 import { positionTypes } from "../../constants/translation";
 
@@ -22,6 +23,7 @@ class Employees extends Component {
   };
   render() {
     const { employees } = this.state;
+    const { user } = this.props;
     return (
       <main>
         <h3 className="m-3">Сотрудники</h3>
@@ -36,25 +38,32 @@ class Employees extends Component {
                 Дата появления:
                 {moment(`${employee.createdAt}`).format("Do MMMM YYYY")}
               </p>
+
               <div className="d-flex flex-wrap  justify-content-center">
-                <Link
-                  to={`/gradepage/${employee._id}`}
-                  className="btn btn-primary m-1"
-                >
-                  Оценивание
-                </Link>
-                <Link
-                  to={`/employee/${employee._id}`}
-                  className="btn btn-primary m-1"
-                >
-                  Изменить
-                </Link>
-                <div
-                  className="btn btn-outline-danger m-1 "
-                  onClick={() => this.deleteEmployee(employee._id)}
-                >
-                  Удалить сотрудника
-                </div>
+                {user.type === "hr" && (
+                  <Link
+                    to={`/gradepage/${employee._id}`}
+                    className="btn btn-primary m-1"
+                  >
+                    Оценивание
+                  </Link>
+                )}
+                {user.type === "manager" && (
+                  <Link
+                    to={`/employee/${employee._id}`}
+                    className="btn btn-primary m-1"
+                  >
+                    Изменить
+                  </Link>
+                )}
+                {user.type === "manager" && (
+                  <div
+                    className="btn btn-outline-danger m-1 "
+                    onClick={() => this.deleteEmployee(employee._id)}
+                  >
+                    Удалить сотрудника
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -63,4 +72,4 @@ class Employees extends Component {
     );
   }
 }
-export default Employees;
+export default withAuth(Employees);

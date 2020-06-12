@@ -38,14 +38,14 @@ class Balance extends Component {
 
     const bonucesArr = finishedTasks.filter((task) => task.bonuce > 0);
     const fineArr = finishedTasks.filter((task) => task.earnedBonuce < 0);
-    console.log(fineArr);
+
     const availableArr = tasks.filter((task) => task.status !== "finished");
 
     const bonuceSum = bonucesArr.reduce((acc, el) => acc + el.bonuce, 0);
     const fineSum = fineArr.reduce((acc, el) => acc + el.bonuce, 0);
     const available = availableArr.reduce((acc, el) => acc + el.bonuce, 0);
     const final = bonuceSum - fineSum;
-    debugger;
+    
     return { bonuceSum, fineSum, available, final };
   }
 

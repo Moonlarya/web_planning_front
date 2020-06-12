@@ -53,6 +53,7 @@ class AddClient extends Component {
             /* and other goodies */
           }) => (
             <form
+              autoComplete="off"
               onSubmit={handleSubmit}
               className="d-flex flex-column mt-3 p-3 mx-auto"
             >

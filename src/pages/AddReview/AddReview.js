@@ -37,6 +37,7 @@ class AddReview extends Component {
             /* and other goodies */
           }) => (
             <form
+              autoComplete="off"
               onSubmit={handleSubmit}
               className="d-flex flex-column formCreate"
             >

@@ -14,6 +14,7 @@ class Project extends Component {
   }
   loadClients = async () => {
     const projects = await ProjectService.getAll();
+    console.log(projects);
     this.setState({ projects: projects });
   };
   deleteProject = async (id) => {

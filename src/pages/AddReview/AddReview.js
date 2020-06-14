@@ -72,8 +72,10 @@ class AddReview extends Component {
               />
               {errors.patronymic && touched.patronymic && errors.patronymic}
               <span>Комментарий</span>
-              <input
+              <textarea
                 className="mb-3"
+                cols="300"
+                style={{ resize: "none" }}
                 type="text"
                 name="description"
                 onChange={handleChange}

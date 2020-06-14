@@ -18,9 +18,19 @@ class EditProject extends Component {
     const project = await ProjectService.get(id);
     this.setState({ clients, project });
   }
-
+  validate = (values) => {
+    const errors = {};
+    if (values.budget < 0) {
+      errors.budget = "Бюджет не может быть отрицательным";
+    }
+    if (moment(values.deadline).isBefore(Date.now())) {
+      errors.budget = "Дедлайн не может быть раньше текушей даты!";
+    }
+    return errors;
+  };
   onSubmit = async (values) => {
     try {
+      console.log(values);
       const { id } = this.props.match.params;
       await ProjectService.update(id, values);
       this.props.history.push("/projects");
@@ -36,6 +46,7 @@ class EditProject extends Component {
         <h4>Изменить проект</h4>
         <Formik
           onSubmit={this.onSubmit}
+          validate={this.validate}
           initialValues={{
             name: project.name,
             description: project.description,
@@ -70,7 +81,9 @@ class EditProject extends Component {
               />
               <ErrorMsg name="name" component="div" />
               <span>Описание</span>
-              <input
+              <textarea
+                cols="300"
+                style={{ resize: "none" }}
                 className="mb-3"
                 type="text"
                 name="description"

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ProjectService from "../../services/ProjectService";
 import ClientService from "../../services/ClientService";
+import * as moment from "moment";
 import { Formik } from "formik";
 import Datetime from "react-datetime";
 import "../../style/datetime.css";
@@ -13,7 +14,16 @@ class AddProject extends Component {
     const clients = await ClientService.getAll();
     this.setState({ clients: clients });
   }
-
+  validate = (values) => {
+    const errors = {};
+    if (values.budget < 0) {
+      errors.budget = "Бюджет не может быть отрицательным";
+    }
+    if (moment(values.deadline).isBefore(Date.now())) {
+      errors.budget = "Дедлайн не может быть раньше текушей даты!";
+    }
+    return errors;
+  };
   onSubmit = async (values) => {
     try {
       await ProjectService.create(values);
@@ -23,10 +33,11 @@ class AddProject extends Component {
   render() {
     const { clients } = this.state;
     return (
-      <div className="col-3 mt-3 p-3 mx-auto">
+      <div className="col-10 col-md-5 col-lg-4 mx-auto m-3 ">
         <h4>Добавить проект</h4>
         <Formik
           onSubmit={this.onSubmit}
+          validate={this.validate}
           initialValues={{
             name: "",
             description: "",
@@ -61,7 +72,9 @@ class AddProject extends Component {
               />
               {errors.name && touched.name && errors.name}
               <span>Описание</span>
-              <input
+              <textarea
+                cols="500"
+                style={{ resize: "none" }}
                 className="mb-3"
                 type="text"
                 name="description"

@@ -13,6 +13,7 @@ class EditClient extends Component {
     this.setState({ client });
   };
   onSubmit = async (values) => {
+    console.log(values);
     try {
       const { id } = this.props.match.params;
       await ClientService.update(id, values);

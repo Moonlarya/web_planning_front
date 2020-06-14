@@ -27,7 +27,7 @@ class Employees extends Component {
     return (
       <main>
         <h3 className="m-3">Сотрудники</h3>
-        <div className="d-flex flex-wrap">
+        <div className="d-flex flex-wrap justify-content-center">
           {employees.map((employee) => (
             <div className="card col-3" key={employee._id}>
               <h5 className="card-header">{positionTypes[employee.type]}</h5>

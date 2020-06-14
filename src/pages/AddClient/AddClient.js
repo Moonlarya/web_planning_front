@@ -29,7 +29,7 @@ class AddClient extends Component {
 
   render() {
     return (
-      <div className="col-3 mx-auto m-3">
+      <div className="col-10 col-md-5 col-lg-4 mx-auto m-3 ">
         <h3>Добавить клиента</h3>
         <Formik
           validate={this.validator}

@@ -32,7 +32,8 @@ class AddCriteria extends Component {
             <form
               autoComplete="off"
               onSubmit={handleSubmit}
-              className="d-flex flex-column mt-3 p-3 mx-auto"
+              style={{ width: "100%" }}
+              className="d-flex flex-column col-3 mt-3 p-3 mx-auto"
             >
               <span>Название фактора</span>
               <input
@@ -45,9 +46,11 @@ class AddCriteria extends Component {
               />
               {errors.name && touched.name && errors.name}
               <span>Описание</span>
-              <input
+              <textarea
+                cols="300"
                 className="mb-3"
                 type="text"
+                style={{ resize: "none" }}
                 name="description"
                 onChange={handleChange}
                 onBlur={handleBlur}

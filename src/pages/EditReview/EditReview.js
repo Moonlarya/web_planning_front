@@ -88,9 +88,11 @@ class EditReview extends Component {
 
               <ErrorMsg name="patronymic" component="div" />
               <span>Комментарий</span>
-              <input
+              <textarea
                 className="mb-3"
                 type="text"
+                cols="300"
+                style={{ resize: "none" }}
                 name="description"
                 onChange={handleChange}
                 onBlur={handleBlur}

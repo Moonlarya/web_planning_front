@@ -62,10 +62,6 @@ body {
   background-color: rgb(168, 242, 253);
 }
 
-.bonuce {
-  margin: 20px auto;
-}
-
 .nav {
   flex-wrap: nowrap !important;
   cursor: pointer;
@@ -86,3 +82,18 @@ main .card {
 }
 
 /*# sourceMappingURL=style.css.map */
+@media only screen and (max-width: 540px) {
+  main .card {
+    margin: 15px 0;
+    font-size: 12px;
+  }
+  h5, h6{
+    font-size: 13px!important;
+  }
+  .visibleHeaders{
+    display: none;
+  }
+  .status{
+    margin-top: 10%;
+  }
+}

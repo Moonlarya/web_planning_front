@@ -8,7 +8,7 @@ import { withAuth } from "../../stores/User";
 class Home extends Component {
   state = {
     tasks: [],
-    backgroundColor: { active: "yellow", finished: "green" },
+    backgroundColor: { active: "#ffed8564", finished: "#cbf28364" },
   };
   async componentDidMount() {
     this.loadInfo();
@@ -25,11 +25,15 @@ class Home extends Component {
     const { tasks, backgroundColor } = this.state;
 
     return (
-      <div id="accordion" className="col-12 m-3">
-        <h2 className="m-3">Рабочая доска процессов</h2>
+      <div id="accordion" className="col-12">
+        <h3 className="m-3">Рабочая доска процессов</h3>
         {tasks &&
           tasks.map((task) => (
-            <div className="card" key={task._id}>
+            <div
+              className="card"
+              key={task._id}
+              style={{ backgroundColor: `${backgroundColor[task.status]}` }}
+            >
               <div className="d-flex justify-content-between" id={task._id}>
                 <h5
                   className="mb-0 btn btn-link"
@@ -40,22 +44,6 @@ class Home extends Component {
                 >
                   {task.name}
                 </h5>
-                <div
-                  className="d-flex"
-                  style={{ position: "absolute", top: "20", left: "500px" }}
-                >
-                  <div
-                    className="m-auto"
-                    style={{
-                      width: "15px",
-                      height: "15px",
-                      backgroundColor: `${backgroundColor[task.status]}`,
-                      borderRadius: "100%",
-                    }}
-                  ></div>
-                  <h6 className="mb-0 btn">{status[task.status]}</h6>
-                </div>
-
                 {task.employee && (
                   <h6 className="mb-0 btn">
                     {`${task.employee.surname} ${task.employee.name} ${task.employee.patronymic}`}

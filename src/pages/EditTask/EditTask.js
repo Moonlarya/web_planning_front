@@ -89,9 +89,11 @@ class EditTask extends Component {
               />
               <ErrorMsg name="name" component="div" />
               <span>Описание</span>
-              <input
+              <textarea
                 className="mb-3"
                 type="text"
+                style={{ resize: "none" }}
+                cols="300"
                 name="description"
                 onChange={handleChange}
                 onBlur={handleBlur}

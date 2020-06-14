@@ -7,6 +7,12 @@
     background-color: rgb(238, 250, 252);
     padding: 20px !important;
     text-align: left;
+    .logo{
+      width: 60px;
+      height: 60px;
+      border-radius: 100%;
+      margin: 20px;
+    }
     li {
       .nav-link {
         padding: 0.5rem 2rem;
@@ -32,4 +38,46 @@
   padding: 14px;
   margin-bottom: 20px;
   background-color: rgb(220, 250, 255);
+}
+
+@media only screen and (max-width: 540px) {
+  .sidebar {
+    padding: 0 !important;
+    width: 60px;
+    box-sizing: border-box;
+    .visibleHeaders{
+      display: none;
+    }
+    ul {
+      height: 100vh;
+      background-color: rgb(238, 250, 252);
+      padding: 10px !important;
+      text-align: left;
+      .logo{
+        width: 40px;
+        height: 40px;
+        border-radius: 100%;
+        margin: 5px auto;
+      }
+      li {
+        .nav-link {
+          padding: 0.5rem;
+        }       
+  
+        a {
+          color: #494949 !important;
+        }
+  
+        &:hover,
+        &:active,
+        &:focus {
+          background-color: rgb(197, 244, 252);
+        }
+      }
+  
+      .name {
+        padding: 20px;
+      }
+    }
+  }
 }

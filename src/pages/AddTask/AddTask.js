@@ -70,8 +70,10 @@ class AddTask extends Component {
               />
               {errors.name && touched.name && errors.name}
               <span>Описание</span>
-              <input
+              <textarea
                 className="mb-3"
+                cols="300"
+                style={{ resize: "none" }}
                 type="text"
                 name="description"
                 onChange={handleChange}

@@ -58,9 +58,11 @@ class AddReport extends Component {
               />
               {errors.link && touched.link && errors.link}
               <span>Описание</span>
-              <input
+              <textarea
                 className="mb-3"
                 type="text"
+                cols="300"
+                style={{ resize: "none" }}
                 name="description"
                 onChange={handleChange}
                 onBlur={handleBlur}

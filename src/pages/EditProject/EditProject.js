@@ -81,7 +81,9 @@ class EditProject extends Component {
               />
               <ErrorMsg name="name" component="div" />
               <span>Описание</span>
-              <input
+              <textarea
+                cols="300"
+                style={{ resize: "none" }}
                 className="mb-3"
                 type="text"
                 name="description"

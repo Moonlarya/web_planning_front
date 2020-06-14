@@ -72,7 +72,9 @@ class AddProject extends Component {
               />
               {errors.name && touched.name && errors.name}
               <span>Описание</span>
-              <input
+              <textarea
+                cols="500"
+                style={{ resize: "none" }}
                 className="mb-3"
                 type="text"
                 name="description"

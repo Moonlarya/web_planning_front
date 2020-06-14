@@ -5,6 +5,19 @@ import photo from "../../assets/images/avatar1.jpg";
 
 import User from "../../stores/User";
 
+import {
+  faHome,
+  faAddressBook,
+  faLightbulb,
+  faTasks,
+  faStar,
+  faFile,
+  faUser,
+  faCalendar,
+  faSignOutAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import "./style.scss";
 
 import { withAuth } from "../../stores/User";
@@ -29,20 +42,20 @@ const Sidebar = ({ history, user: { name, surname, patronymic, type } }) => (
       </Link>
       <li className="nav-item">
         <Link className="nav-link" to="/home">
-          Главная
+          <FontAwesomeIcon icon={faHome} /> Главная
         </Link>
       </li>
       {["manager"].includes(type) && (
         <li className="nav-item">
           <Link className="nav-link" to="/clients">
-            Клиенты
+            <FontAwesomeIcon icon={faAddressBook} /> Клиенты
           </Link>
         </li>
       )}
       {
         <li className="nav-item">
           <Link className="nav-link" to="/projects">
-            Проекты
+            <FontAwesomeIcon icon={faLightbulb} /> Проекты
           </Link>
         </li>
       }
@@ -54,7 +67,7 @@ const Sidebar = ({ history, user: { name, surname, patronymic, type } }) => (
           aria-expanded="false"
           href="#"
         >
-          Задачи
+          <FontAwesomeIcon icon={faTasks} /> Задачи
         </a>
         <div className="dropdown-menu dropdown-menu-right">
           <Link to="/task" className="dropdown-item" type="button">
@@ -67,7 +80,7 @@ const Sidebar = ({ history, user: { name, surname, patronymic, type } }) => (
       </li>
       <li className="nav-item">
         <Link className="nav-link" to="/balance" type="button">
-          Баланс
+          <FontAwesomeIcon icon={faStar} /> Баланс
         </Link>
       </li>
       <li className="nav-item dropright">
@@ -78,7 +91,7 @@ const Sidebar = ({ history, user: { name, surname, patronymic, type } }) => (
           aria-expanded="false"
           href="#"
         >
-          Отчеты
+          <FontAwesomeIcon icon={faFile} /> Отчеты
         </a>
         <div className="dropdown-menu dropdown-menu-right">
           <Link to="/report" className="nav-link">
@@ -98,7 +111,7 @@ const Sidebar = ({ history, user: { name, surname, patronymic, type } }) => (
             aria-expanded="false"
             href="#"
           >
-            Персонал
+            <FontAwesomeIcon icon={faUser} /> Персонал
           </a>
           <div className="dropdown-menu dropdown-menu-right">
             <Link to="/employees" className="dropdown-item" type="button">
@@ -119,7 +132,7 @@ const Sidebar = ({ history, user: { name, surname, patronymic, type } }) => (
             aria-expanded="false"
             href="#"
           >
-            Собеседования
+            <FontAwesomeIcon icon={faCalendar} /> Собеседования
           </a>
           <div className="dropdown-menu dropdown-menu-right">
             <Link to="/review" className="dropdown-item" type="button">
@@ -143,7 +156,7 @@ const Sidebar = ({ history, user: { name, surname, patronymic, type } }) => (
             history.push("/");
           }}
         >
-          Выйти
+          <FontAwesomeIcon icon={faSignOutAlt} /> Выйти
         </a>
       </li>
     </ul>

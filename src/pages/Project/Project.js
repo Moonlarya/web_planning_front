@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import * as moment from "moment";
 import { extractHostname } from "../../helpers";
 import { withAuth } from "../../stores/User";
+import { faEdit, faTrashAlt, faInfo } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Project extends Component {
   state = {
@@ -32,7 +34,10 @@ class Project extends Component {
         </Link>
         <div className="d-flex flex-wrap justify-content-center">
           {projects.map((project) => (
-            <div className="card col-6 col-md-4 col-lg-3" key={project._id}>
+            <div
+              className="card  col-8 col-md-5 col-lg-3 mx-auto m-3"
+              key={project._id}
+            >
               <h5 className="card-header">{project.name}</h5>
               <p className="card-text">
                 <a
@@ -57,14 +62,16 @@ class Project extends Component {
                 to={`/projects/${project._id}`}
                 className="btn btn-primary m-1"
               >
-                Информация о проекте
+                <FontAwesomeIcon icon={faInfo} color="blue" />
+                <span className="visibleHeaders">Информация о проекте</span>
               </Link>
               {user.type === "manager" && (
                 <Link
                   to={`/project/${project._id}`}
                   className="btn btn-primary m-1"
                 >
-                  Изменить
+                  <FontAwesomeIcon icon={faEdit} color="blue" />
+                  <span className="visibleHeaders">Изменить</span>
                 </Link>
               )}
               {user.type === "manager" && (
@@ -72,7 +79,8 @@ class Project extends Component {
                   className="btn btn-outline-danger m-1"
                   onClick={() => this.deleteProject(project._id)}
                 >
-                  Удалить проект
+                  <FontAwesomeIcon icon={faTrashAlt} color="red" />
+                  <span className="visibleHeaders">Удалить проект</span>
                 </div>
               )}
             </div>

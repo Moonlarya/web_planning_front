@@ -33,7 +33,7 @@ class AddProject extends Component {
   render() {
     const { clients } = this.state;
     return (
-      <div className="col-3 mt-3 p-3 mx-auto">
+      <div className="col-10 col-md-5 col-lg-4 mx-auto m-3 ">
         <h4>Добавить проект</h4>
         <Formik
           onSubmit={this.onSubmit}

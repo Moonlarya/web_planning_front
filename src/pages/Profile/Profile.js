@@ -19,28 +19,7 @@ class Profile extends Component {
       <div>
         <main className="m-3 text-center">
           <h5>Мой кабинет</h5>
-          <div style={{ position: "relative" }}>
-            <div
-              style={{
-                width: "100px",
-                height: "100px",
-                borderRadius: "100%",
-                margin: "0 auto",
-              }}
-            >
-              <div
-                style={{
-                  width: "25px",
-                  height: "25px",
-                  borderRadius: "100%",
-                  position: "absolute",
-                  backgroundColor: "#333",
-                  cursor: "pointer",
-                }}
-              ></div>
-              <img src={photo} alt="img" style={{ width: "inherit" }}></img>
-            </div>
-          </div>
+
           <Formik
             validate={(values) => {
               if (values.newPassword !== values.repeatPassword)
@@ -61,7 +40,7 @@ class Profile extends Component {
               <form
                 autoComplete="off"
                 onSubmit={handleSubmit}
-                className="d-flex flex-column mt-3 p-3 mx-auto col-3"
+                className="d-flex flex-column col-12 col-md-5 col-lg-4 mx-auto m-3"
               >
                 <span>Введите новый пароль</span>
                 <input

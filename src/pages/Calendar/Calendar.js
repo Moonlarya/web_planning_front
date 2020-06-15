@@ -187,7 +187,11 @@ class Calendar extends Component {
           </div>
         </div>
         <div>
-          {!!dayEvents.length && <h4>События на этот день:</h4>}
+          {!!dayEvents.length && (
+            <div className="m-3">
+              <h4>События на этот день:</h4>
+            </div>
+          )}
           {dayEvents.map((event) => (
             <ul
               key={event._id}

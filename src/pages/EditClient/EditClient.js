@@ -43,7 +43,7 @@ class EditClient extends Component {
       return null;
     }
     return (
-      <div className="col-3 mx-auto m-3">
+      <div className="col-12 col-md-5 col-lg-4 mx-auto m-3">
         <h3>Изменить информацию о клиенте</h3>
         <Formik
           validate={this.validator}

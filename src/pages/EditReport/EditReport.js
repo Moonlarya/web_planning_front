@@ -45,7 +45,7 @@ class AddReport extends Component {
             <form
               autoComplete="off"
               onSubmit={handleSubmit}
-              className="d-flex flex-column mt-3 p-3 col-3 mx-auto"
+              className="d-flex flex-column col-12 col-md-5 col-lg-4 mx-auto m-3"
             >
               <span>Ссылка</span>
               <input

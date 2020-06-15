@@ -45,7 +45,7 @@ class Grades extends Component {
           </h5>
         )}
 
-        <div id="accordion" className="col-3">
+        <div id="accordion" className=" col-10 col-md-5 col-lg-3  m-3">
           {criterias.map((el, index) => (
             <div key={el._id}>
               <div>
@@ -73,7 +73,7 @@ class Grades extends Component {
                   aria-labelledby={index}
                   data-parent="#accordion"
                 >
-                  <div className="card-body text-left">
+                  <div className=" text-left">
                     <h5>Описание</h5>
                     <p className="card-text">{el.description}</p>
                   </div>

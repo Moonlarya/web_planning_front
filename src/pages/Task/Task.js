@@ -5,6 +5,9 @@ import TaskService from "../../services/TasksService";
 
 import * as moment from "moment";
 
+import { faEdit, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { withAuth } from "../../stores/User";
 
 class Task extends Component {
@@ -53,8 +56,11 @@ class Task extends Component {
 
         <div className="d-flex flex-wrap justify-content-center">
           {filteredTasks.map((task) => (
-            <div className="card col-3" key={task._id}>
-              <div className="card-body text-left">
+            <div
+              className="card col-12 col-md-5 col-lg-3 mx-auto"
+              key={task._id}
+            >
+              <div className="text-left">
                 <h5 className="card-header">{task.name}</h5>
                 <p className="card-text">{task.description}</p>
                 <p className="card-title">
@@ -82,22 +88,26 @@ class Task extends Component {
                     Отчет
                   </button>
                 )}
-                {type && type === "manager" && (
-                  <Link
-                    to={`/task/${task._id}`}
-                    className="btn btn-primary m-1"
-                  >
-                    Изменить
-                  </Link>
-                )}
-                {type && type === "manager" && (
-                  <div
-                    className="btn btn-outline-danger m-1"
-                    onClick={() => this.deleteInfo(task._id)}
-                  >
-                    Удалить
-                  </div>
-                )}
+                <div className="w-100">
+                  {type && type === "manager" && (
+                    <Link
+                      to={`/task/${task._id}`}
+                      className="btn btn-primary w-100 m-1"
+                    >
+                      <FontAwesomeIcon icon={faEdit} color="blue" />
+                      <span className="visibleHeaders">Изменить</span>
+                    </Link>
+                  )}
+                  {type && type === "manager" && (
+                    <div
+                      className="btn btn-outline-danger w-100 m-1"
+                      onClick={() => this.deleteInfo(task._id)}
+                    >
+                      <FontAwesomeIcon icon={faTrashAlt} color="red" />
+                      <span className="visibleHeaders">Удалить</span>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           ))}

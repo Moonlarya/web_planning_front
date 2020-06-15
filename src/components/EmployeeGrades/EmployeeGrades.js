@@ -50,7 +50,7 @@ class EmployeeGrades extends Component {
     const data = this.getGradesData();
 
     return (
-      <div className="card col-3">
+      <div className="card  col-8 col-md-4 col-lg-3  m-3">
         <h4>{`${employee.surname} ${employee.name} ${employee.patronymic}`}</h4>
         <p>Должность: {positionTypes[employee.type]}</p>
         <ul className="list-group">

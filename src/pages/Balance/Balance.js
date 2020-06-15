@@ -74,7 +74,7 @@ class Balance extends Component {
         <section className="d-flex align-items-start justify-content-center flex-wrap">
           <div className="card">
             <h5 className="card-header">Текущий баланс</h5>
-            <div className="card-body d-flex">
+            <div className="d-flex flex-wrap justify-content-center">
               <p className="card-text mx-3">Полученные бонусы: {bonuceSum}</p>
               <p className="card-text mx-3">Полученные штрафы: {fineSum}</p>
               <p className="card-text mx-3">Ожидаемые выплаты: {final}</p>
@@ -103,15 +103,18 @@ class Balance extends Component {
             </button>
           </div>
 
-          <Chart tasks={tasksByWeek} />
+          <Chart tasks={tasksByWeek} style={{ width: "100px!important" }} />
         </section>
 
         <section>
           <h5 className="mx-auto">Бонусы</h5>
           <div className="d-flex align-items-start justify-content-center flex-wrap">
             {tasksByWeek.map((task) => (
-              <div className="card col-3 text-left" key={task._id}>
-                <div className="card-body">
+              <div
+                className="card col-12 col-md-5 col-lg-3 mx-auto text-left"
+                key={task._id}
+              >
+                <div>
                   <h5 className="card-title card-header">{task.name}</h5>
                   <p className="card-title">
                     Дедлайн: {moment(`${task.deadline}`).format("Do MMMM YYYY")}

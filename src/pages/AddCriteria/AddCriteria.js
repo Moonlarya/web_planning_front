@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CriteriasService from "../../services/CriteriasService";
 import { Formik } from "formik";
+import { ErrorMsg } from "../SignIn/view";
 
 class AddCriteria extends Component {
   onSubmit = async (values) => {
@@ -33,7 +34,7 @@ class AddCriteria extends Component {
               autoComplete="off"
               onSubmit={handleSubmit}
               style={{ width: "100%" }}
-              className="d-flex flex-column col-3 mt-3 p-3 mx-auto"
+              className="d-flex flex-column col-10 col-md-5 col-lg-4 mx-auto m-3 "
             >
               <span>Название фактора</span>
               <input
@@ -44,7 +45,7 @@ class AddCriteria extends Component {
                 onBlur={handleBlur}
                 value={values.name}
               />
-              {errors.name && touched.name && errors.name}
+              <ErrorMsg name="name" component="div" />
               <span>Описание</span>
               <textarea
                 cols="300"
@@ -56,7 +57,7 @@ class AddCriteria extends Component {
                 onBlur={handleBlur}
                 value={values.description}
               />
-              {errors.description && touched.description && errors.description}
+              <ErrorMsg name="description" component="div" />
               <button
                 type="submit"
                 className="btn btn-primary m-1"

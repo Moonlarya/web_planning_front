@@ -35,7 +35,7 @@ class Project extends Component {
         <div className="d-flex flex-wrap justify-content-center">
           {projects.map((project) => (
             <div
-              className="card  col-8 col-md-5 col-lg-3 mx-auto m-3"
+              className="card  col-8 col-md-5 col-lg-3 m-3"
               key={project._id}
             >
               <h5 className="card-header">{project.name}</h5>

@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import ReportsService from "../../services/ReportsService";
 import TasksService from "../../services/TasksService";
 
+import { ErrorMsg } from "../SignIn/view";
 import { Formik } from "formik";
 
 class AddReport extends Component {
@@ -52,7 +53,7 @@ class AddReport extends Component {
                 onBlur={handleBlur}
                 value={values.link}
               />
-              {errors.link && touched.link && errors.link}
+              <ErrorMsg name="link" component="div" />
               <span>Описание</span>
               <textarea
                 className="mb-3"
@@ -64,7 +65,8 @@ class AddReport extends Component {
                 onBlur={handleBlur}
                 value={values.description}
               />
-              {errors.description && touched.description && errors.description}
+
+              <ErrorMsg name="description" component="div" />
               <button
                 type="submit"
                 className="btn btn-primary m-1"

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import ReviewsService from "../../services/ReviewsService";
 import { Formik } from "formik";
 
+import { ErrorMsg } from "../SignIn/view";
+
 class AddReview extends Component {
   onSubmit = async (values) => {
     try {
@@ -11,7 +13,7 @@ class AddReview extends Component {
   };
   render() {
     return (
-      <div className="col-3 mt-3 p-3 mx-auto">
+      <div className="col-12 col-md-5 col-lg-4 mx-auto m-3 ">
         <h3>Добавить резюме</h3>
         <Formik
           onSubmit={this.onSubmit}
@@ -50,7 +52,8 @@ class AddReview extends Component {
                 onBlur={handleBlur}
                 value={values.surname}
               />
-              {errors.surname && touched.surname && errors.surname}
+
+              <ErrorMsg name="surname" component="div" />
               <span>Имя</span>
               <input
                 className="mb-3"
@@ -60,7 +63,8 @@ class AddReview extends Component {
                 onBlur={handleBlur}
                 value={values.name}
               />
-              {errors.name && touched.name && errors.name}
+
+              <ErrorMsg name="name" component="div" />
               <span>Отчество</span>
               <input
                 className="mb-3"
@@ -70,7 +74,8 @@ class AddReview extends Component {
                 onBlur={handleBlur}
                 value={values.patronymic}
               />
-              {errors.patronymic && touched.patronymic && errors.patronymic}
+
+              <ErrorMsg name="patronymic" component="div" />
               <span>Комментарий</span>
               <textarea
                 className="mb-3"
@@ -82,7 +87,8 @@ class AddReview extends Component {
                 onBlur={handleBlur}
                 value={values.description}
               />
-              {errors.description && touched.description && errors.description}
+
+              <ErrorMsg name="description" component="div" />
               <span>e-mail</span>
               <input
                 className="mb-3"
@@ -92,7 +98,7 @@ class AddReview extends Component {
                 onBlur={handleBlur}
                 value={values.email}
               />
-              {errors.email && touched.email && errors.email}
+              <ErrorMsg name="email" component="div" />
               <span>Должность</span>
               <select
                 className="mb-3"
@@ -108,7 +114,7 @@ class AddReview extends Component {
                 <option value="developer">Разработчик</option>
                 <option value="hr">HR (рекрутер)</option>
               </select>
-              {errors.type && touched.type && errors.type}
+              <ErrorMsg name="type" component="div" />
               <span>Номер телефона</span>
               <input
                 className="mb-3"
@@ -118,7 +124,7 @@ class AddReview extends Component {
                 onBlur={handleBlur}
                 value={values.phone}
               />
-              {errors.phone && touched.phone && errors.phone}
+              <ErrorMsg name="phone" component="div" />
               <span>Приоритет</span>
               <input
                 className="mb-3"
@@ -128,7 +134,7 @@ class AddReview extends Component {
                 onBlur={handleBlur}
                 value={values.priority}
               />
-              {errors.priority && touched.priority && errors.priority}
+              <ErrorMsg name="priority" component="div" />
 
               <button
                 type="submit"

@@ -3,6 +3,7 @@ import ProjectService from "../../services/ProjectService";
 import ClientService from "../../services/ClientService";
 import * as moment from "moment";
 import { Formik } from "formik";
+import { ErrorMsg } from "../SignIn/view";
 import Datetime from "react-datetime";
 import "../../style/datetime.css";
 
@@ -33,7 +34,7 @@ class AddProject extends Component {
   render() {
     const { clients } = this.state;
     return (
-      <div className="col-10 col-md-5 col-lg-4 mx-auto m-3 ">
+      <div className="col-12 col-md-5 col-lg-4 mx-auto m-3 ">
         <h4>Добавить проект</h4>
         <Formik
           onSubmit={this.onSubmit}
@@ -59,7 +60,7 @@ class AddProject extends Component {
             <form
               autoComplete="off"
               onSubmit={handleSubmit}
-              className="d-flex flex-column mt-3 p-3 mx-auto"
+              className="d-flex flex-column mt-3 mx-auto"
             >
               <span>Название проекта</span>
               <input
@@ -70,7 +71,7 @@ class AddProject extends Component {
                 onBlur={handleBlur}
                 value={values.name}
               />
-              {errors.name && touched.name && errors.name}
+              <ErrorMsg name="name" component="div" />
               <span>Описание</span>
               <textarea
                 cols="500"
@@ -82,7 +83,7 @@ class AddProject extends Component {
                 onBlur={handleBlur}
                 value={values.description}
               />
-              {errors.description && touched.description && errors.description}
+              <ErrorMsg name="description" component="div" />
               <span>Срок</span>
               <Datetime
                 className="mb-3"
@@ -90,7 +91,8 @@ class AddProject extends Component {
                 value={values["deadline"]}
                 onChange={(e) => setFieldValue("deadline", e)}
               />
-              {errors.deadline && touched.deadline && errors.deadline}
+
+              <ErrorMsg name="deadline" component="div" />
               <span>Заказчик</span>
               <select
                 className="mb-3"
@@ -100,14 +102,15 @@ class AddProject extends Component {
                 onBlur={handleBlur}
                 value={values.clientId}
               >
-                <option value="" label="Выберите заказчика" />
+                <option value="" disabled label="Выберите заказчика" />
                 {clients.map((client) => (
                   <option value={client._id} key={client._id}>
                     {`${client.surname} ${client.name} ${client.patronymic}`}
                   </option>
                 ))}
               </select>
-              {errors.deadline && touched.deadline && errors.deadline}
+
+              <ErrorMsg name="clientId" component="div" />
               <span>Бюджет</span>
               <input
                 className="mb-3"
@@ -117,7 +120,7 @@ class AddProject extends Component {
                 onBlur={handleBlur}
                 value={values.budget}
               />
-              {errors.budget && touched.budget && errors.budget}
+              <ErrorMsg name="budget" component="div" />
               <button
                 type="submit"
                 className="btn btn-primary m-1"

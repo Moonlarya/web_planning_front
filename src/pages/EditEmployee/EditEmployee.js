@@ -25,7 +25,7 @@ class EditEmployee extends Component {
       return null;
     }
     return (
-      <div className="col-3 mt-3 p-3 mx-auto">
+      <div className="col-12 col-md-5 col-lg-4 mx-auto m-3">
         <h3>Изменить информацию о сотруднике</h3>
         <Formik
           onSubmit={this.onSubmit}

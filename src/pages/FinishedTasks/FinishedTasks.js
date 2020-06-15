@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import TaskService from "../../services/TasksService";
 import * as moment from "moment";
 import { withAuth } from "../../stores/User";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class FinishedTasks extends Component {
   state = {
@@ -29,8 +31,11 @@ class FinishedTasks extends Component {
         <h3 className="m-3">Выполненные задачи</h3>
         <div className="d-flex justify-content-center text-left flex-wrap">
           {filteredTasks.map((task) => (
-            <div className="card col-3" key={task._id}>
-              <div className="card-body">
+            <div
+              className="card col-12 col-md-5 col-lg-3 mx-auto"
+              key={task._id}
+            >
+              <div>
                 <h5 className="card-title card-header">{task.name}</h5>
                 <p className="card-text">{task.description}</p>
                 <p className="card-title">
@@ -61,10 +66,11 @@ class FinishedTasks extends Component {
                 )}
                 {type && type === "manager" && (
                   <div
-                    className="btn btn-outline-danger m-1"
+                    className="btn btn-outline-danger m-1 mx-auto w-100"
                     onClick={() => this.deleteInfo(task._id)}
                   >
-                    Удалить
+                    <FontAwesomeIcon icon={faTrashAlt} color="red" />
+                  <span className="visibleHeaders">Удалить</span>
                   </div>
                 )}
               </div>

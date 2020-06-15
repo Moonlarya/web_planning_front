@@ -4,6 +4,13 @@ import moment from "moment";
 import { status } from "../../constants/translation";
 import EmployeesService from "../../services/EmployeesService";
 
+import {
+  faEdit,
+  faTrashAlt,
+  faCheckCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { Link } from "react-router-dom";
 import { withAuth } from "../../stores/User";
 
@@ -27,13 +34,13 @@ class ReportCard extends Component {
       user: { type, _id },
     } = this.props;
     return (
-      <div className="card col-4 text-left">
+      <div className="card col-8 col-md-4 col-lg-3  m-3 text-left">
         <div className="card-header">
           <h5>Отчет по задаче</h5>
           {data.taskId && <p>{data.taskId.name}</p>}
         </div>
 
-        <div className="card-body">
+        <div>
           <h5>Комментарий</h5>
           <p className="card-title">{data.description}</p>
           <p className="card-text">
@@ -67,20 +74,29 @@ class ReportCard extends Component {
         </div>
         {(type === "manager" ||
           (data.taskId && _id === data.taskId.employee)) && (
-          <div>
-            <div className="btn btn-outline-danger m-1" onClick={onDelete}>
-              Удалить
+          <div className="w-100">
+            <div
+              className="btn btn-outline-danger w-100 m-1"
+              onClick={onDelete}
+            >
+              <FontAwesomeIcon icon={faTrashAlt} color="red" />
+              <span className="visibleHeaders">Удалить</span>
             </div>
-            <Link to={`/report/${data._id}`} className="btn btn-primary  m-1">
-              Изменить
+            <Link
+              to={`/report/${data._id}`}
+              className="btn btn-primary w-100 m-1"
+            >
+              <FontAwesomeIcon icon={faEdit} color="blue" />
+              <span className="visibleHeaders">Изменить</span>
             </Link>
             {this.props.onComplete && (
               <a
                 href="#"
-                className="btn btn-primary  m-1"
+                className="btn btn-primary m-1 w-100"
                 onClick={this.props.onComplete}
               >
-                Завершить
+                <FontAwesomeIcon icon={faCheckCircle} color="blue" />
+                <span className="visibleHeaders">Завершить</span>
               </a>
             )}
           </div>

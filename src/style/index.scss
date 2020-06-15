@@ -16,8 +16,14 @@ code {
 main .card {
   padding: 10px;
 }
-@media only screen and (max-width: 540px) {
+@media only screen and (max-width: 785px) {
     .visibleHeaders{
     display: none;
+  }
+  .calendar-view{
+    flex-direction: column;
+  }
+  p{
+    font-size: 12px;
   }
 }

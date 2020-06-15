@@ -6,6 +6,7 @@ import ProjectService from "../../services/ProjectService";
 import Datetime from "react-datetime";
 import "../../style/datetime.css";
 
+import { ErrorMsg } from "../SignIn/view";
 import { Formik } from "formik";
 
 class AddTask extends Component {
@@ -30,7 +31,7 @@ class AddTask extends Component {
   render() {
     const { employees, projects } = this.state;
     return (
-      <div className="col-3 mt-3 p-3 mx-auto">
+      <div className="col-12 col-md-5 col-lg-4 mx-auto m-3 ">
         <h4>Добавить задачу</h4>
         <Formik
           onSubmit={this.onSubmit}
@@ -68,7 +69,7 @@ class AddTask extends Component {
                 onBlur={handleBlur}
                 value={values.name}
               />
-              {errors.name && touched.name && errors.name}
+              <ErrorMsg name="name" component="div" />
               <span>Описание</span>
               <textarea
                 className="mb-3"
@@ -80,7 +81,7 @@ class AddTask extends Component {
                 onBlur={handleBlur}
                 value={values.description}
               />
-              {errors.description && touched.description && errors.description}
+              <ErrorMsg name="description" component="div" />
 
               <span>Срок выполнения</span>
               <Datetime
@@ -89,7 +90,7 @@ class AddTask extends Component {
                 value={values["deadline"]}
                 onChange={(e) => setFieldValue("deadline", e)}
               />
-              {errors.deadline && touched.deadline && errors.deadline}
+              <ErrorMsg name="deadline" component="div" />
               <span>Количество бонусов</span>
               <input
                 className="mb-3"
@@ -114,7 +115,7 @@ class AddTask extends Component {
                   </option>
                 ))}
               </select>
-              {errors.employee && touched.employee && errors.employee}
+              <ErrorMsg name="employee" component="div" />
 
               <span>Проект</span>
               <select
@@ -131,7 +132,7 @@ class AddTask extends Component {
                   </option>
                 ))}
               </select>
-              {errors.project && touched.project && errors.project}
+              <ErrorMsg name="project" component="div" />
               <p>{errors.error}</p>
               <button
                 type="submit"

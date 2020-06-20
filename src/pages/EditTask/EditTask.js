@@ -48,7 +48,7 @@ class EditTask extends Component {
       return null;
     }
     return (
-      <div className="col-12 col-md-5 col-lg-4 mx-auto m-3 ">
+      <div>
         <h4>Изменить задачу</h4>
         <Formik
           onSubmit={this.onSubmit}

@@ -28,8 +28,8 @@ class ProjectPage extends Component {
     }
     return (
       <div>
-        <div className="mx-auto col-5">
-          <h3 className="m-3">Информация о проекте</h3>
+        <div className="mx-auto col-9 col-md-7 col-lg-4">
+          <h3 className="m-3 mx-auto">Информация о проекте</h3>
           <h5 className="card-header">{project.name}</h5>
           <p className="card-text">
             <a

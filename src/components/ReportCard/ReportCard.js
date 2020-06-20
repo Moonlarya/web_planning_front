@@ -75,13 +75,12 @@ class ReportCard extends Component {
         {(type === "manager" ||
           (data.taskId && _id === data.taskId.employee)) && (
           <div className="w-100">
-            
             <Link
               to={`/report/${data._id}`}
               className="btn btn-primary w-100 m-1"
             >
               <FontAwesomeIcon icon={faEdit} color="blue" />
-              <span className="visibleHeaders">Изменить</span>
+              <span className="visibleHeaders"> Изменить</span>
             </Link>
             {this.props.onComplete && (
               <a
@@ -90,7 +89,7 @@ class ReportCard extends Component {
                 onClick={this.props.onComplete}
               >
                 <FontAwesomeIcon icon={faCheckCircle} color="blue" />
-                <span className="visibleHeaders">Завершить</span>
+                <span className="visibleHeaders"> Завершить</span>
               </a>
             )}
             <div
@@ -98,7 +97,7 @@ class ReportCard extends Component {
               onClick={onDelete}
             >
               <FontAwesomeIcon icon={faTrashAlt} color="red" />
-              <span className="visibleHeaders">Удалить</span>
+              <span className="visibleHeaders"> Удалить</span>
             </div>
           </div>
         )}

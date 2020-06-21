@@ -35,11 +35,7 @@ class Calendar extends Component {
   onChange = (date) => this.setState({ date });
 
   onSubmit = async (values) => {
-    const time = values.time;
-    const hours = time.hours();
-    const minutes = time.minutes();
-    const date = moment(this.state.date);
-    date.set({ hour: hours, minute: minutes });
+    const date = this.getDate(values.time);
     const valuesToSubmit = { ...values, date: date.toDate() };
     try {
       await CalendarService.create(valuesToSubmit);
@@ -56,8 +52,21 @@ class Calendar extends Component {
       this.loadInfo();
     } catch {}
   };
+
+  getDate = (time) => {
+    const hours = time.hours();
+    const minutes = time.minutes();
+    const date = moment(this.state.date);
+    date.set({ hour: hours, minute: minutes });
+    return date;
+  };
   validator = (values) => {
     const errors = {};
+    const date = this.getDate(values.time);
+
+    if (moment(date).isBefore(Date.now())) {
+      errors.time = "Нельзя создавать события в прошлом";
+    }
     if (!values.name) {
       errors.name = "Обязательно к заполнению";
     }

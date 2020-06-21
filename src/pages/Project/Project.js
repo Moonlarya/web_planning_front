@@ -29,9 +29,11 @@ class Project extends Component {
     return (
       <div>
         <h3 className="m-3">Проекты</h3>
-        <Link to="/addproject" className="btn btn-primary mt-3">
-          Создать проект
-        </Link>
+        {user.type === "manager" && (
+          <Link to="/addproject" className="btn btn-primary mt-3">
+            Создать проект
+          </Link>
+        )}
         <div className="d-flex flex-wrap justify-content-center">
           {projects.map((project) => (
             <div

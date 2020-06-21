@@ -28,8 +28,14 @@ class EditTask extends Component {
   }
   validator = (values) => {
     const errors = {};
+    if (isNaN(values.bonuce)) {
+      errors.bonuce = "Пожалуйста, введите цифры!";
+    }
     if (moment(this.state.task.createdAt).isSameOrAfter(values.deadline)) {
       errors.deadline = "Срок сдачи задания должен быть позже даты создания";
+    }
+    if (values.bonuce < 0) {
+      errors.budget = "Количество бонусов не может быть отрицательным";
     }
     return errors;
   };

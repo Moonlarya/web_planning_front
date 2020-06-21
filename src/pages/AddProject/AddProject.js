@@ -17,6 +17,9 @@ class AddProject extends Component {
   }
   validate = (values) => {
     const errors = {};
+    if (isNaN(values.budget)) {
+      errors.budget = "Пожалуйста, введите цифры!";
+    }
     if (values.budget < 0) {
       errors.budget = "Бюджет не может быть отрицательным";
     }

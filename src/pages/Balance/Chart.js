@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   LineChart,
   Line,
@@ -27,8 +27,20 @@ const Chart = ({ tasks = [] }) => {
     };
   });
 
+  let width = 0;
+
+  if (window.innerWidth < 920) {
+    width = 400;
+  }
+  if (window.innerWidth > 920) {
+    width = 800;
+  }
+  if (window.innerWidth < 360) {
+    width = 230;
+  }
+
   return (
-    <LineChart width={800} height={300} data={data}>
+    <LineChart height={300} width={width} data={data}>
       <Line
         type="monotone"
         dataKey={valueName}

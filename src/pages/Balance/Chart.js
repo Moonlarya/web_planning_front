@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import {
   LineChart,
   Line,
@@ -13,7 +13,22 @@ const weekdays = moment.weekdaysShort();
 
 const valueName = "Бонусы";
 
+function useWindowSize() {
+  const [size, setSize] = useState([0, 0]);
+  useLayoutEffect(() => {
+    function updateSize() {
+      setSize([window.innerWidth, window.innerHeight]);
+    }
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+  return size;
+}
+
 const Chart = ({ tasks = [] }) => {
+  const [windowWidth] = useWindowSize();
+
   const data = weekdays.map((dayName) => {
     const dayTasks = tasks.filter(
       (task) => moment(task.finishDate).format("ddd") === dayName
@@ -28,14 +43,13 @@ const Chart = ({ tasks = [] }) => {
   });
 
   let width = 0;
-
-  if (window.innerWidth < 920) {
+  if (windowWidth < 920) {
     width = 400;
   }
-  if (window.innerWidth > 920) {
+  if (windowWidth > 920) {
     width = 800;
   }
-  if (window.innerWidth < 360) {
+  if (windowWidth < 360) {
     width = 230;
   }
 

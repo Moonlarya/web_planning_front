@@ -6,6 +6,8 @@ import ProjectService from "../../services/ProjectService";
 import Datetime from "react-datetime";
 import "../../style/datetime.css";
 
+import * as moment from "moment";
+
 import { ErrorMsg } from "../SignIn/view";
 import { Formik } from "formik";
 
@@ -19,6 +21,20 @@ class AddTask extends Component {
     const projects = await ProjectService.getAll();
     this.setState({ employees: employees, projects: projects });
   }
+
+  validate = (values) => {
+    const errors = {};
+    if (isNaN(values.bonuce)) {
+      errors.bonuce = "Пожалуйста, введите цифры!";
+    }
+    if (values.bonuce < 0) {
+      errors.budget = "Количество бонусов не может быть отрицательным";
+    }
+    if (moment(values.deadline).isBefore(Date.now())) {
+      errors.budget = "Дедлайн не может быть раньше текушей даты!";
+    }
+    return errors;
+  };
 
   onSubmit = async (values, { setErrors }) => {
     try {
@@ -35,6 +51,7 @@ class AddTask extends Component {
         <h4>Добавить задачу</h4>
         <Formik
           onSubmit={this.onSubmit}
+          validate={this.validate}
           initialValues={{
             description: "",
             name: "",

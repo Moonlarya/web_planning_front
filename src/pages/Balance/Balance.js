@@ -103,7 +103,7 @@ class Balance extends Component {
             </button>
           </div>
 
-          <Chart tasks={tasksByWeek} style={{ width: "100px!important" }} />
+          <Chart tasks={tasksByWeek} />
         </section>
 
         <section>

@@ -61,7 +61,6 @@ class SignIn extends Component {
         >
           {({ isSubmitting, errors, touched }) => (
             <Form>
-              <ErrorMsg name="email" component="div" />
               <Input
                 placeholder="Электронная почта*"
                 type="text"
@@ -77,18 +76,10 @@ class SignIn extends Component {
                 valid={touched.password && !errors.password}
                 error={touched.password && errors.password}
               />
-              <Button type="submit" disabled={isSubmitting}>
-                Sign In
-              </Button>
               <ErrorMsg name="password" component="div" />
-              <label htmlFor="check" className="checkbox_pseudo">
-                <Input
-                  type="checkbox"
-                  name="check"
-                  style={{ width: "max-content" }}
-                />
-                Remember
-              </label>
+              <Button type="submit" disabled={isSubmitting}>
+                Войти
+              </Button>
             </Form>
           )}
         </Formik>

@@ -58,19 +58,20 @@ class Review extends Component {
                     className="btn btn-primary m-1 w-100"
                   >
                     <FontAwesomeIcon icon={faEdit} color="blue" />
-                    <span className="visibleHeaders">Редактировать</span>
+                    <span className="visibleHeaders"> Редактировать</span>
                   </Link>
                   {user.type === "manager" && (
                     <a
                       href="#"
-                      className="btn btn-primary m-1 w-100"
+                      className=" btn btn-outline-success  m-1 w-100"
                       onClick={async () => {
                         await ReviewsService.createEmployee(review._id);
                         this.props.history.push("/employees");
                       }}
                     >
                       <FontAwesomeIcon icon={faUserPlus} color="blue" />
-                      <span className="visibleHeaders">Взять на работу</span>
+
+                      <span className="visibleHeaders "> Взять на работу</span>
                     </a>
                   )}
                   <div
@@ -78,7 +79,7 @@ class Review extends Component {
                     onClick={() => this.deleteReview(review._id)}
                   >
                     <FontAwesomeIcon icon={faTrashAlt} color="red" />
-                    <span className="visibleHeaders">Удалить резюме</span>
+                    <span className="visibleHeaders"> Удалить резюме</span>
                   </div>
                 </div>
               </div>

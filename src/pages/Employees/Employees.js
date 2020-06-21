@@ -44,12 +44,11 @@ class Employees extends Component {
                 Дата появления:
                 {moment(`${employee.createdAt}`).format("Do MMMM YYYY")}
               </p>
-
-              <div className="d-flex flex-wrap  justify-content-center">
+              <div className="d-flex flex-wrap flex-column justify-content-center">
                 {user.type === "hr" && (
                   <Link
                     to={`/gradepage/${employee._id}`}
-                    className="btn btn-primary m-1"
+                    className="btn btn-outline-success m-1 "
                   >
                     <FontAwesomeIcon icon={faSmile} color="blue" />
                     <span className="visibleHeaders">Оценивание</span>

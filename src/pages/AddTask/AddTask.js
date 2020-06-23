@@ -28,10 +28,10 @@ class AddTask extends Component {
       errors.bonuce = "Пожалуйста, введите цифры!";
     }
     if (values.bonuce < 0) {
-      errors.budget = "Количество бонусов не может быть отрицательным";
+      errors.bonuce = "Количество бонусов не может быть отрицательным";
     }
     if (moment(values.deadline).isBefore(Date.now())) {
-      errors.budget = "Дедлайн не может быть раньше текушей даты!";
+      errors.deadline = "Дедлайн не может быть раньше текушей даты!";
     }
     return errors;
   };

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReviewsService from "../../services/ReviewsService";
 import { Formik } from "formik";
+import InputMask from "react-input-mask";
 
 import { ErrorMsg } from "../SignIn/view";
 
@@ -116,13 +117,16 @@ class AddReview extends Component {
               </select>
               <ErrorMsg name="type" component="div" />
               <span>Номер телефона</span>
-              <input
+              <InputMask
                 className="mb-3"
-                type="text"
+                type="tel"
                 name="phone"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.phone}
+                {...this.props}
+                mask="+99\(999) 999 99 99"
+                maskChar=" "
               />
               <ErrorMsg name="phone" component="div" />
               <span>Приоритет</span>

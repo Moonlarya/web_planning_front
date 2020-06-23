@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ClientService from "../../services/ClientService";
 import { Formik } from "formik";
 import { ErrorMsg } from "../SignIn/view";
+import InputMask from "react-input-mask";
 
 class EditClient extends Component {
   state = {
@@ -111,13 +112,16 @@ class EditClient extends Component {
               />
               <ErrorMsg name="patronymic" component="div" />
               <span>Телефон</span>
-              <input
+              <InputMask
                 className="mb-3"
                 type="tel"
                 name="phone"
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.phone}
+                {...this.props}
+                mask="+99\(999) 999 99 99"
+                maskChar=" "
               />
               <ErrorMsg name="phone" component="div" />
               <button
